@@ -1,0 +1,44 @@
+@import "../abstracts/variables";
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: $grid-gutter-width / 2;
+  padding-right: $grid-gutter-width / 2;
+}
+
+@media (min-width: $tablet) {
+  .container {
+    width: $container-sm;
+  }
+}
+
+@media (min-width: $desktop) {
+  .container {
+    width: $container-md;
+  }
+}
+
+@media (min-width: $lg-desktop) {
+  .container {
+    width: $container-lg;
+  }
+}
+
+.container:before,
+.container:after,
+.row:before,
+.row:after {
+  content: "";
+  display: table;
+}
+
+.container:after,
+.row:after {
+  clear: both;
+}
+
+.row {
+  margin-left: $grid-gutter-width / -2;
+  margin-right: $grid-gutter-width / -2;
+}

@@ -1,0 +1,14 @@
+@import "../abstracts/variables";
+
+body {
+  font-family: $font-family-sans-serif;
+  background-color: $main-bg-color;
+  color: $text-color;
+  font-size: $font-size-base;
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
