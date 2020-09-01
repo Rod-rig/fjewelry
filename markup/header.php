@@ -10,7 +10,7 @@ require 'constants.php';
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="<?= SITE_DIR ?>favicon.ico" rel="shortcut icon" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH . '/dist/css/main.css' ?>" />
 </head>
 <body>
@@ -33,8 +33,8 @@ require 'constants.php';
       </div>
 
       <div class="">
-        <a href="/">
-          <img class="header__logo" src="<?= '../../img/logo.png' ?>" alt="">
+        <a href="<?= SITE_DIR . "main.php"; ?>">
+          <img class="header__logo" src="../../img/logo.png" alt="">
         </a>
       </div>
 

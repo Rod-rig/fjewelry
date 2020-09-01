@@ -1,7 +1,7 @@
 <?php
 
 define('SITE_TEMPLATE_PATH', substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/markup')));
-define('SITE_DIR', SITE_TEMPLATE_PATH.'/markup/pages/');
+define('SITE_DIR', SITE_TEMPLATE_PATH . '/markup/pages/');
 
 /**
  * @param string $pageName
@@ -22,17 +22,17 @@ function isOnPage($pageName = 'main')
 function includeComponent($name, $dataFilePath = '', array $arParams = array())
 {
     $defaultParameters = include __DIR__ . '/default-parameters/.global.php';
-    $defaultParametersFileName = __DIR__ . '/default-parameters/' .$name.'.php';
+    $defaultParametersFileName = __DIR__ . '/default-parameters/' . $name . '.php';
     if (is_file($defaultParametersFileName)) {
         $defaultParameters = array_merge($defaultParameters, include $defaultParametersFileName);
     }
     $arParams = array_merge($defaultParameters, $arParams);
 
     $arResult = array();
-    $dataFileName = __DIR__.'/data/'.$dataFilePath.'.php';
+    $dataFileName = __DIR__ . '/data/' . $dataFilePath . '.php';
     if (is_file($dataFileName)) {
         $arResult = include $dataFileName;
     }
 
-    return include __DIR__ . '/components/' .$name.'.php';
+    return include __DIR__ . '/components/' . $name . '.php';
 }
