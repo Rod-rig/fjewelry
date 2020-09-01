@@ -14,7 +14,42 @@ require 'constants.php';
   <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH . '/dist/css/main.css' ?>" />
 </head>
 <body>
+<? echo file_get_contents("../../img/svg-sprites/common.svg"); ?>
 <header class="header">
   <div class="header__top">Lorem ipsum dolor sit amet, consectetur adipisicing.</div>
+
+  <div class="container">
+    <div class="header__body">
+      <div class="header__hamb">
+        <button class="header__hamb_btn" type="button"></button>
+      </div>
+
+      <div>
+        <button class="btn" type="button">
+          <svg class="header__icon">
+            <use xlink:href="#search"></use>
+          </svg>
+        </button>
+      </div>
+
+      <div class="">
+        <a href="/">
+          <img class="header__logo" src="<?= '../../img/logo.png' ?>" alt="">
+        </a>
+      </div>
+
+      <button class="btn" type="button">
+        <svg class="header__icon">
+          <use xlink:href="#phone"></use>
+        </svg>
+      </button>
+
+      <button class="btn" type="button">
+        <svg class="header__basket_icon">
+          <use xlink:href="#basket"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
 </header>
 <div class="content">

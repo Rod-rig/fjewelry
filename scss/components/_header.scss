@@ -12,4 +12,63 @@
     overflow: hidden;
     text-align: center;
   }
+
+  &__body {
+    height: 70px;
+    background-color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__hamb {
+    &_btn {
+      background-color: $black;
+      width: 20px;
+      height: 20px;
+      padding: 9px 0;
+      background-clip: content-box;
+      border: 0;
+      position: relative;
+      outline-offset: 5px;
+    }
+
+    &_btn:before,
+    &_btn:after {
+      content: "";
+      background-color: $black;
+      position: absolute;
+      left: 0;
+      height: 2px;
+      width: 100%;
+    }
+
+    &_btn:before {
+      top: 0;
+    }
+
+    &_btn:after {
+      bottom: 0;
+    }
+  }
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+
+  &__basket_icon {
+    width: 20px;
+    height: 23px;
+    display: block;
+  }
+
+  &__logo {
+    width: 80px;
+    height: auto;
+    max-width: 100%;
+    max-height: 50px;
+    display: block;
+  }
 }
