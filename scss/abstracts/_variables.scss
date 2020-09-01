@@ -4,6 +4,8 @@ $white: #FFF;
 $main-bg-color: $white;
 $text-color: $black;
 
+$primary-color: #15967F;
+
 /* Breakpoints */
 $lg-desktop: 1200px;
 $desktop: 992px;
@@ -18,7 +20,7 @@ $container-md: 940px + $grid-gutter-width;
 $container-lg: 1140px + $grid-gutter-width;
 
 /* Fonts */
-$font-family-sans-serif: "Arial", sans-serif;
+$font-family-sans-serif: "Montserrat", sans-serif;
 
 /* Font sizes */
 $font-size-base: 16px;

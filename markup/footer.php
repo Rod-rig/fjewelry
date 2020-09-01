@@ -3,6 +3,6 @@
 
 </footer>
 
-<script src="<?=SITE_TEMPLATE_PATH.'/dist/js/main.js'?>"></script>
+<script src="<?= SITE_TEMPLATE_PATH . '/dist/js/main.js' ?>"></script>
 </body>
 </html>

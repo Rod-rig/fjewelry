@@ -1,3 +1,15 @@
+@import "../abstracts/variables";
+
 .header {
-  font-size: 20px;
+  &__top {
+    font-size: 12px;
+    line-height: 16px;
+    color: $white;
+    background-color: $primary-color;
+    padding: 7px 13px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
+  }
 }

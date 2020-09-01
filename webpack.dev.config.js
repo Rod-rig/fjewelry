@@ -14,7 +14,7 @@ module.exports = {
       host: "localhost",
       port: 3000,
       files: ["**/*.php"],
-      proxy: "http://starter/",
+      proxy: "http://fjewelry/",
     }),
   ],
 };
