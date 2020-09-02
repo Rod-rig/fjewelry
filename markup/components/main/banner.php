@@ -1,6 +1,6 @@
 <div class="container">
   <div class="main_banner">
-    <div class="">
+    <div class="main_banner__image_col">
       <img class="main_banner__img" src="https://via.placeholder.com/780x440" alt="">
     </div>
     <div class="main_banner__text">
