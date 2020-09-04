@@ -5,8 +5,8 @@
  */
 ?>
 <div class="container carousel">
-  <div class="carousel__title"><?= $arResult['TITLE']; ?></div>
-  <div class="js_watched_carousel">
+  <div class="title"><?= $arResult['TITLE']; ?></div>
+  <div class="js_main_carousel">
     <? for ($i = 0; $i < count($arResult['PRODUCTS']); $i++) { ?>
       <div>
         <? includeComponent('main/minicard', 'carousel/products', $arResult['PRODUCTS'][$i]); ?>
