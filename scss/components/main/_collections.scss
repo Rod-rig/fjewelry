@@ -85,24 +85,4 @@
       display: none;
     }
   }
-
-  &__all {
-    text-decoration: none;
-    text-transform: uppercase;
-    color: $white;
-    font-weight: bold;
-    font-size: 14px;
-    padding: 16px 10px;
-    min-width: 200px;
-    display: inline-block;
-    background-color: $text-color;
-    border: 2px solid $text-color;
-    text-align: center;
-    letter-spacing: 1px;
-
-    @media (min-width: $lg-desktop) {
-      color: $text-color;
-      background-color: transparent;
-    }
-  }
 }

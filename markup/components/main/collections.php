@@ -11,7 +11,7 @@
           </a>
         </div>
         <div class="collections__all_mob">
-          <a href="" class="collections__all">All collections</a>
+          <a href="" class="main_link">All collections</a>
         </div>
       </div>
       <div class="collections__column">
@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="collections__all_row">
-      <a href="" class="collections__all">All collections</a>
+      <a href="" class="main_link">All collections</a>
     </div>
   </div>
 </div>
