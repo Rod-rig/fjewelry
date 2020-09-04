@@ -20,6 +20,7 @@
   &__body {
     @media (min-width: $lg-desktop) {
       display: flex;
+      align-items: flex-start;
       justify-content: space-between;
       margin-bottom: 30px;
     }
@@ -110,8 +111,8 @@
     }
 
     @media (min-width: $lg-desktop) {
-      width: 38%;
-      min-width: 38%;
+      width: 40%;
+      min-width: 40%;
       padding-bottom: 0;
     }
   }

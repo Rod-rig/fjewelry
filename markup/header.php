@@ -10,11 +10,16 @@ require 'constants.php';
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="<?= SITE_DIR ?>favicon.ico" rel="shortcut icon" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Roboto+Condensed:wght@300;400&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH . '/dist/css/main.css' ?>" />
 </head>
 <body>
 <? echo file_get_contents("../../img/svg-sprites/common.svg"); ?>
+<? if (isOnPage()) {
+  echo file_get_contents("../../img/svg-sprites/main.svg");
+} ?>
 <header class="header">
   <div class="header__top">Lorem ipsum dolor sit amet, consectetur adipisicing.</div>
 

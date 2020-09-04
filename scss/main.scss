@@ -1,3 +1,4 @@
+@import "../node_modules/tiny-slider/dist/tiny-slider";
 @import "abstracts/variables";
 @import "base/reset";
 @import "base/base";
@@ -6,4 +7,6 @@
 @import "components/header";
 @import "components/menu";
 @import "components/main/banner";
+@import "components/main/carousel";
+@import "components/main/minicard";
 @import "components/footer";
