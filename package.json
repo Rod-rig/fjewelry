@@ -50,6 +50,7 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
+    "simplebar": "^5.1.0",
     "tiny-slider": "^2.9.3"
   }
 }

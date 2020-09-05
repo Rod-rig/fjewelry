@@ -15,7 +15,10 @@ require 'constants.php';
     rel="stylesheet">
   <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH . '/dist/css/main.css' ?>" />
 </head>
-<body>
+<body class="no-js">
+<script>
+  document.body.classList.remove("no-js");
+</script>
 <? echo file_get_contents("../../img/svg-sprites/common.svg"); ?>
 <? if (isOnPage()) {
   echo file_get_contents("../../img/svg-sprites/main.svg");
