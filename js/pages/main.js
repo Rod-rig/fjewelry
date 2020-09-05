@@ -1,6 +1,7 @@
 import { isDesktop } from "../helpers/is-desktop";
 
 const OPENED_SUBMENU = "submenu--opened";
+const ACTIVE_CATEGORY = "categories__item--active";
 
 function toggleMenu() {
   const menu = document.querySelector(".js_menu");
@@ -58,5 +59,25 @@ export const initSubmenuEvents = () => {
         showMenu();
       });
     }
+  }
+};
+
+export const initCategoriesEvents = () => {
+  const category = document.querySelectorAll(".js_category");
+  for (let i = 0; i < category.length; i++) {
+    category[i].addEventListener("click", function () {
+      const index = this.getAttribute("data-index");
+      const subcategory = document.querySelectorAll(".js_subcategory");
+
+      for (let j = 0; j < subcategory.length; j++) {
+        subcategory[j].classList.add("hide");
+      }
+      for (let k = 0; k < category.length; k++) {
+        category[k].classList.remove(ACTIVE_CATEGORY);
+      }
+
+      subcategory[index].classList.remove("hide");
+      this.classList.add(ACTIVE_CATEGORY);
+    });
   }
 };

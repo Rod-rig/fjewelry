@@ -1,5 +1,6 @@
 <?php require '../header.php'; ?>
 <?php require '../components/main/banner.php'; ?>
+<?php require '../components/main/categories.php'; ?>
 <?php includeComponent('main/carousel', 'carousel/last-watched'); ?>
 <?php require '../components/main/discover.php'; ?>
 <?php includeComponent('main/carousel', 'carousel/best'); ?>
