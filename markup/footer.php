@@ -62,7 +62,7 @@
         <div>
           <div class="footer__contacts">
             <div class="footer__contacts_title">Keep in touch</div>
-            <div class="">
+            <div>
               <div class="footer__contacts_data">
                 <div class="footer__contacts_label">Phone number:</div>
                 <div class="mb-10">

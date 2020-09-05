@@ -43,7 +43,11 @@ require 'constants.php';
         </button>
 
         <div class="header__hamb">
-          <button class="header__hamb_btn" type="button"></button>
+          <button class="hamburger js_hamburger" type="button">
+            <svg class="header__icon close_icon">
+              <use xlink:href="#close"></use>
+            </svg>
+          </button>
         </div>
 
         <div>

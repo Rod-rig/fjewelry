@@ -1,17 +1,27 @@
 /* stylelint-disable selector-max-specificity */
 @import "../abstracts/variables";
 
+$color: #EFEFEF;
+
 .submenu {
-  display: flex;
   display: none;
   width: 100%;
-  border: 1px solid #EFEFEF;
   background-color: $white;
-  padding: 35px 40px;
   position: absolute;
   z-index: $menu-zorder;
   left: 0;
   right: 0;
+  top: 0;
+
+  @media (min-width: $lg-desktop) {
+    padding: 35px 40px;
+    border: 1px solid $color;
+    top: auto;
+  }
+
+  &--opened {
+    display: block;
+  }
 
   &__link {
     text-transform: uppercase;
@@ -20,28 +30,108 @@
     font-size: 14px;
     line-height: 18px;
     color: $text-color;
+  }
 
-    &_wrap {
-      margin-bottom: 20px;
-    }
+  &__list {
+    margin-top: 20px;
   }
 
   &__column {
-    width: 25%;
-    padding-right: 10px;
-    margin-bottom: 20px;
+    padding: 15px 10px;
+    border-top: 1px solid $light-color;
+
+    &:last-child {
+      border-bottom: 1px solid $light-color;
+
+      @media (min-width: $lg-desktop) {
+        border-bottom: 0;
+      }
+    }
+
+    @media (min-width: $lg-desktop) {
+      width: 25%;
+      padding: 0 10px 0 0;
+      margin-bottom: 20px;
+      border: 0;
+    }
   }
 
   &__body {
-    width: 75%;
-    min-width: 75%;
-    display: flex;
-    flex-wrap: wrap;
+    @media (min-width: $lg-desktop) {
+      width: 75%;
+      min-width: 75%;
+      display: flex;
+      flex-wrap: wrap;
+    }
   }
 
   &__img {
-    width: 25%;
-    min-width: 25%;
+    display: none;
+
+    @media (min-width: $lg-desktop) {
+      width: 25%;
+      min-width: 25%;
+      display: block;
+    }
+  }
+
+  &__link_more {
+    color: $primary-color;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+
+    @media (min-width: $lg-desktop) {
+      display: none;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media (min-width: $lg-desktop) {
+      display: block;
+    }
+  }
+
+  &__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F5F5F5;
+    padding: 15px 10px;
+    border-top: 1px solid $light-color;
+
+    @media (min-width: $lg-desktop) {
+      display: none;
+    }
+
+    &_name {
+      font-weight: bold;
+      text-transform: uppercase;
+      border-bottom: 2px solid $primary-color;
+      text-decoration: none;
+      font-size: 14px;
+      color: $text-color;
+      display: inline-block;
+      padding-bottom: 2px;
+    }
+
+    &_btn {
+      display: flex;
+      align-items: center;
+    }
+
+    &_arrow {
+      display: block;
+      fill: $text-color;
+      width: 10px;
+      height: 10px;
+      transform: rotate(90deg);
+      margin-right: 10px;
+    }
   }
 }
 
@@ -55,46 +145,159 @@
 
   &__item {
     margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+
+      @media (min-width: $lg-desktop) {
+        margin-bottom: 10px;
+      }
+    }
   }
 }
 
 .menu {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  min-height: 60px;
-  border-top: 1px solid #EFEFEF;
-  position: relative;
+  display: none;
+  position: absolute;
+  z-index: $menu-zorder;
+  width: 100%;
+  background-color: $white;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid $color;
+
+  @media (min-width: $lg-desktop) {
+    border-top: 1px solid $color;
+    border-bottom: 0;
+    position: relative;
+    display: block;
+  }
+
+  &--opened {
+    display: block;
+  }
 
   &__link {
     text-transform: uppercase;
     font-weight: bold;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 16px;
     color: $text-color;
-    padding: 10px;
+    padding: 15px 10px;
     position: relative;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media (min-width: $lg-desktop) {
+      font-size: 12px;
+      padding: 10px;
+      display: block;
+    }
 
     &:after {
-      content: "";
-      background-color: transparent;
-      height: 2px;
-      position: absolute;
-      bottom: 6px;
-      left: 10px;
-      right: 10px;
-      transition: background-color $time-animation;
+      @media (min-width: $lg-desktop) {
+        content: "";
+        background-color: transparent;
+        height: 2px;
+        position: absolute;
+        bottom: 6px;
+        left: 10px;
+        right: 10px;
+        transition: background-color $time-animation;
+      }
+    }
+  }
+
+  &__list {
+    margin-bottom: 15px;
+
+    @media (min-width: $lg-desktop) {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      min-height: 60px;
+      margin-bottom: 0;
+    }
+  }
+
+  &__item {
+    border-top: 1px solid $light-color;
+
+    @media (min-width: $lg-desktop) {
+      border: 0;
+    }
+
+    &:last-child {
+      border-bottom: 1px solid $light-color;
+
+      @media (min-width: $lg-desktop) {
+        border: 0;
+      }
     }
   }
 
   &__item:hover &__link:after {
-    background-color: $primary-color;
+    @media (min-width: $lg-desktop) {
+      background-color: $primary-color;
+    }
   }
 
   &__item:hover .submenu {
+    @media (min-width: $lg-desktop) {
+      display: flex;
+    }
+  }
+
+  &__arrow {
+    display: block;
+    fill: $text-color;
+    width: 10px;
+    height: 10px;
+    transform: rotate(-90deg);
+
+    @media (min-width: $lg-desktop) {
+      display: none;
+    }
+  }
+
+  &__text {
+    font-size: 16px;
+    color: $text-color;
+    font-weight: bold;
+  }
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+    display: block;
+    fill: $black;
+    stroke: $black;
+  }
+
+  &__btn {
     display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  &__more {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 30px;
+
+    @media (min-width: $lg-desktop) {
+      display: none;
+    }
+
+    &_item {
+      margin-bottom: 25px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 }

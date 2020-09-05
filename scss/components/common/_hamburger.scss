@@ -1,0 +1,56 @@
+@import "../../abstracts/variables";
+
+.close_icon {
+  display: none;
+}
+
+.hamburger {
+  background-color: $black;
+  width: 20px;
+  height: 20px;
+  padding: 9px 0;
+  background-clip: content-box;
+  border: 0;
+  position: relative;
+  outline-offset: 5px;
+  cursor: pointer;
+  display: block;
+
+  @media (min-width: $tablet) {
+    width: 22px;
+    height: 22px;
+    padding: 10px 0;
+  }
+
+  &:before,
+  &:after {
+    content: "";
+    background-color: $black;
+    position: absolute;
+    left: 0;
+    height: 2px;
+    width: 100%;
+  }
+
+  &:before {
+    top: 0;
+  }
+
+  &:after {
+    bottom: 0;
+  }
+
+  &--opened {
+    background-color: transparent;
+    padding: 0;
+
+    &:before,
+    &:after {
+      display: none;
+    }
+
+    .close_icon {
+      display: block;
+    }
+  }
+}
