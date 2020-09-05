@@ -11,3 +11,23 @@
 .hide {
   display: none !important;
 }
+
+.hidden-lg {
+  display: block !important;
+
+  @media (min-width: $lg-desktop) {
+    display: none !important;
+  }
+}
+
+.visible-lg {
+  display: none !important;
+
+  @media (min-width: $lg-desktop) {
+    display: block !important;
+  }
+}
+
+.rel {
+  position: relative !important;
+}

@@ -8,13 +8,13 @@
     margin: 0 0 20px;
   }
 
-  @media (min-width: $lg-desktop) {
+  @media (min-width: $desktop) {
     display: flex;
     margin-bottom: 95px;
   }
 
   &__image_col {
-    @media (min-width: $lg-desktop) {
+    @media (min-width: $desktop) {
       min-width: 60%;
       width: 60%;
     }
@@ -35,7 +35,7 @@
       padding-bottom: 80px;
     }
 
-    @media (min-width: $lg-desktop) {
+    @media (min-width: $desktop) {
       width: 40%;
       min-width: 40%;
       display: flex;

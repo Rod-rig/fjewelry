@@ -28,36 +28,68 @@ require 'constants.php';
 
   <div class="container">
     <div class="header__body">
-      <div class="header__hamb">
-        <button class="header__hamb_btn" type="button"></button>
+      <div class="header__group">
+        <button class="btn rel visible-lg" type="button">
+          <svg class="header__icon">
+            <use xlink:href="#phone"></use>
+          </svg>
+        </button>
+
+        <button class="btn rel visible-lg" type="button">
+          <span class="header__count hide">0</span>
+          <svg class="header__icon">
+            <use xlink:href="#compare"></use>
+          </svg>
+        </button>
+
+        <div class="header__hamb">
+          <button class="header__hamb_btn" type="button"></button>
+        </div>
+
+        <div>
+          <button class="btn rel" type="button">
+            <svg class="header__icon">
+              <use xlink:href="#search"></use>
+            </svg>
+          </button>
+        </div>
       </div>
 
       <div>
-        <button class="btn" type="button">
-          <svg class="header__icon">
-            <use xlink:href="#search"></use>
-          </svg>
-        </button>
-      </div>
-
-      <div class="">
         <a href="<?= SITE_DIR . "main.php"; ?>">
           <img class="header__logo" src="../../img/logo.png" alt="">
         </a>
       </div>
 
-      <button class="btn" type="button">
-        <svg class="header__icon">
-          <use xlink:href="#phone"></use>
-        </svg>
-      </button>
+      <div class="header__group">
+        <button class="btn rel hidden-lg" type="button">
+          <svg class="header__icon">
+            <use xlink:href="#phone"></use>
+          </svg>
+        </button>
 
-      <button class="btn" type="button">
-        <svg class="header__basket_icon">
-          <use xlink:href="#basket"></use>
-        </svg>
-      </button>
+        <button class="btn rel visible-lg" type="button">
+          <svg class="header__icon">
+            <use xlink:href="#user"></use>
+          </svg>
+        </button>
+
+        <button class="btn rel visible-lg" type="button">
+          <span class="header__count hide">0</span>
+          <svg class="header__icon">
+            <use xlink:href="#like"></use>
+          </svg>
+        </button>
+
+        <button class="btn rel" type="button">
+          <span class="header__count">5</span>
+          <svg class="header__basket_icon">
+            <use xlink:href="#basket"></use>
+          </svg>
+        </button>
+      </div>
     </div>
+    <? includeComponent("nav/menu", "menu/menu") ?>
   </div>
 </header>
 <div class="content">

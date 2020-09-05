@@ -42,4 +42,16 @@
     <symbol id="mc" viewBox="0 0 131.4 86.9">
         <path fill="#86878b" d="M48.4 15.1h34.7v56.6H48.4z"/><path d="M52 43.5a36 36 0 0113.7-28.3 36 36 0 100 56.6 36 36 0 01-13.8-28.3z" fill="#666666"/><path fill="#adaeaf" d="M120.5 65.8v-1.2h.5v-.2h-1.2v.2h.5v1.2zm2.3 0v-1.4h-.3l-.5 1-.4-1h-.3v1.4h.2v-1.1l.4 1h.3l.4-1v1zM124 43.5a36 36 0 01-58.3 28.3 36 36 0 000-56.7 36 36 0 0158.2 28.3z"/>
     </symbol>
+
+    <symbol id="compare" viewBox="0 0 40 34.7">
+        <defs><clipPath id="z" clipPathUnits="userSpaceOnUse"><path d="M0 26h30V0H0z"/></clipPath></defs><g clip-path="url(#z)" transform="matrix(1.33333 0 0 -1.33333 0 34.7)"><path d="M15 24V2M1 9l5 13 5-13M19 9l5 13 5-13" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/><path d="M6 21.4c0 2 4 3.6 9 3.6s9-1.6 9-3.6M10 1h10M19 9h10M1 9h10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/></g>
+    </symbol>
+
+    <symbol id="like" viewBox="0 0 38.2004 34.6667">
+        <defs><clipPath id="x" clipPathUnits="userSpaceOnUse"><path d="M0 26h28.65V0H0z"/></clipPath></defs><g clip-path="url(#x)" transform="matrix(1.33333 0 0 -1.33333 0 34.6667)"><path d="M25.4178 22.7681c-2.983 2.976-7.812 2.976-10.795 0l-.158-.158-.2-.2-.201.2-.157.158c-3.049 2.912-7.881 2.801-10.793-.248-2.82-2.951-2.818-7.598.002-10.548l10.841-10.844c.169-.17.445-.171.615-.001 0 0 .001 0 .001.001l10.845 10.844c2.977 2.983 2.977 7.813 0 10.796z" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/></g>
+    </symbol>
+
+    <symbol id="user" viewBox="0 0 29.3 34.7">
+        <defs><clipPath id="aaa" clipPathUnits="userSpaceOnUse"><path d="M0 26h22V0H0z"/></clipPath></defs><g clip-path="url(#aaa)" transform="matrix(1.33333 0 0 -1.33333 0 34.7)"><path d="M17 19a6 6 0 10-12 0 6 6 0 0012 0z" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/><path d="M21 1H1v8l7.8 4h4.4L21 9z" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/></g>
+    </symbol>
 </svg>
