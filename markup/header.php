@@ -86,7 +86,7 @@ require 'constants.php';
           </svg>
         </button>
 
-        <button class="btn rel" type="button">
+        <button class="btn rel js_basket_trigger" type="button">
           <span class="header__count">5</span>
           <svg class="header__basket_icon">
             <use xlink:href="#basket"></use>

@@ -133,7 +133,6 @@
         </div>
       </div>
     </div>
-
   </div>
   <div class="container">
     <div class="footer__bottom">
@@ -143,6 +142,7 @@
   </div>
 </footer>
 
+<?php require 'components/common/basket.php'; ?>
 <script src="<?= SITE_TEMPLATE_PATH . '/dist/js/main.js' ?>"></script>
 </body>
 </html>

@@ -68,6 +68,7 @@
           <use xlink:href="#like"></use>
         </svg>
         <span class="menu__text">Favorite</span>
+        <span class="menu__more_count">12</span>
       </a>
     </div>
     <div class="menu__more_item">
@@ -76,6 +77,7 @@
           <use xlink:href="#compare"></use>
         </svg>
         <span class="menu__text">Compare</span>
+        <span class="menu__more_count hide">0</span>
       </a>
     </div>
   </div>

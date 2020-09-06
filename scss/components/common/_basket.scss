@@ -1,0 +1,178 @@
+@import "../../abstracts/variables";
+
+.basket {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: $basket-zorder;
+
+  &__fade {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba($black, 0.6);
+  }
+
+  &__popup {
+    background-color: $white;
+    padding: 15px 0 0;
+    max-width: 590px;
+    width: 90%;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    @media (min-width: $tablet) {
+      padding: 30px 0 0;
+      width: 100%;
+    }
+  }
+
+  &__close {
+    border-radius: 50%;
+    width: 21px;
+    height: 21px;
+    border: 1px solid $divider-color;
+    background-color: $white;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &_icon {
+      width: 10px;
+      height: 10px;
+      display: block;
+    }
+  }
+
+  &__title {
+    font-family: $font-family-sans-serif2;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 28px;
+    color: $text-color;
+    margin-bottom: 15px;
+    text-align: center;
+
+    @media (min-width: $tablet) {
+      font-size: 36px;
+      line-height: 40px;
+      margin-bottom: 35px;
+    }
+  }
+
+  &__list {
+    border-top: 1px solid $divider-color;
+    border-bottom: 1px solid $divider-color;
+    max-height: 350px;
+
+    @media (min-width: $tablet) {
+      max-height: 484px;
+    }
+  }
+
+  &__item {
+    display: flex;
+    margin: 0 20px;
+    padding: 15px 0;
+    border-bottom: 1px solid $divider-color;
+
+    @media (min-width: $tablet) {
+      margin: 0 40px;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    &_img {
+      width: 100px;
+      min-width: 100px;
+      margin-right: 10px;
+
+      @media (min-width: $tablet) {
+        width: 130px;
+        min-width: 130px;
+        margin-right: 20px;
+      }
+    }
+
+    &_body {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &_name {
+      color: $text-color;
+      font-size: 14px;
+      line-height: 20px;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    &_info {
+      margin-top: auto;
+    }
+  }
+
+  &__table td {
+    padding-top: 10px;
+    padding-right: 5px;
+    font-size: 14px;
+  }
+
+  &__btn {
+    height: 50px;
+    color: $text-color;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1px;
+    position: relative;
+
+    &:after {
+      content: "";
+      position: absolute;
+      right: 0;
+      width: 1px;
+      height: 30px;
+      background-color: $divider-color;
+    }
+
+    &:last-child:after {
+      display: none;
+    }
+  }
+
+  &__btn_text {
+    border-bottom: 2px solid transparent;
+    padding-bottom: 2px;
+    transition: border-bottom $time-animation;
+  }
+
+  &__btn:hover &__btn_text {
+    border-bottom-color: $primary-color;
+  }
+
+  &__footer {
+    display: flex;
+  }
+}
