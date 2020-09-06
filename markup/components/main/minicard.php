@@ -36,7 +36,8 @@
   </div>
   <div class="text-center">
     <? if (array_key_exists('OLD_PRICE', $arParams)) { ?>
-      <span class="minicard__oldprice"><?= $arParams['OLD_PRICE']; ?> | </span>
+      <span class="minicard__oldprice"><?= $arParams['OLD_PRICE']; ?></span>
+      <span class="minicard__divider"> | </span>
       <span class="minicard__price"><?= $arParams['PRICE']; ?></span>
     <? } else { ?>
       <span class="minicard__price minicard__price--only"><?= $arParams['PRICE']; ?></span>

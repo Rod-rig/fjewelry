@@ -50,12 +50,13 @@ require 'constants.php';
           </button>
         </div>
 
-        <div>
-          <button class="btn rel" type="button">
+        <div class="rel">
+          <button class="btn header__search js_search_trigger" type="button">
             <svg class="header__icon">
               <use xlink:href="#search"></use>
             </svg>
           </button>
+          <div class="js_search_desktop visible-lg"></div>
         </div>
       </div>
 
@@ -94,6 +95,7 @@ require 'constants.php';
       </div>
     </div>
     <? includeComponent("nav/menu", "menu/menu") ?>
+    <div class="js_search_mobile search__wrapper hidden-lg"></div>
   </div>
 </header>
 <div class="content">

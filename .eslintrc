@@ -8,6 +8,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
     "prettier",
     "plugin:prettier/recommended"
   ],
@@ -23,7 +24,7 @@
       "version": "detect"
     }
   },
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "react", "react-hooks"],
   "rules": {
     "prettier/prettier": "error"
   }

@@ -103,4 +103,9 @@
     left: -8px;
     bottom: -5px;
   }
+
+  &__search {
+    z-index: $search-zorder + 1;
+    position: relative;
+  }
 }

@@ -64,7 +64,13 @@
     top: 5px;
   }
 
+  &__divider {
+    color: #999;
+    font-size: 16px;
+  }
+
   &__oldprice {
+    text-decoration: line-through;
     color: #999;
     font-size: 16px;
   }
