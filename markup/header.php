@@ -73,7 +73,7 @@ require 'constants.php';
           </svg>
         </button>
 
-        <button class="btn rel visible-lg" type="button">
+        <button class="btn rel visible-lg js_login_trigger" type="button">
           <svg class="header__icon">
             <use xlink:href="#user"></use>
           </svg>

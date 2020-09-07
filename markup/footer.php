@@ -143,6 +143,7 @@
 </footer>
 
 <?php require 'components/common/basket.php'; ?>
+<div class="js_modals"></div>
 <script src="<?= SITE_TEMPLATE_PATH . '/dist/js/main.js' ?>"></script>
 </body>
 </html>
