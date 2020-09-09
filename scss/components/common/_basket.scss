@@ -23,7 +23,7 @@
     background-color: $white;
     padding: 15px 0 0;
     max-width: 590px;
-    width: 90%;
+    width: 100%;
     position: absolute;
     z-index: 1;
     left: 50%;
@@ -38,16 +38,23 @@
 
   &__close {
     border-radius: 50%;
-    width: 21px;
-    height: 21px;
+    width: 20px;
+    height: 20px;
     border: 1px solid $divider-color;
     background-color: $white;
     position: absolute;
-    right: -10px;
     top: -10px;
+    left: 50%;
+    margin-left: -10px;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (min-width: $tablet) {
+      right: -10px;
+      left: auto;
+      margin-left: 0;
+    }
 
     &_icon {
       width: 10px;
@@ -147,6 +154,8 @@
     justify-content: center;
     padding-top: 1px;
     position: relative;
+    background-color: transparent;
+    border: 0;
 
     &:after {
       content: "";
@@ -174,5 +183,20 @@
 
   &__footer {
     display: flex;
+  }
+
+  &__empty_title {
+    font-family: $font-family-sans-serif2;
+    font-weight: 300;
+    font-size: 24px;
+    color: $text-color;
+    padding: 35px 10px 25px;
+    text-align: center;
+  }
+
+  &__empty_text {
+    font-size: 16px;
+    margin-bottom: 40px;
+    text-align: center;
   }
 }

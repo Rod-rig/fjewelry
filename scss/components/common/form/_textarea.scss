@@ -1,0 +1,10 @@
+@import "../../../abstracts/variables";
+
+.fj_textarea {
+  border: 1px solid $input-border-color;
+  width: 100%;
+  padding: 10px 15px;
+  font-family: $font-family-sans-serif;
+  font-size: 14px;
+  resize: vertical;
+}

@@ -55,7 +55,7 @@
 
   <div class="menu__more">
     <div class="menu__more_item">
-      <button type="button" class="btn menu__btn">
+      <button type="button" class="btn menu__btn js_login_trigger">
         <svg class="menu__icon mr-15">
           <use xlink:href="#user"></use>
         </svg>

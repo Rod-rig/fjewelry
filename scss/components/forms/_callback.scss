@@ -1,0 +1,46 @@
+@import "../../abstracts/variables";
+
+.callback {
+  max-width: 880px;
+
+  &__phone {
+    color: $text-color;
+  }
+
+  &__row {
+    @media (min-width: $tablet) {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -20px 30px;
+    }
+  }
+
+  &__col {
+    margin-bottom: 15px;
+
+    @media (min-width: $tablet) {
+      min-width: 50%;
+      width: 50%;
+      padding: 0 20px;
+      margin-bottom: 0;
+    }
+  }
+
+  &__policy {
+    margin-bottom: 40px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  &__policy1 {
+    color: $text-color;
+  }
+
+  &__policy2 {
+    color: $faded-color;
+  }
+
+  &__textarea {
+    height: 200px;
+  }
+}

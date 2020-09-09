@@ -29,7 +29,7 @@ require 'constants.php';
   <div class="container">
     <div class="header__body">
       <div class="header__group">
-        <button class="btn rel visible-lg" type="button">
+        <button class="btn rel visible-lg js_callback" type="button" data-phone="+44 203 540 1477">
           <svg class="header__icon">
             <use xlink:href="#phone"></use>
           </svg>
@@ -67,7 +67,7 @@ require 'constants.php';
       </div>
 
       <div class="header__group">
-        <button class="btn rel hidden-lg" type="button">
+        <button class="btn rel hidden-lg js_callback" type="button" data-phone="+44 203 540 1477">
           <svg class="header__icon">
             <use xlink:href="#phone"></use>
           </svg>

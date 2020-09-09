@@ -10,7 +10,8 @@ export const initBasketEvents = () => {
   }
 
   for (let i = 0; i < basketClose.length; i++) {
-    basketClose[i].addEventListener("click", function () {
+    basketClose[i].addEventListener("click", function (e) {
+      e.preventDefault();
       const basket = document.querySelector(".js_basket");
       basket.classList.add("hide");
     });

@@ -8,14 +8,14 @@ export const openModal = (children, className) => {
   el && ReactDOM.render(<Modal className={className}>{children}</Modal>, el);
 };
 
-const closeModal = () => {
+export const closeModal = () => {
   el && ReactDOM.unmountComponentAtNode(el);
 };
 
 export const Modal = props => (
   <div className="modal">
     <div onClick={closeModal} className="modal__backdrop" />
-    <div className="modal__root">
+    <div className={`modal__root ${props.className}`}>
       <div className="modal__close">
         <button
           onClick={closeModal}
@@ -35,4 +35,5 @@ export const Modal = props => (
 
 Modal.propTypes = {
   children: PropTypes.element,
+  className: PropTypes.string,
 };
