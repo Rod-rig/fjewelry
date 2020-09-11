@@ -6,9 +6,15 @@
     margin-bottom: 10px;
 
     &_link {
-      font-size: 12px;
+      font-size: 16px;
+      line-height: 20px;
       color: $text-color;
       text-decoration: none;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      height: 40px;
     }
   }
 
@@ -25,17 +31,6 @@
     max-height: 500px;
     margin-left: auto;
     margin-right: auto;
-  }
-
-  &__sale {
-    color: $white;
-    font-size: 14px;
-    font-family: $font-family-sans-serif2;
-    background-color: $red;
-    padding: 3px;
-    position: absolute;
-    left: 5px;
-    top: 5px;
   }
 
   &__like,
@@ -70,14 +65,17 @@
   }
 
   &__oldprice {
-    text-decoration: line-through;
     color: #999;
-    font-size: 16px;
+    font-size: 20px;
+
+    &--line {
+      text-decoration: line-through;
+    }
   }
 
   &__price {
     color: $red;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
 
     &--only {

@@ -52,7 +52,7 @@
     </symbol>
 
     <symbol id="user" viewBox="0 0 29.3 34.7">
-        <defs><clipPath id="aaa" clipPathUnits="userSpaceOnUse"><path d="M0 26h22V0H0z"/></clipPath></defs><g clip-path="url(#aaa)" transform="matrix(1.33333 0 0 -1.33333 0 34.7)"><path d="M17 19a6 6 0 10-12 0 6 6 0 0012 0z" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/><path d="M21 1H1v8l7.8 4h4.4L21 9z" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/></g>
+        <defs><clipPath id="aaa" clipPathUnits="userSpaceOnUse"><path d="M0 26h22V0H0z"/></clipPath></defs><g clip-path="url(#aaa)" transform="matrix(1.33333 0 0 -1.33333 0 34.7)"><path d="M17 19a6 6 0 10-12 0 6 6 0 0012 0z" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/><path d="M21 1H1v8l7.8 4h4.4L21 9z" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/></g>
     </symbol>
 
     <symbol id="close" viewBox="0 0 512 512">

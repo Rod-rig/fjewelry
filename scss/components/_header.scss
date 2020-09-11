@@ -108,4 +108,31 @@
     z-index: $search-zorder + 1;
     position: relative;
   }
+
+  &__user {
+    fill: $white;
+
+    &--fill {
+      fill: $primary-color;
+    }
+  }
+
+  &__cabinet {
+    position: relative;
+
+    &_menu {
+      display: none;
+      position: absolute;
+      z-index: $personal-menu-zorder;
+      margin-left: -40px;
+      padding-top: 10px;
+      width: 210px;
+    }
+
+    &:hover &_menu {
+      @media (min-width: $lg-desktop) {
+        display: block;
+      }
+    }
+  }
 }

@@ -151,14 +151,17 @@
   }
 
   &__divider {
-    color: #999;
+    color: $faded-color;
     font-size: 16px;
   }
 
   &__oldprice {
-    text-decoration: line-through;
-    color: #999;
+    color: $faded-color;
     font-size: 16px;
+
+    &--line {
+      text-decoration: line-through;
+    }
   }
 
   &__newprice {

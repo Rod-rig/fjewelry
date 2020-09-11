@@ -5,6 +5,7 @@ const labels = {
   button: "Search",
   placeholder: "Are you looking for?",
   all: "Show all",
+  rrp: "RRP",
 };
 
 export const Search = () => {
@@ -68,7 +69,7 @@ export const Search = () => {
                   </a>
                 </div>
                 <div className="search__card_footer">
-                  <div className="search__price">£ 60</div>
+                  <div className="search__price">{labels.rrp} £ 60</div>
                 </div>
               </div>
             </div>
@@ -89,7 +90,10 @@ export const Search = () => {
                   </a>
                 </div>
                 <div className="search__card_footer">
-                  <span className="search__oldprice">£ 75</span>
+                  <span className="search__oldprice">
+                    {labels.rrp}{" "}
+                    <span className="search__oldprice--line">£ 75</span>
+                  </span>
                   <span className="search__divider"> | </span>
                   <span className="search__newprice">£ 40</span>
                 </div>

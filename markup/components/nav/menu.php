@@ -54,14 +54,26 @@
   </div>
 
   <div class="menu__more">
-    <div class="menu__more_item">
-      <button type="button" class="btn menu__btn js_login_trigger">
-        <svg class="menu__icon mr-15">
-          <use xlink:href="#user"></use>
-        </svg>
-        <span class="menu__text">Sign in</span>
-      </button>
-    </div>
+    <? if (IS_AUTHED) { ?>
+      <div class="menu__more_item">
+        <div class="menu__btn">
+          <svg class="menu__icon menu__icon--authed mr-15">
+            <use xlink:href="#user"></use>
+          </svg>
+          <span class="menu__text">test@gmail.com</span>
+        </div>
+      </div>
+      <? includeComponent("main/personal-menu"); ?>
+    <? } else { ?>
+      <div class="menu__more_item">
+        <button type="button" class="btn menu__btn js_login_trigger">
+          <svg class="menu__icon menu__icon--user mr-15">
+            <use xlink:href="#user"></use>
+          </svg>
+          <span class="menu__text">Sign in</span>
+        </button>
+      </div>
+    <? } ?>
     <div class="menu__more_item">
       <a href="" class="menu__btn">
         <svg class="menu__icon mr-15">

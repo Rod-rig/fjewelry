@@ -35,12 +35,12 @@ require 'constants.php';
           </svg>
         </button>
 
-        <button class="btn rel visible-lg" type="button">
+        <a href="" class="btn rel visible-lg">
           <span class="header__count hide">0</span>
           <svg class="header__icon">
             <use xlink:href="#compare"></use>
           </svg>
-        </button>
+        </a>
 
         <div class="header__hamb">
           <button class="hamburger js_hamburger" type="button">
@@ -73,11 +73,24 @@ require 'constants.php';
           </svg>
         </button>
 
-        <button class="btn rel visible-lg js_login_trigger" type="button">
-          <svg class="header__icon">
-            <use xlink:href="#user"></use>
-          </svg>
-        </button>
+        <? if (IS_AUTHED) { ?>
+          <div class="header__cabinet">
+            <button class="btn rel visible-lg" type="button">
+              <svg class="header__icon header__user--fill">
+                <use xlink:href="#user"></use>
+              </svg>
+            </button>
+            <div class="header__cabinet_menu">
+              <? includeComponent("main/personal-menu"); ?>
+            </div>
+          </div>
+        <? } else { ?>
+          <button class="btn rel visible-lg js_login_trigger" type="button">
+            <svg class="header__icon header__user">
+              <use xlink:href="#user"></use>
+            </svg>
+          </button>
+        <? } ?>
 
         <button class="btn rel visible-lg" type="button">
           <span class="header__count hide">0</span>

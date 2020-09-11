@@ -275,6 +275,14 @@ $color: #EFEFEF;
     display: block;
     fill: $black;
     stroke: $black;
+
+    &--user {
+      fill: none;
+    }
+
+    &--authed {
+      fill: $primary-color;
+    }
   }
 
   &__btn {

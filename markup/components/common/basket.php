@@ -45,6 +45,10 @@
                     <td class="text-bold">Price</td>
                     <td>£ 75</td>
                   </tr>
+                  <tr>
+                    <td class="text-bold">Size</td>
+                    <td>M</td>
+                  </tr>
                 </table>
               </div>
             </div>
