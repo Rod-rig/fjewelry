@@ -35,9 +35,10 @@
     <? if (array_key_exists('OLD_PRICE', $arParams)) { ?>
       <span class="minicard__oldprice">RRP <span class="minicard__oldprice--line"><?= $arParams['OLD_PRICE']; ?></span></span>
       <span class="minicard__divider"> | </span>
-      <span class="minicard__price"><?= $arParams['PRICE']; ?> <? if (array_key_exists('SALE', $arParams)) { ?>(<?= $arParams['SALE']; ?>)<? } ?></span>
+      <span class="minicard__price"><?= $arParams['PRICE']; ?> <? if (array_key_exists('SALE', $arParams)) { ?>
+          <span class="minicard__sale"><?= $arParams['SALE']; ?></span><? } ?></span>
     <? } else { ?>
-      <span class="minicard__price minicard__price--only">RRP <?= $arParams['PRICE']; ?></span>
+      <span class="minicard__price minicard__price--only"><?= $arParams['PRICE']; ?></span>
     <? } ?>
   </div>
 </div>

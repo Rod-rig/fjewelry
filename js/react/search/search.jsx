@@ -69,7 +69,7 @@ export const Search = () => {
                   </a>
                 </div>
                 <div className="search__card_footer">
-                  <div className="search__price">{labels.rrp} £ 60</div>
+                  <div className="search__price">£ 60</div>
                 </div>
               </div>
             </div>
