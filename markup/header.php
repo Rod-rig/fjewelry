@@ -94,7 +94,7 @@ require 'constants.php';
 
         <button class="btn rel visible-lg" type="button">
           <span class="header__count hide">0</span>
-          <svg class="header__icon">
+          <svg class="header__icon header__like">
             <use xlink:href="#like"></use>
           </svg>
         </button>

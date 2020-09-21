@@ -76,7 +76,7 @@
     <? } ?>
     <div class="menu__more_item">
       <a href="" class="menu__btn">
-        <svg class="menu__icon mr-15">
+        <svg class="menu__icon header__like mr-15">
           <use xlink:href="#like"></use>
         </svg>
         <span class="menu__text">Favorite</span>
