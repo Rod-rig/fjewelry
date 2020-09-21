@@ -48,7 +48,7 @@
     </symbol>
 
     <symbol id="like" viewBox="0 0 38.2004 34.6667">
-        <defs><clipPath id="x" clipPathUnits="userSpaceOnUse"><path d="M0 26h28.65V0H0z"/></clipPath></defs><g clip-path="url(#x)" transform="matrix(1.33333 0 0 -1.33333 0 34.6667)"><path d="M25.4178 22.7681c-2.983 2.976-7.812 2.976-10.795 0l-.158-.158-.2-.2-.201.2-.157.158c-3.049 2.912-7.881 2.801-10.793-.248-2.82-2.951-2.818-7.598.002-10.548l10.841-10.844c.169-.17.445-.171.615-.001 0 0 .001 0 .001.001l10.845 10.844c2.977 2.983 2.977 7.813 0 10.796z" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/></g>
+        <defs><clipPath id="x" clipPathUnits="userSpaceOnUse"><path d="M0 26h28.65V0H0z"/></clipPath></defs><g clip-path="url(#x)" transform="matrix(1.33333 0 0 -1.33333 0 34.6667)"><path d="M25.4178 22.7681c-2.983 2.976-7.812 2.976-10.795 0l-.158-.158-.2-.2-.201.2-.157.158c-3.049 2.912-7.881 2.801-10.793-.248-2.82-2.951-2.818-7.598.002-10.548l10.841-10.844c.169-.17.445-.171.615-.001 0 0 .001 0 .001.001l10.845 10.844c2.977 2.983 2.977 7.813 0 10.796z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/></g>
     </symbol>
 
     <symbol id="user" viewBox="0 0 29.3 34.7">

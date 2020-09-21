@@ -35,10 +35,10 @@
 
   &__like,
   &__compare {
-    width: 23px;
-    height: 23px;
+    width: 20px;
+    height: 20px;
     display: block;
-    fill: #999;
+    fill: none;
     stroke: #999;
     transition: fill $time-animation;
 
