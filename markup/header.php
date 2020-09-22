@@ -13,7 +13,13 @@ require 'constants.php';
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Roboto+Condensed:wght@300;400&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH . '/dist/css/main.css' ?>" />
+  <? if (isOnPage()) { ?>
+    <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH . '/dist/css/main.css' ?>" />
+  <? } elseif (isOnPage("catalog")) { ?>
+    <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH . '/dist/css/catalog.css' ?>" />
+  <? } else { ?>
+    <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH . '/dist/css/other.css' ?>" />
+  <? } ?>
 </head>
 <body class="no-js">
 <script>

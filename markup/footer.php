@@ -144,6 +144,12 @@
 
 <?php require 'components/common/basket.php'; ?>
 <div class="js_modals"></div>
-<script src="<?= SITE_TEMPLATE_PATH . '/dist/js/main.js' ?>"></script>
+<? if (isOnPage()) { ?>
+  <script src="<?= SITE_TEMPLATE_PATH . '/dist/js/main.js' ?>"></script>
+<? } elseif (isOnPage("catalog")) { ?>
+  <script src="<?= SITE_TEMPLATE_PATH . '/dist/js/catalog.js' ?>"></script>
+<? } else { ?>
+  <script src="<?= SITE_TEMPLATE_PATH . '/dist/js/other.js' ?>"></script>
+<? } ?>
 </body>
 </html>
