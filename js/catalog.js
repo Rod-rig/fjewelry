@@ -2,14 +2,15 @@ import "../scss/catalog.scss";
 import { initCommon } from "./common";
 import { initBreadcrumbsScroll } from "./scroll/breadcrumbs";
 import { initSeoScroll } from "./scroll/seo-text";
+import { initFilterScroll } from "./scroll/filter";
 import { initSeoToggle } from "./seo/seo";
-import { initFilterHide, initSortCatalog } from "./pages/catalog";
+import { initCatalogEvents } from "./pages/catalog";
 
 document.addEventListener("DOMContentLoaded", function () {
   initCommon();
   initBreadcrumbsScroll();
-  initSortCatalog();
-  initFilterHide();
+  initCatalogEvents();
+  initFilterScroll();
   initSeoScroll();
   initSeoToggle();
 });

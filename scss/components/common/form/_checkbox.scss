@@ -10,6 +10,7 @@
     position: absolute;
   }
 
+  &__link,
   &__label {
     color: $text-color;
     font-size: 16px;
@@ -17,6 +18,7 @@
     padding-left: 35px;
     display: inline-block;
     position: relative;
+    text-decoration: none;
 
     &:before,
     &:after {
@@ -48,6 +50,7 @@
     }
   }
 
+  &__link--checked:after,
   &__input:checked + &__label:after {
     opacity: 1;
   }

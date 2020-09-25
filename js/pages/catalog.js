@@ -1,4 +1,4 @@
-export const initSortCatalog = () => {
+const initSortCatalog = () => {
   const select = document.querySelector(".js_catalog_sort");
 
   if (select) {
@@ -8,7 +8,7 @@ export const initSortCatalog = () => {
   }
 };
 
-export const initFilterHide = () => {
+const initFilterHide = () => {
   const filterToggle = document.querySelectorAll(".js_filter_toggle");
   const catalog = document.querySelector(".js_catalog_list");
   for (let i = 0; i < filterToggle.length; i++) {
@@ -18,4 +18,24 @@ export const initFilterHide = () => {
       }
     });
   }
+};
+
+export const initSubfilterToggle = () => {
+  const subFilterToggle = document.querySelectorAll(".js_subfilter_toggle");
+
+  for (let i = 0; i < subFilterToggle.length; i++) {
+    subFilterToggle[i].addEventListener("click", function () {
+      const subFilter = this.closest(".js_subfilter");
+
+      if (subFilter) {
+        subFilter.classList.toggle("filter__section--hide");
+      }
+    });
+  }
+};
+
+export const initCatalogEvents = () => {
+  initSortCatalog();
+  initFilterHide();
+  initSubfilterToggle();
 };
