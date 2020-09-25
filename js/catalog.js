@@ -1,16 +1,14 @@
 import "../scss/catalog.scss";
 import { initCommon } from "./common";
 import { initBreadcrumbsScroll } from "./scroll/breadcrumbs";
-// import { initWatchedCarousel } from "./sliders/watched";
-// import { initSeoScroll } from "./scroll/seo-text";
-// import { initSeoToggle } from "./seo/seo";
-// import { initCategoriesEvents } from "./pages/main";
+import { initSeoScroll } from "./scroll/seo-text";
+import { initSeoToggle } from "./seo/seo";
+import { initSortCatalog } from "./pages/catalog";
 
 document.addEventListener("DOMContentLoaded", function () {
   initCommon();
   initBreadcrumbsScroll();
-  // initWatchedCarousel();
-  // initSeoScroll();
-  // initSeoToggle();
-  // initCategoriesEvents();
+  initSortCatalog();
+  initSeoScroll();
+  initSeoToggle();
 });

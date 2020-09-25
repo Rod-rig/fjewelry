@@ -1,12 +1,6 @@
-//@import "../node_modules/tiny-slider/dist/tiny-slider";
 @import "../node_modules/simplebar/dist/simplebar.css";
 @import "common";
 @import "components/common/breadcrumbs";
-//@import "components/main/banner";
-//@import "components/main/carousel";
-//@import "components/main/minicard";
-//@import "components/main/discover";
-//@import "components/main/collections";
-//@import "components/main/blog";
-//@import "components/main/categories";
-//@import "components/main/seo";
+@import "components/catalog";
+@import "components/catalog/sort";
+@import "components/common/seo";

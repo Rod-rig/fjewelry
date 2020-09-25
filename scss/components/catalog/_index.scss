@@ -1,0 +1,135 @@
+@import "../../abstracts/variables";
+
+.catalog {
+  &__h1 {
+    font-family: $font-family-sans-serif2;
+    font-weight: 300;
+    color: $text-color;
+    font-size: 24px;
+    line-height: 30px;
+    letter-spacing: 1px;
+    text-align: center;
+    margin: 0 0 30px;
+
+    @media (min-width: $tablet) {
+      font-size: 40px;
+      line-height: 48px;
+    }
+  }
+
+  &__top {
+    display: flex;
+    margin-bottom: 20px;
+
+    @media (min-width: $lg-desktop) {
+      margin: 0 -20px 15px;
+    }
+
+    &_left {
+      width: 50%;
+      min-width: 50%;
+
+      @media (min-width: $lg-desktop) {
+        padding: 0 20px;
+        width: 25%;
+        min-width: 25%;
+      }
+    }
+
+    &_right {
+      width: 50%;
+      min-width: 50%;
+
+      @media (min-width: $lg-desktop) {
+        padding: 0 20px;
+        width: 75%;
+        min-width: 75%;
+      }
+    }
+
+    &_inner {
+      @media (min-width: $lg-desktop) {
+        border-bottom: 1px solid $input-border-color;
+        padding-bottom: 35px;
+        height: 60px;
+      }
+    }
+
+    &_title {
+      font-size: 20px;
+      color: $text-color;
+      letter-spacing: 1px;
+    }
+
+    &_btn {
+      text-decoration: underline;
+      font-weight: bold;
+      font-size: 16px;
+      color: $text-color;
+    }
+
+    &_content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__row {
+    margin-bottom: 70px;
+
+    @media (min-width: $tablet) {
+      margin-bottom: 80px;
+    }
+
+    @media (min-width: $lg-desktop) {
+      display: flex;
+      flex-wrap: nowrap;
+      flex-direction: row;
+      margin: 0 -20px 70px;
+      text-align: justify;
+    }
+  }
+
+  &__left {
+    @media (min-width: $lg-desktop) {
+      padding: 0 20px;
+      width: 25%;
+      min-width: 25%;
+    }
+  }
+
+  &__right {
+    @media (min-width: $lg-desktop) {
+      padding: 0 20px;
+      width: 75%;
+      min-width: 75%;
+    }
+  }
+
+  &__filter_btn {
+    font-size: 16px;
+    color: $text-color;
+    border: 1px solid $input-border-color;
+    padding: 10px;
+    width: 100%;
+    outline: 0;
+    height: 40px;
+    font-family: $font-family-sans-serif;
+
+    @media (min-width: $lg-desktop) {
+      border: 0;
+      display: inline-block;
+      width: auto;
+      height: auto;
+      padding: 0;
+    }
+  }
+
+  &__filter_icon {
+    width: 18px;
+    height: 9px;
+    transform: rotate(-90deg);
+    fill: $text-color;
+  }
+}
