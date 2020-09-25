@@ -1,0 +1,34 @@
+@import "../../abstracts/variables";
+
+.filter {
+  background-color: $white;
+  width: 295px;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+
+  @media (min-width: $lg-desktop) {
+    position: static;
+    width: auto;
+    height: auto;
+  }
+
+  &__fade {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.6);
+
+    @media (min-width: $lg-desktop) {
+      display: none;
+    }
+  }
+}
