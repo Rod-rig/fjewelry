@@ -1,6 +1,8 @@
 @import "../abstracts/variables";
 
 .header {
+  border-bottom: 1px solid $divider-color;
+
   &__top {
     font-size: 12px;
     line-height: 16px;
