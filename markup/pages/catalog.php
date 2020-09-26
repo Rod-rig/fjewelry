@@ -47,6 +47,7 @@
       <? includeComponent("catalog/comments", "catalog/comments") ?>
     </div>
     <div class="catalog__join">
+      <? require "../components/catalog/join.php"; ?>
     </div>
   </div>
 </div>

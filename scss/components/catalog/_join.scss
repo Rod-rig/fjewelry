@@ -1,0 +1,51 @@
+@import "../../abstracts/variables";
+
+.join {
+  background-color: #C5FFF5;
+  padding: 45px 10px;
+  margin: 0 -20px;
+  border: 1px solid $input-border-color;
+
+  @media (min-width: $tablet) {
+    padding-top: 50px;
+    padding-bottom: 65px;
+  }
+
+  @media (min-width: $lg-desktop) {
+    margin: 0;
+    padding-bottom: 45px;
+  }
+
+  &__title {
+    font-family: $font-family-sans-serif2;
+    font-weight: 300;
+    font-size: 30px;
+    margin: 0 0 15px;
+    text-align: center;
+  }
+
+  &__description {
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  &__consent {
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 25px;
+  }
+
+  &__form {
+    max-width: 410px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (min-width: $lg-desktop) {
+      max-width: 300px;
+    }
+  }
+}
