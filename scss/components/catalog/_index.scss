@@ -91,7 +91,6 @@
       flex-wrap: nowrap;
       flex-direction: row;
       margin: 0 -20px 70px;
-      text-align: justify;
     }
   }
 
@@ -148,6 +147,25 @@
     height: 9px;
     transform: rotate(-90deg);
     fill: $text-color;
+  }
+
+  &__comments {
+    margin-bottom: 60px;
+
+    @media (min-width: $lg-desktop) {
+      padding: 0 20px;
+      width: 66%;
+      min-width: 66%;
+      margin-bottom: 0;
+    }
+  }
+
+  &__join {
+    @media (min-width: $lg-desktop) {
+      padding: 0 20px;
+      width: 34%;
+      min-width: 34%;
+    }
   }
 }
 

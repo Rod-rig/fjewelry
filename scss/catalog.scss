@@ -1,3 +1,4 @@
+@import "../node_modules/tiny-slider/dist/tiny-slider";
 @import "../node_modules/simplebar/dist/simplebar.css";
 @import "../node_modules/nouislider/distribute/nouislider.min.css";
 @import "common";
@@ -6,4 +7,6 @@
 @import "components/catalog/sort";
 @import "components/catalog/filter";
 @import "components/catalog/range";
+@import "components/catalog/comments";
 @import "components/common/seo";
+@import "components/common/carousel";

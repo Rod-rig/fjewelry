@@ -41,6 +41,14 @@
       <? require "../components/catalog/list.php"; ?>
     </div>
   </div>
+
+  <div class="catalog__row">
+    <div class="catalog__comments">
+      <? includeComponent("catalog/comments", "catalog/comments") ?>
+    </div>
+    <div class="catalog__join">
+    </div>
+  </div>
 </div>
 
 <?php require '../components/main/seo.php'; ?>
