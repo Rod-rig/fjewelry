@@ -1,0 +1,41 @@
+/* stylelint-disable selector-max-class  */
+@import "../../abstracts/variables";
+
+.range {
+  margin: 30px 0 20px;
+  padding: 0 10px;
+  position: relative;
+
+  @media (min-width: $lg-desktop) {
+    padding: 0;
+  }
+
+  &.noUi-horizontal {
+    height: 2px;
+    border: 0;
+  }
+
+  .noUi-connects {
+    background: $input-border-color;
+    border-radius: 0;
+  }
+
+  .noUi-connect {
+    background: $primary-color;
+  }
+
+  &.noUi-horizontal .noUi-handle {
+    width: 20px;
+    height: 20px;
+    background: $white;
+    border: 1px solid $primary-color;
+    border-radius: 50%;
+    top: -9px;
+    right: -10px !important;
+  }
+
+  .noUi-handle:before,
+  .noUi-handle:after {
+    content: none;
+  }
+}

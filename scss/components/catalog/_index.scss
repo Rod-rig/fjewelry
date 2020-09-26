@@ -132,6 +132,7 @@
     outline: 0;
     height: 40px;
     font-family: $font-family-sans-serif;
+    background-color: $white;
 
     @media (min-width: $lg-desktop) {
       border: 0;

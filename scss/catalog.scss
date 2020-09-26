@@ -1,7 +1,9 @@
 @import "../node_modules/simplebar/dist/simplebar.css";
+@import "../node_modules/nouislider/distribute/nouislider.min.css";
 @import "common";
 @import "components/common/breadcrumbs";
 @import "components/catalog";
 @import "components/catalog/sort";
 @import "components/catalog/filter";
+@import "components/catalog/range";
 @import "components/common/seo";
