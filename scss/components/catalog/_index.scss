@@ -167,6 +167,29 @@
       min-width: 35%;
     }
   }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+  }
+
+  &__item {
+    width: 50%;
+    min-width: 50%;
+    padding: 0 10px;
+    margin-bottom: 15px;
+
+    @media (min-width: $tablet) {
+      width: 25%;
+      min-width: 25%;
+    }
+
+    @media (min-width: $lg-desktop) {
+      width: 33.33333%;
+      min-width: 33.33333%;
+    }
+  }
 }
 
 .catalog--filter-hide {
@@ -187,6 +210,11 @@
     .catalog__right {
       width: 100%;
       min-width: 100%;
+    }
+
+    .catalog__item {
+      width: 25%;
+      min-width: 25%;
     }
   }
 }

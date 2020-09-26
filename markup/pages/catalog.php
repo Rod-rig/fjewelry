@@ -38,13 +38,13 @@
       <div class="filter__fade js_filter_toggle"></div>
     </div>
     <div class="catalog__right">
-      <? require "../components/catalog/list.php"; ?>
+      <? includeComponent("catalog/list", "catalog/list"); ?>
     </div>
   </div>
 
   <div class="catalog__row">
     <div class="catalog__comments">
-      <? includeComponent("catalog/comments", "catalog/comments") ?>
+      <? includeComponent("catalog/comments", "catalog/comments"); ?>
     </div>
     <div class="catalog__join">
       <? require "../components/catalog/join.php"; ?>
