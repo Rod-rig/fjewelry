@@ -4,7 +4,7 @@
 <div class="container">
   <div class="catalog__h1">Shop Men's Rings In The Uk</div>
 </div>
-<div class="container js_catalog_list catalog--filter-hide">
+<div class="container js_catalog_list">
   <div class="catalog__top">
     <div class="catalog__top_left">
       <div class="catalog__top_inner">

@@ -6,10 +6,6 @@
   padding: 0 10px;
   position: relative;
 
-  @media (min-width: $lg-desktop) {
-    padding: 0;
-  }
-
   &.noUi-horizontal {
     height: 2px;
     border: 0;

@@ -31,8 +31,8 @@
 
       @media (min-width: $lg-desktop) {
         padding: 0 20px;
-        width: 25%;
-        min-width: 25%;
+        width: 27%;
+        min-width: 27%;
       }
     }
 
@@ -42,8 +42,8 @@
 
       @media (min-width: $lg-desktop) {
         padding: 0 20px;
-        width: 75%;
-        min-width: 75%;
+        width: 73%;
+        min-width: 73%;
       }
     }
 
@@ -109,8 +109,8 @@
     @media (min-width: $lg-desktop) {
       display: block;
       padding: 0 20px;
-      width: 25%;
-      min-width: 25%;
+      width: 27%;
+      min-width: 27%;
       position: static;
     }
   }
@@ -118,8 +118,8 @@
   &__right {
     @media (min-width: $lg-desktop) {
       padding: 0 20px;
-      width: 75%;
-      min-width: 75%;
+      width: 73%;
+      min-width: 73%;
     }
   }
 

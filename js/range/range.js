@@ -1,37 +1,38 @@
 import Nouislider from "nouislider";
 import wNumb from "wnumb";
-// import { isDesktop } from "../helpers/is-desktop";
+import { isDesktop } from "../helpers/is-desktop";
 // import { fetchMobFilter, updateMobFilter } from "../filter/filter";
 // import { renderLoader } from "../components/Loader";
 
 // const SHOW_MORE_LINK = ".js_filter_more_link";
 
-// const showMoreButton = (button, href) => {
-//   if (isDesktop()) {
-//     button.querySelector(".js_filter_more_link").setAttribute("href", href);
-//     button.classList.add("show");
-//   }
-// };
+const showMoreButton = (button, href) => {
+  if (isDesktop()) {
+    button.querySelector(".js_filter_more_link").setAttribute("href", href);
+    button.classList.remove("hide");
+  }
+};
 
 // const hideMoreButton = button => {
 //   if (isDesktop()) {
-//     button.classList.remove("show");
+//     button.classList.add("hide");
 //   }
 // };
 
-// const buildFilterUrl = (values, url) => {
-//   const from = Math.round(values[0]);
-//   const to = Math.round(values[1]);
-//
-//   return url.replace("#VALUE#", `${from}-${to}`);
-// };
+const buildFilterUrl = (values, url) => {
+  const from = Math.round(values[0]);
+  const to = Math.round(values[1]);
+
+  // return url.replace("#VALUE#", `${from}-${to}`);
+  return `${url}-${from}-${to}`;
+};
 
 export const initRange = () => {
   const STEP_RANGE = 1;
   const range = document.querySelectorAll(".js_range");
   const inputFrom = document.querySelectorAll(".js_range_input_from");
   const inputTo = document.querySelectorAll(".js_range_input_to");
-  // const showMore = document.querySelectorAll(".js_filter_show_more");
+  const showMore = document.querySelectorAll(".js_filter_show_more");
   // const cancelBtns = document.querySelectorAll(".js_filter_cancel");
 
   range.forEach((item, index) => {
@@ -65,21 +66,21 @@ export const initRange = () => {
         }
       });
 
-      // item.noUiSlider.on("set", function (values, handle, unencoded) {
-      //   const url = item.getAttribute("data-link");
-      //   const href = buildFilterUrl(unencoded, url);
-      //   showMoreButton(showMore[index], href);
-      //
-      //   if (isMobile()) {
-      //     const filterLoader = document.querySelector(".js_filter_loader");
-      //     renderLoader(filterLoader, "filter__loader");
-      //
-      //     const blockId = item
-      //       .closest(".js_collapse_target")
-      //       .getAttribute("data-id");
-      //     fetchMobFilter(href, blockId, updateMobFilter);
-      //   }
-      // });
+      item.noUiSlider.on("set", function (values, handle, unencoded) {
+        const url = item.getAttribute("data-link");
+        const href = buildFilterUrl(unencoded, url);
+        showMoreButton(showMore[index], href);
+
+        // if (isMobile()) {
+        //   const filterLoader = document.querySelector(".js_filter_loader");
+        //   renderLoader(filterLoader, "filter__loader");
+        //
+        //   const blockId = item
+        //     .closest(".js_collapse_target")
+        //     .getAttribute("data-id");
+        //   fetchMobFilter(href, blockId, updateMobFilter);
+        // }
+      });
 
       inputFrom[index].addEventListener("change", function () {
         item.noUiSlider.set([this.value, null]);

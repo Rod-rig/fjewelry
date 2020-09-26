@@ -101,6 +101,11 @@
           <div>1</div>
           <div>1000000</div>
         </div>
+        <div class="filter__range_show js_filter_show_more hide">
+          <button type="button" data-property-name="RINGS" class="btn filter__range_link js_filter_more_link">Apply</button>
+          <span class="filter__range_divider">|</span>
+          <button type="button" class="btn filter__range_cancel js_filter_cancel">Discard</button>
+        </div>
       </div>
     </div>
   </div>
@@ -128,6 +133,11 @@
         <div class="filter__range_minmax">
           <div>1</div>
           <div>15</div>
+        </div>
+        <div class="filter__range_show js_filter_show_more hide">
+          <button type="button" data-property-name="RINGS" class="btn filter__range_link js_filter_more_link">Apply</button>
+          <span class="filter__range_divider">|</span>
+          <button type="button" class="btn filter__range_cancel js_filter_cancel">Discard</button>
         </div>
       </div>
     </div>

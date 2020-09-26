@@ -17,6 +17,7 @@
     position: static;
     width: auto;
     height: auto;
+    overflow: visible;
   }
 
   &__fade {
@@ -61,6 +62,10 @@
 
   &__section {
     padding: 0 10px;
+
+    @media (min-width: $lg-desktop) {
+      padding: 0;
+    }
   }
 
   &__section_wrap {
@@ -166,6 +171,10 @@
 
   &__range {
     padding-bottom: 15px;
+
+    @media (min-width: $lg-desktop) {
+      position: relative;
+    }
   }
 
   &__range_inputs {
@@ -197,12 +206,69 @@
     padding: 0 8px;
   }
 
+  &__range_show {
+    background-color: $primary-color;
+    padding: 7px 12px 6px 6px;
+    position: absolute;
+    z-index: $filter-show-link-zorder;
+    left: calc(100% + 25px);
+    top: 50%;
+    transform: translateY(-50%);
+    height: 30px;
+    white-space: nowrap;
+  }
+
+  &__range_show:before {
+    content: "";
+    border-right: 10px solid $primary-color;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    position: absolute;
+    left: -10px;
+    top: 0;
+    bottom: 0;
+  }
+
+  &__range_link {
+    font-size: 13px;
+    line-height: 18px;
+    color: $white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  &__range_body {
+    padding: 0 15px;
+
+    @media (min-width: $lg-desktop) {
+      padding: 0;
+    }
+  }
+
+  &__range_divider {
+    color: #15967F;
+    margin: 0 4px;
+  }
+
+  &__range_cancel {
+    color: #15967F;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
   &__footer {
     position: fixed;
     z-index: 1;
     bottom: 0;
     left: 0;
     width: 295px;
+
+    @media (min-width: $lg-desktop) {
+      display: none;
+    }
   }
 
   &__apply {
