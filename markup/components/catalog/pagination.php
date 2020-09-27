@@ -13,7 +13,7 @@
       <a class="pagination__link" href="" title="Page 1">1</a>
     </div>
     <div class="pagination__item">
-      <span class="pagination__link pagination__link--current"  title="Текущая страница">2</span>
+      <span class="pagination__link pagination__link--current"  title="Current page">2</span>
     </div>
     <div class="pagination__item">
       <a class="pagination__link" href="" title="Page 3">3</a>
