@@ -8,6 +8,7 @@ import { initCatalogEvents } from "./pages/catalog";
 import { initRange } from "./range/range";
 import { initCatalogCommentsCarousel } from "./sliders/catalog-comments";
 import { initJoinForm } from "./react/forms/join";
+import { initWatchedCarousel } from "./sliders/watched";
 
 document.addEventListener("DOMContentLoaded", function () {
   initCommon();
@@ -19,4 +20,5 @@ document.addEventListener("DOMContentLoaded", function () {
   initSeoToggle();
   initCatalogCommentsCarousel();
   initJoinForm();
+  initWatchedCarousel();
 });

@@ -39,7 +39,12 @@
     </div>
     <div class="catalog__right">
       <? includeComponent("catalog/list", "catalog/list"); ?>
+      <? require "../components/catalog/pagination.php"; ?>
     </div>
+  </div>
+
+  <div class="row">
+    <?php includeComponent('main/carousel', 'carousel/last-watched'); ?>
   </div>
 
   <div class="catalog__row">
