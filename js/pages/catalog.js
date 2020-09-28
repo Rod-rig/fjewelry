@@ -20,7 +20,7 @@ const initFilterHide = () => {
   }
 };
 
-export const initSubfilterToggle = () => {
+const initSubfilterToggle = () => {
   const subFilterToggle = document.querySelectorAll(".js_subfilter_toggle");
 
   for (let i = 0; i < subFilterToggle.length; i++) {
@@ -34,8 +34,20 @@ export const initSubfilterToggle = () => {
   }
 };
 
+const initQuickView = () => {
+  const triggers = document.querySelectorAll(".js_quick_view");
+
+  for (let i = 0; i < triggers.length; i++) {
+    triggers[i].addEventListener("click", function () {
+      const modal = document.querySelector(".js_quick_view_modal");
+      modal.classList.toggle("hide");
+    });
+  }
+};
+
 export const initCatalogEvents = () => {
   initSortCatalog();
   initFilterHide();
   initSubfilterToggle();
+  initQuickView();
 };

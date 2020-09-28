@@ -143,7 +143,9 @@
 </footer>
 
 <?php require 'components/common/basket.php'; ?>
-<div class="js_modals"></div>
+<div class="js_modals">
+  <?php require 'components/catalog/quick-view.php'; ?>
+</div>
 <? if (isOnPage()) { ?>
   <script src="<?= SITE_TEMPLATE_PATH . '/dist/js/main.js' ?>"></script>
 <? } elseif (isOnPage("catalog")) { ?>

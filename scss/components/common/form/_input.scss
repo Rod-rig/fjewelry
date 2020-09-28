@@ -10,7 +10,6 @@
   width: 100%;
   background-color: $white;
 
-  &:invalid,
   &--error {
     border-color: $red;
   }

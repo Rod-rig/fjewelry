@@ -28,15 +28,6 @@ module.exports = {
         ],
         exclude: /node_modules/,
       },
-      /*{
-        test: /\.(woff|woff2)$/,
-        use: {
-          loader: "file-loader",
-          options: {
-            name: "../fonts/[name].[ext]",
-          },
-        },
-      },*/
       {
         test: /\.(png|jpe?g|gif|svg)$/,
         use: {

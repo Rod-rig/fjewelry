@@ -36,7 +36,7 @@ $is_extended_view = $arParams['IS_EXTENDED_VIEW'];
     <? if ($is_extended_view) { ?>
       <div class="minicard__buttons">
         <div class="minicard__quick_view_wrap">
-          <button type="button" class="minicard__quick_view btn">
+          <button type="button" class="minicard__quick_view btn js_quick_view">
             <svg class="minicard__eye">
               <use xlink:href="#eye"></use>
             </svg>
@@ -44,7 +44,7 @@ $is_extended_view = $arParams['IS_EXTENDED_VIEW'];
           </button>
         </div>
         <div class="minicard__buy_wrap">
-          <button class="btn minicard__buy" type="button">
+          <button class="btn minicard__buy js_add_to_basket" type="button">
             <span class="minicard__buy_text">Add to bag</span>
           </button>
         </div>
