@@ -8,7 +8,7 @@
   <div class="menu__list">
     <? foreach ($arResult as $menuItem) : ?>
       <div class="menu__item">
-        <a class="menu__link js_submenu" href="">
+        <a class="menu__link js_submenu" href="<?= SITE_DIR . "catalog.php"; ?>">
           <span><?= $menuItem['TEXT'] ?></span>
           <svg class="menu__arrow">
             <use xlink:href="#arrow"></use>
@@ -30,14 +30,14 @@
             <? foreach ($menuItem['SUBLIST'] as $subMenuItem): ?>
               <div class="submenu__column">
                 <div class="submenu__header">
-                  <a class="submenu__link" href=""><?= $subMenuItem['TEXT']; ?></a>
+                  <a class="submenu__link" href="<?= SITE_DIR . "catalog.php"; ?>"><?= $subMenuItem['TEXT']; ?></a>
                   <a href="" class="submenu__link_more">show all</a>
                 </div>
                 <? if ($subMenuItem['SUBLIST'] !== null): ?>
                   <div class="submenu__list">
                     <? foreach ($subMenuItem['SUBLIST'] as $subSubMenuItem): ?>
                       <div class="subsubmenu__item">
-                        <a class="subsubmenu__link" href=""><?= $subSubMenuItem['TEXT']; ?></a>
+                        <a class="subsubmenu__link" href="<?= SITE_DIR . "catalog.php"; ?>"><?= $subSubMenuItem['TEXT']; ?></a>
                       </div>
                     <? endforeach; ?>
                   </div>

@@ -1,6 +1,17 @@
 @import "../../abstracts/variables";
 
 .minicard {
+  position: relative;
+
+  &--extended {
+    padding-bottom: 40px;
+
+    @media (min-width: $lg-desktop) {
+      padding-bottom: 0;
+      height: 100%;
+    }
+  }
+
   &__name {
     text-align: center;
     margin-bottom: 10px;
@@ -19,7 +30,6 @@
   }
 
   &__body {
-    position: relative;
     min-height: 60px;
     margin-bottom: 15px;
   }
@@ -113,6 +123,134 @@
 
     @media (min-width: $desktop) {
       font-size: 20px;
+    }
+  }
+
+  &__quick_view {
+    text-transform: uppercase;
+    width: 100%;
+    font-size: 12px;
+    font-weight: bold;
+    color: $faded-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $input-border-color;
+    padding: 5px;
+    letter-spacing: 1px;
+    outline: 0;
+
+    @media (min-width: $lg-desktop) {
+      font-size: 17px;
+      padding: 12px 2px 10px;
+      position: relative;
+      height: 50px;
+    }
+
+    &:after {
+      @media (min-width: $lg-desktop) {
+        content: "";
+        border-right: 1px solid $faded-color;
+        display: block;
+        height: 30px;
+        position: absolute;
+        right: -1px;
+      }
+    }
+  }
+
+  &__quick_view_wrap {
+    @media (min-width: $lg-desktop) {
+      width: 50%;
+    }
+  }
+
+  &__buy_text,
+  &__quick_view_text {
+    border-bottom: 2px solid transparent;
+    transition: border-bottom-color $time-animation;
+  }
+
+  &__eye {
+    width: 15px;
+    height: 15px;
+    display: block;
+    stroke: $faded-color;
+    margin-right: 7px;
+
+    @media (min-width: $lg-desktop) {
+      display: none;
+    }
+  }
+
+  &__buy {
+    display: block;
+    width: 100%;
+    color: $text-color;
+    font-size: 12px;
+    border: 1px solid $text-color;
+    text-align: center;
+    padding: 5px;
+    text-transform: uppercase;
+    outline: 0;
+
+    @media (min-width: $lg-desktop) {
+      font-size: 17px;
+      font-weight: bold;
+      color: $faded-color;
+      border: 0;
+      padding: 12px 2px 10px;
+      background-color: $input-border-color;
+      height: 50px;
+    }
+  }
+
+  &__buy:hover &__buy_text,
+  &__quick_view:hover &__quick_view_text {
+    border-bottom-color: $primary-color;
+  }
+
+  &__buy_wrap {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    @media (min-width: $lg-desktop) {
+      position: static;
+      width: 50%;
+      min-width: 50%;
+    }
+  }
+
+  &__buttons {
+    @media (min-width: $lg-desktop) {
+      margin-top: -50px;
+      display: flex;
+      transition: transform $time-animation/2;
+      transform: scaleY(0);
+      transform-origin: 0 100%;
+    }
+  }
+
+  &--extended:hover &__buttons {
+    @media (min-width: $lg-desktop) {
+      transform: scaleY(1);
+    }
+  }
+
+  &--extended &__img--secondary {
+    display: none;
+  }
+
+  &--extended:hover &__img--primary {
+    @media (min-width: $lg-desktop) {
+      display: none;
+    }
+  }
+
+  &--extended:hover &__img--secondary {
+    @media (min-width: $lg-desktop) {
+      display: block;
     }
   }
 }
