@@ -76,8 +76,8 @@ export const Callback = props => {
               type="tel"
               label={labels.tel}
               onChange={() => {}}
-              name="cbk_sname"
-              id="cbk_sname"
+              name="cbk_tel"
+              id="cbk_tel"
             />
           </div>
         </div>

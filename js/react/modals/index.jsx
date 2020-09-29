@@ -32,7 +32,6 @@ export const initCallbackTrigger = () => {
   for (let i = 0; i < callTrigger.length; i++) {
     callTrigger[i].addEventListener("click", function () {
       const phone = this.getAttribute("data-phone");
-      console.log(phone);
       openModal(<Callback phone={phone} />, "callback");
     });
   }

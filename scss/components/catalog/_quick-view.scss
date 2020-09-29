@@ -3,7 +3,11 @@
 .quick_view {
   max-width: 660px;
   width: 100%;
-  padding-bottom: 0;
+  padding: 45px 35px 0;
+
+  @media (min-width: $tablet) {
+    padding: 40px 40px 0;
+  }
 
   &__row {
     @media (min-width: $tablet) {
@@ -29,19 +33,46 @@
   }
 
   &__name {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 14px;
+    line-height: 20px;
     color: $text-color;
     margin-bottom: 20px;
+    text-align: center;
+
+    @media (min-width: $lg-desktop) {
+      font-size: 16px;
+      line-height: 24px;
+      text-align: left;
+    }
+  }
+
+  &__features {
+    display: flex;
+    align-items: center;
   }
 
   &__status {
     display: flex;
     align-items: center;
+    justify-content: center;
+
+    @media (min-width: $tablet) {
+      justify-content: flex-start;
+    }
   }
 
   &__instock {
     color: $primary-color;
+    font-size: 16px;
+  }
+
+  &__specorder {
+    color: #FF9205;
+    font-size: 16px;
+  }
+
+  &__disc {
+    color: $faded-color;
     font-size: 16px;
   }
 
@@ -92,8 +123,12 @@
   &__buttons {
     border-top: 1px solid $divider-color;
     display: flex;
-    margin: 15px -40px 0;
+    margin: 15px -35px 0;
     position: relative;
+
+    @media (min-width: $tablet) {
+      margin: 15px -40px 0;
+    }
 
     &:after {
       content: "";
@@ -115,20 +150,52 @@
     letter-spacing: 1px;
     width: 50%;
     min-width: 50%;
-    height: 60px;
+    height: 50px;
     text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
     outline: 0;
+
+    @media (min-width: $tablet) {
+      height: 60px;
+    }
+
+    &--disabled {
+      pointer-events: none;
+      color: $light-color;
+    }
   }
 
   &__btn_text {
-    border-bottom: 2px solid transparent;
-    transition: border-bottom-color $time-animation;
+    border-bottom: 2px solid $primary-color;
+
+    @media (min-width: $tablet) {
+      border-bottom: 2px solid transparent;
+      transition: border-bottom-color $time-animation;
+    }
   }
 
   &__btn:hover &__btn_text {
     border-bottom-color: $primary-color;
+  }
+
+  &__btn--disabled:hover &__btn_text {
+    border-bottom-color: transparent;
+  }
+
+  .minicard__oldprice,
+  .minicard__price {
+    @media (max-width: $tablet - 1) {
+      font-size: 14px;
+    }
+  }
+
+  &__price {
+    text-align: center;
+
+    @media (min-width: $tablet) {
+      text-align: left;
+    }
   }
 }
