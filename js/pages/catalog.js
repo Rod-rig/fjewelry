@@ -1,3 +1,5 @@
+import { initQuickViewSlider } from "../sliders/quick-view";
+
 const initSortCatalog = () => {
   const select = document.querySelector(".js_catalog_sort");
 
@@ -40,7 +42,8 @@ const initQuickView = () => {
   for (let i = 0; i < triggers.length; i++) {
     triggers[i].addEventListener("click", function () {
       const modal = document.querySelector(".js_quick_view_modal");
-      modal.classList.toggle("hide");
+      modal && modal.classList.toggle("hide");
+      initQuickViewSlider();
     });
   }
 };

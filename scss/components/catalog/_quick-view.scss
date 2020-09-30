@@ -17,10 +17,13 @@
   }
 
   &__col1 {
+    margin-bottom: 10px !important;
+
     @media (min-width: $tablet) {
       padding: 0 20px;
       width: 45%;
       min-width: 45%;
+      margin-bottom: 0 !important;
     }
   }
 
@@ -39,7 +42,7 @@
     margin-bottom: 20px;
     text-align: center;
 
-    @media (min-width: $lg-desktop) {
+    @media (min-width: $tablet) {
       font-size: 16px;
       line-height: 24px;
       text-align: left;
@@ -196,6 +199,126 @@
 
     @media (min-width: $tablet) {
       text-align: left;
+    }
+  }
+
+  &__thumbs {
+    position: relative;
+    text-align: center;
+    margin-top: 10px;
+
+    @media (min-width: $tablet) {
+      margin-top: 0;
+      text-align: left;
+    }
+  }
+
+  &__thumb_carousel {
+    @media (min-width: $tablet) {
+      padding-left: 30px;
+      padding-right: 30px;
+      margin-top: 20px;
+    }
+  }
+
+  &__thumb_row {
+    @media (min-width: $tablet) {
+      display: flex;
+      margin-top: 5px;
+      margin-left: -5px;
+      margin-right: -5px;
+    }
+  }
+
+  &__thumb {
+    width: 10px;
+    height: 10px;
+    border: 2px solid $light-color;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 15px;
+
+    @media (min-width: $tablet) {
+      width: auto;
+      height: auto;
+      border: 0;
+      margin-right: 0;
+      border-radius: 0;
+      display: block;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &.tns-nav-active {
+      border-color: $primary-color;
+      background-color: $primary-color;
+
+      @media (min-width: $tablet) {
+        border-color: transparent;
+        background-color: transparent;
+      }
+    }
+  }
+
+  &__thumb_row &__thumb {
+    @media (min-width: $tablet) {
+      width: 25%;
+      min-width: 25%;
+      padding: 0 5px;
+    }
+  }
+
+  img {
+    display: none;
+
+    @media (min-width: $tablet) {
+      display: block;
+    }
+  }
+
+  .tns-nav-active img {
+    border: 1px solid $primary-color;
+  }
+
+  &__nav {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -15px;
+    outline: 0;
+    transform: rotate(-180deg);
+    stroke: $text-color;
+    cursor: pointer;
+
+    &--right {
+      right: 0;
+      left: auto;
+      transform: rotate(0);
+    }
+
+    &[aria-disabled="true"] {
+      stroke: $light-color;
+      cursor: auto;
+    }
+  }
+
+  &__nav_icon {
+    width: 15px;
+    height: 30px;
+    display: block;
+  }
+
+  &__carousel {
+    position: relative;
+  }
+
+  &__ctrl {
+    display: none;
+
+    @media (min-width: $tablet) {
+      display: block;
     }
   }
 }

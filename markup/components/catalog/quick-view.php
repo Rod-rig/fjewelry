@@ -3,6 +3,10 @@ $has_sale = true;
 $product_statuses = array("in_stock", "spec_order", "discontinued");
 $current_product_status_index = 0;
 $current_status = $product_statuses[$current_product_status_index];
+$is_favourite = false;
+$is_compare = false;
+//$images = array("500x500", "300x300");
+$images = array("500x500", "300x300", "400x300", "500x400", "600x600", "500x300", "350x300");
 ?>
 <div class="modal hide js_quick_view_modal">
   <div class="modal__backdrop js_quick_view"></div>
@@ -19,8 +23,57 @@ $current_status = $product_statuses[$current_product_status_index];
       </button>
     </div>
     <div class="quick_view__row">
-      <div class="quick_view__col1">
-        <img class="img-responsive" src="https://via.placeholder.com/500x500" alt="">
+      <div class="quick_view__col1 carousel">
+        <div class="quick_view__carousel">
+          <div class="js_quick_view_slider">
+            <? foreach ($images as $image) { ?>
+              <img class="img-responsive" src="https://via.placeholder.com/<?= $image; ?>" alt="">
+            <? } ?>
+          </div>
+          <div class="minicard__actions">
+            <div class="minicard__like_btn">
+              <button class="btn<? if ($is_favourite) { ?> active<? } ?>" type="button">
+                <svg class="minicard__like">
+                  <use xlink:href="#like"></use>
+                </svg>
+              </button>
+            </div>
+            <div class="minicard__compare_btn">
+              <button class="btn<? if ($is_compare) { ?> active<? } ?>" type="button">
+                <svg class="minicard__compare">
+                  <use xlink:href="#compare"></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="quick_view__thumbs">
+          <div class="<? if (count($images) > 4) { ?>quick_view__thumb_carousel<? } ?>">
+            <div class="js_thumb<? if (count($images) > 4) { ?> js_thumb_carousel<? } else { ?> quick_view__thumb_row<? } ?>">
+              <? foreach ($images as $image) { ?>
+                <div class="quick_view__thumb">
+                  <img class="img-responsive" src="https://via.placeholder.com/<?= $image; ?>" alt="">
+                </div>
+              <? } ?>
+            </div>
+          </div>
+
+          <? if (count($images) > 4) { ?>
+            <div class="quick_view__ctrl js_thumb_ctrl">
+              <div class="quick_view__nav">
+                <svg class="quick_view__nav_icon">
+                  <use xlink:href="#quick-view-arrow"></use>
+                </svg>
+              </div>
+              <div class="quick_view__nav quick_view__nav--right">
+                <svg class="quick_view__nav_icon">
+                  <use xlink:href="#quick-view-arrow"></use>
+                </svg>
+              </div>
+            </div>
+          <? } ?>
+        </div>
       </div>
       <div class="quick_view__col2">
         <div class="quick_view__name">Diamond Hoop Earrings 35mm in Sterling Silver - Ug3237</div>
@@ -29,7 +82,7 @@ $current_status = $product_statuses[$current_product_status_index];
             <span class="minicard__oldprice">RRP <span class="minicard__oldprice--line">£ 1 180</span></span>
             <span class="minicard__divider"> | </span>
             <span class="minicard__price">£ 980
-              <span class="minicard__sale">40%</span>
+              <span class="minicard__sale">-40%</span>
             </span>
           <? } else { ?>
             <span class="minicard__price minicard__price--only">£ 980</span>
