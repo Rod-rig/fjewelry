@@ -148,3 +148,4 @@
     <!--<a class="filter__apply filter__apply--disabled" href="">View results (0)</a>-->
   </div>
 </div>
+<div class="filter__fade js_filter_toggle"></div>

@@ -39,6 +39,7 @@ const initSubfilterToggle = () => {
 const initQuickView = () => {
   const triggers = document.querySelectorAll(".js_quick_view");
   let isInited = false;
+  initQuickViewSlider();
 
   for (let i = 0; i < triggers.length; i++) {
     triggers[i].addEventListener("click", function () {

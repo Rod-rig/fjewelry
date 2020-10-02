@@ -10,7 +10,6 @@
     <div class="catalog__row">
       <div class="catalog__filter">
         <? require "../components/catalog/filter.php"; ?>
-        <div class="filter__fade js_filter_toggle"></div>
       </div>
       <div class="catalog__right">
         <? require "../components/catalog/applied-filters.php"; ?>
