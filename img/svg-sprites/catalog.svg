@@ -19,6 +19,10 @@
         <defs><filter id="qview" x="700" y="495" width="15.1" height="30" filterUnits="userSpaceOnUse"><feFlood result="flood" flood-color="#333"/><feComposite result="composite" operator="in" in2="SourceGraphic"/><feBlend result="blend" in2="SourceGraphic"/></filter></defs><g transform="translate(-700 -495)" fill="none" filter="url(#qview)"><path id="bqviewb" d="M700.4 524.7l14-14.7-14-14.7" stroke="inherit" filter="none" fill="inherit" stroke-width="1" fill-rule="evenodd"/></g><use transform="translate(-700 -495)" xlink:href="#bqviewb" filter="none" fill="none"/>
     </symbol>
 
+    <symbol id="close2" viewBox="0 0 24 24" >
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+    </symbol>
+
     <symbol id="specorder" viewBox="0 0 25 15"></symbol>
 
     <symbol id="discontinued" viewBox="0 0 25 15"></symbol>

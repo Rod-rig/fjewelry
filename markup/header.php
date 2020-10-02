@@ -11,7 +11,7 @@ require 'constants.php';
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="<?= SITE_DIR ?>favicon.ico" rel="shortcut icon" type="image/x-icon" />
   <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Roboto+Condensed:wght@300;400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Roboto+Condensed:wght@300;400&display=swap"
     rel="stylesheet">
   <? if (isOnPage()) { ?>
     <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH . '/dist/css/main.css' ?>" />

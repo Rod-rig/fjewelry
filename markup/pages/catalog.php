@@ -13,6 +13,7 @@
         <div class="filter__fade js_filter_toggle"></div>
       </div>
       <div class="catalog__right">
+        <? require "../components/catalog/applied-filters.php"; ?>
         <? includeComponent("catalog/list", "catalog/list"); ?>
         <? require "../components/catalog/pagination.php"; ?>
       </div>

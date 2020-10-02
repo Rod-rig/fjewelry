@@ -38,12 +38,17 @@ const initSubfilterToggle = () => {
 
 const initQuickView = () => {
   const triggers = document.querySelectorAll(".js_quick_view");
+  let isInited = false;
 
   for (let i = 0; i < triggers.length; i++) {
     triggers[i].addEventListener("click", function () {
       const modal = document.querySelector(".js_quick_view_modal");
       modal && modal.classList.toggle("hide");
-      initQuickViewSlider();
+
+      if (!isInited) {
+        initQuickViewSlider();
+        isInited = true;
+      }
     });
   }
 };
