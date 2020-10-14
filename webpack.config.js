@@ -5,6 +5,7 @@ module.exports = {
   entry: {
     main: "./js/main.js",
     catalog: "./js/catalog.js",
+    card: "./js/card.js",
     other: "./js/other.js",
   },
   devtool: "source-map",

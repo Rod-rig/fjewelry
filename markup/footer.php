@@ -152,6 +152,8 @@
   <script src="<?= SITE_TEMPLATE_PATH . '/dist/js/main.js' ?>"></script>
 <? } elseif (isOnPage("catalog")) { ?>
   <script src="<?= SITE_TEMPLATE_PATH . '/dist/js/catalog.js' ?>"></script>
+<? } elseif (isOnPage("card")) { ?>
+  <script src="<?= SITE_TEMPLATE_PATH . '/dist/js/card.js' ?>"></script>
 <? } else { ?>
   <script src="<?= SITE_TEMPLATE_PATH . '/dist/js/other.js' ?>"></script>
 <? } ?>
