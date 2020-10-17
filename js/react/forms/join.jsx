@@ -6,13 +6,15 @@ import { Email } from "../form/email";
 export const initJoinForm = () => {
   const root = document.querySelector(".js_join_root");
 
-  const label = root.getAttribute("data-label");
-  const consent = root.getAttribute("data-consent");
-  const submit = root.getAttribute("data-submit");
-  ReactDOM.render(
-    <Join label={label} consent={consent} submit={submit} />,
-    root
-  );
+  if (root) {
+    const label = root.getAttribute("data-label");
+    const consent = root.getAttribute("data-consent");
+    const submit = root.getAttribute("data-submit");
+    ReactDOM.render(
+      <Join label={label} consent={consent} submit={submit} />,
+      root
+    );
+  }
 };
 
 const submitForm = e => {
