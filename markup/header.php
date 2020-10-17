@@ -32,6 +32,8 @@ require 'constants.php';
   echo file_get_contents("../../img/svg-sprites/main.svg");
 } else if (isOnPage("catalog")) {
   echo file_get_contents("../../img/svg-sprites/catalog.svg");
+} else if (isOnPage("card")) {
+  echo file_get_contents("../../img/svg-sprites/card.svg");
 } ?>
 <header class="header">
   <div class="header__top">Lorem ipsum dolor sit amet, consectetur adipisicing.</div>

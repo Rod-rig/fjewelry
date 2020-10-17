@@ -3,29 +3,79 @@
 .card_media {
   padding: 0 20px 15px;
 
+  @media (min-width: $tablet) {
+    width: 52%;
+    padding: 0 10px 15px;
+  }
+
+  @media (min-width: $lg-desktop) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
   &__container {
     position: relative;
   }
 
+  &__row {
+    @media (min-width: $tablet) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: row-reverse;
+    }
+  }
+
   &__slider {
     margin-bottom: 20px;
+
+    @media (min-width: $tablet) {
+      width: 100%;
+      margin-bottom: 0;
+    }
   }
 
   &__thumb {
     width: 10px;
+    min-width: 10px;
     height: 10px;
     border-radius: 50%;
     border: 1px solid $input-border-color;
     background-color: $white;
     margin-right: 15px;
 
+    @media (min-width: $tablet) {
+      width: auto;
+      height: auto;
+      border-radius: 0;
+      background-color: transparent;
+      margin-right: 0;
+      border-color: transparent;
+      padding: 5px 0;
+    }
+
     &:last-child {
       margin-right: 0;
+    }
+
+    img {
+      @media (min-width: $tablet) {
+        border: 1px solid transparent;
+      }
     }
 
     &.tns-nav-active {
       background-color: $primary-color;
       border-color: $primary-color;
+
+      @media (min-width: $tablet) {
+        background-color: transparent;
+        border-color: transparent;
+
+        img {
+          border-color: $primary-color;
+        }
+      }
     }
   }
 
@@ -40,14 +90,80 @@
   &__thumbs {
     display: flex;
     justify-content: center;
+
+    @media (min-width: $tablet) {
+      display: block;
+    }
+  }
+
+  &__thumbs_wrap {
+    @media (min-width: $tablet) {
+      width: 50px;
+      min-width: 50px;
+      margin-right: 10px;
+      padding: 32px 0;
+      position: relative;
+    }
+
+    @media (min-width: $lg-desktop) {
+      width: 65px;
+      min-width: 65px;
+      margin-right: 20px;
+    }
   }
 
   &__img {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
     border: 1px solid $input-border-color;
   }
 
   .minicard__actions {
     top: 10px;
     right: 10px;
+
+    @media (min-width: $lg-desktop) {
+      top: 20px;
+      right: 20px;
+    }
+  }
+
+  &__nav {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    outline: 0;
+    transform: rotate(-90deg);
+    stroke: $text-color;
+    cursor: pointer;
+    margin-left: -7.5px;
+
+    &--right {
+      top: auto;
+      bottom: 0;
+      transform: rotate(90deg);
+    }
+
+    &[aria-disabled="true"] {
+      stroke: $light-color;
+      cursor: auto;
+    }
+  }
+
+  &__nav_icon {
+    width: 15px;
+    height: 30px;
+    display: block;
+  }
+
+  &__ctrl {
+    display: none;
+
+    @media (min-width: $tablet) {
+      display: block;
+    }
   }
 }

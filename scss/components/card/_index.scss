@@ -1,1 +1,30 @@
 @import "media";
+
+.card {
+  &__row {
+    margin-bottom: 50px;
+
+    @media (min-width: $tablet) {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 -10px 80px;
+    }
+
+    @media (min-width: $lg-desktop) {
+      margin: 0 -20px 80px;
+    }
+  }
+
+  &_content {
+    padding: 0 20px;
+
+    @media (min-width: $tablet) {
+      width: 48%;
+      padding: 0 10px;
+    }
+
+    @media (min-width: $lg-desktop) {
+      padding: 0 20px;
+    }
+  }
+}

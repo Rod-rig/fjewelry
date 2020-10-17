@@ -27,7 +27,12 @@ export const initCardMediaSlider = () => {
       loop: false,
       nav: false,
       controlsContainer: ".js_thumb_ctrl",
-      gutter: 10,
+      axis: "vertical",
+      responsive: {
+        992: {
+          items: 5,
+        },
+      },
     });
   }
 };

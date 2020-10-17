@@ -1,0 +1,5 @@
+<svg style="display: none" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="quick-view-arrow" viewBox="0 0 15.1 30">
+        <defs><filter id="qview" x="700" y="495" width="15.1" height="30" filterUnits="userSpaceOnUse"><feFlood result="flood" flood-color="#333"/><feComposite result="composite" operator="in" in2="SourceGraphic"/><feBlend result="blend" in2="SourceGraphic"/></filter></defs><g transform="translate(-700 -495)" fill="none" filter="url(#qview)"><path id="bqviewb" d="M700.4 524.7l14-14.7-14-14.7" stroke="inherit" filter="none" fill="inherit" stroke-width="1" fill-rule="evenodd"/></g><use transform="translate(-700 -495)" xlink:href="#bqviewb" filter="none" fill="none"/>
+    </symbol>
+</svg>
