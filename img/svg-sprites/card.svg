@@ -2,4 +2,12 @@
     <symbol id="quick-view-arrow" viewBox="0 0 15.1 30">
         <defs><filter id="qview" x="700" y="495" width="15.1" height="30" filterUnits="userSpaceOnUse"><feFlood result="flood" flood-color="#333"/><feComposite result="composite" operator="in" in2="SourceGraphic"/><feBlend result="blend" in2="SourceGraphic"/></filter></defs><g transform="translate(-700 -495)" fill="none" filter="url(#qview)"><path id="bqviewb" d="M700.4 524.7l14-14.7-14-14.7" stroke="inherit" filter="none" fill="inherit" stroke-width="1" fill-rule="evenodd"/></g><use transform="translate(-700 -495)" xlink:href="#bqviewb" filter="none" fill="none"/>
     </symbol>
+
+    <symbol id="tick" viewBox="0 0 15.7 11">
+        <path d="M2.2 6l4 3 7-8" fill="none" stroke-width="2"/>
+    </symbol>
+
+    <symbol id="specorder" viewBox="0 0 25 15"></symbol>
+
+    <symbol id="discontinued" viewBox="0 0 25 15"></symbol>
 </svg>
