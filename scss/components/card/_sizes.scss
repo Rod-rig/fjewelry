@@ -1,0 +1,69 @@
+@import "../../abstracts/variables";
+
+.card__sizes {
+  display: grid;
+  grid-gap: 2px;
+  grid-template-columns: repeat(6, 1fr);
+  margin-bottom: 15px;
+  max-height: 62px;
+  overflow: hidden;
+
+  @media (min-width: $lg-desktop) {
+    margin-bottom: 20px;
+    grid-template-columns: repeat(9, 1fr);
+  }
+
+  &--more {
+    max-height: none;
+  }
+}
+
+.card__size {
+  color: $text-color;
+  font-size: 14px;
+  background-color: #F5F5F5;
+  padding: 7px 4px;
+  text-align: center;
+  border: 1px solid transparent;
+  cursor: pointer;
+  height: 30px;
+
+  &--active {
+    border: 1px solid $primary-color;
+    background-color: $white;
+  }
+
+  &--lg {
+    display: none;
+
+    @media (min-width: $lg-desktop) {
+      display: block;
+    }
+  }
+
+  &--mob {
+    @media (min-width: $lg-desktop) {
+      display: none;
+    }
+  }
+
+  &--last {
+    background-color: $primary-color;
+
+    svg {
+      transform: rotate(-270deg);
+    }
+  }
+}
+
+.card__sizes--more .card__size--lg,
+.card__sizes--more .card__size--mob {
+  display: none;
+}
+
+.card__size_arrow {
+  transform: rotate(-90deg);
+  width: 10px;
+  height: 10px;
+  fill: $text-color;
+}

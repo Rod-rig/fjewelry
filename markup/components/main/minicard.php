@@ -26,7 +26,7 @@ $is_extended_view = $arParams['IS_EXTENDED_VIEW'];
       </div>
     </div>
     <div>
-      <a href="">
+      <a href="<?= SITE_DIR . "card.php"; ?>">
         <img class="minicard__img minicard__img--primary" src="<?= $product['IMG']; ?>" alt="<?= $product['NAME']; ?>">
         <? if ($is_extended_view) { ?>
           <img class="minicard__img minicard__img--secondary" src="https://via.placeholder.com/400x400" alt="<?= $product['NAME']; ?>">
@@ -52,7 +52,7 @@ $is_extended_view = $arParams['IS_EXTENDED_VIEW'];
     <? } ?>
   </div>
   <div class="minicard__name">
-    <a class="minicard__name_link" href=""><?= $product['NAME']; ?></a>
+    <a class="minicard__name_link" href="<?= SITE_DIR . "card.php"; ?>"><?= $product['NAME']; ?></a>
   </div>
   <div class="text-center">
     <? if (array_key_exists('OLD_PRICE', $product)) { ?>
