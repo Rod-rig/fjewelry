@@ -1,5 +1,3 @@
-<? $status = "in_stock"; ?>
-
 <? if ($status === "in_stock") { ?>
   <div class="card__status">
     <svg class="card__instock_icon">

@@ -1,8 +1,9 @@
 <?
+$status = "in_stock";
 $hasOldPrice = true;
 ?>
 
-<div>
+<div class="card__content">
   <div class="card__name">9CT Yellow Gold Drop Earrings 55 x 14.7mm</div>
   <div class="card__info">
     <div class="card__price_info">
@@ -23,4 +24,23 @@ $hasOldPrice = true;
     <button type="button" class="btn card__guide">size guide</button>
   </div>
   <? require "sizes.php"; ?>
+  <div class="card__buy_wrap">
+    <button class="card__buy <? if ($status !== "in_stock") { ?>card__buy--disabled<? } ?>" type="button">Add to bag</button>
+    <div class="">
+      <div class="card__features">
+        <svg class="card__info_icon">
+          <use xlink:href="#return"></use>
+        </svg>
+        <div class="card__feature_info"><span class="card__info_primary">FREE</span> RETURN 14 DAYS</div>
+      </div>
+      <div class="card__features">
+        <svg class="card__info_icon">
+          <use xlink:href="#delivery"></use>
+        </svg>
+        <div class="card__feature_info"><span class="card__info_primary">FREE</span> DELIVERY OVER £ 49</div>
+      </div>
+    </div>
+  </div>
+  <? require "other-variations.php"; ?>
+  <? require "tabs.php"; ?>
 </div>

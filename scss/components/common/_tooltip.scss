@@ -1,0 +1,18 @@
+@import "../../abstracts/variables";
+
+.tooltip {
+  margin: 0 4px;
+  cursor: pointer;
+
+  &--inline {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__icon {
+    fill: $light-color;
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+}
