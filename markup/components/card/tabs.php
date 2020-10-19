@@ -150,4 +150,14 @@
       </table>
     </div>
   </div>
+
+  <div class="card__tab js_card_tab">
+    <div class="card__tab_header js_card_tab_trigger">
+      <div class="card__tab_name">Reviews (100)</div>
+      <div class="card__tab_icon"></div>
+    </div>
+    <div class="card__tab_content">
+      <?php require "reviews.php"; ?>
+    </div>
+  </div>
 </div>

@@ -1,0 +1,57 @@
+@import "../../abstracts/variables";
+
+.reviews {
+  &__item {
+    background-color: #EBEBEB;
+    padding: 8px;
+    margin-bottom: 10px;
+
+    &--hide {
+      display: none;
+    }
+  }
+
+  &__author {
+    font-size: 16px;
+    color: $text-color;
+    font-weight: 500;
+    margin-bottom: 15px;
+  }
+
+  &__text {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  &__answer {
+    padding-left: 20px;
+    padding-top: 20px;
+  }
+
+  &__answer_author {
+    color: $primary-color;
+  }
+
+  &__toggle {
+    text-decoration: underline;
+    font-size: 16px;
+    color: $text-color;
+    font-weight: bold;
+
+    &--hide {
+      display: none;
+    }
+  }
+
+  &--show &__toggle {
+    display: none;
+  }
+
+  &--show &__toggle--hide {
+    display: inline;
+  }
+
+  &--show &__item--hide {
+    display: block;
+  }
+}
