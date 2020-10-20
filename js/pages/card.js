@@ -1,4 +1,4 @@
-export const initCardSizesEvents = () => {
+export const initCardEvents = () => {
   const sizeButtons = document.querySelectorAll(".js_size_more");
   const sizes = document.querySelectorAll(".js_card_size");
   const tabTrigger = document.querySelectorAll(".js_card_tab_trigger");
