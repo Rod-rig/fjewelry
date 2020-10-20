@@ -12,10 +12,18 @@
   </div>
   <div class="row">
     <?php includeComponent('main/carousel', 'carousel/like'); ?>
-  </div>
-  <div class="row">
     <?php includeComponent('main/carousel', 'carousel/last-watched2'); ?>
+  </div>
+
+  <div class="card__bottom">
+    <div class="card__bottom_info">
+      <? require "../components/card/info.php"; ?>
+    </div>
+    <div class="card__join">
+      <? require "../components/catalog/join.php"; ?>
+    </div>
   </div>
 </div>
 
+<?php require '../components/main/seo.php'; ?>
 <?php require '../footer.php'; ?>

@@ -4,6 +4,7 @@
 @import "other-variations";
 @import "tabs";
 @import "reviews";
+@import "info";
 
 .card {
   &__row {
@@ -30,6 +31,40 @@
 
     @media (min-width: $lg-desktop) {
       padding: 0 20px;
+    }
+  }
+
+  &__bottom {
+    @media (min-width: $desktop) {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 90px;
+    }
+  }
+
+  &__bottom_info {
+    margin-bottom: 50px;
+
+    @media (min-width: $desktop) {
+      min-width: 66%;
+      width: 66%;
+      margin-bottom: 0;
+    }
+  }
+
+  &__join {
+    margin-bottom: 80px;
+
+    @media (min-width: $desktop) {
+      min-width: 30%;
+      width: 30%;
+      margin-bottom: 0;
+    }
+
+    .join {
+      @media (min-width: $tablet) {
+        margin: 0;
+      }
     }
   }
 }

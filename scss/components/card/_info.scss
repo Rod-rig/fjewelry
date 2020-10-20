@@ -1,0 +1,105 @@
+@import "../../abstracts/variables";
+
+.card__i {
+  &_toggle {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #EBEBEB;
+    background-color: $white;
+    padding: 16px 10px;
+    cursor: pointer;
+
+    @media (min-width: $tablet) {
+      display: none;
+    }
+  }
+
+  &_toggle_text {
+    font-size: 18px;
+  }
+
+  &_toggle_icon {
+    width: 10px;
+    height: 10px;
+    display: block;
+    fill: $text-color;
+    margin-left: 5px;
+  }
+
+  &_content--show &_toggle {
+    background-color: #EBEBEB;
+  }
+
+  &_text {
+    font-size: 14px;
+    line-height: 20px;
+    display: none;
+    background-color: #EBEBEB;
+    padding: 5px 10px 15px;
+    overflow-anchor: none;
+
+    @media (min-width: $tablet) {
+      padding: 30px 40px;
+    }
+  }
+
+  &_content--show &_text {
+    display: block;
+  }
+
+  &_content--show &_toggle_icon {
+    transform: rotate(180deg);
+  }
+
+  &_btn {
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: underline;
+
+    &--hide {
+      display: none;
+    }
+  }
+
+  &_content:last-child &_toggle {
+    border-bottom: 1px solid #EBEBEB;
+  }
+
+  &_tabs {
+    display: none;
+
+    @media (min-width: $tablet) {
+      display: flex;
+    }
+  }
+
+  &_tab {
+    cursor: pointer;
+    background-color: $white;
+    padding: 10px 15px;
+    font-size: 18px;
+    color: $text-color;
+
+    &.active {
+      background-color: #EBEBEB;
+    }
+  }
+
+  &_text_more {
+    display: none;
+  }
+
+  &_text--show &_btn {
+    display: none;
+  }
+
+  &_text--show &_btn--hide {
+    display: inline;
+  }
+
+  &_text--show &_text_more {
+    display: block;
+  }
+}

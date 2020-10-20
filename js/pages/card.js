@@ -4,6 +4,8 @@ export const initCardEvents = () => {
   const tabTrigger = document.querySelectorAll(".js_card_tab_trigger");
   const showSpecBtn = document.querySelectorAll(".js_show_spec");
   const reviewsTogglers = document.querySelectorAll(".js_reviews_toggle");
+  const infoTab = document.querySelectorAll(".js_info_tab");
+  const textBtn = document.querySelectorAll(".js_card_text_btn");
 
   // init sizes expand/collapse
   for (let i = 0; i < sizeButtons.length; i++) {
@@ -46,6 +48,31 @@ export const initCardEvents = () => {
       if (reviewsList) {
         reviewsList.classList.toggle("reviews--show");
       }
+    });
+  }
+
+  for (let i = 0; i < infoTab.length; i++) {
+    infoTab[i].addEventListener("click", function () {
+      const infoTrigger = document.querySelectorAll(".js_info_trigger");
+
+      for (let j = 0; j < infoTrigger.length; j++) {
+        infoTrigger[j].classList.remove("card__i_content--show");
+      }
+
+      for (let k = 0; k < infoTab.length; k++) {
+        infoTab[k].classList.remove("active");
+      }
+
+      this.classList.toggle("active");
+      const target = this.getAttribute("data-target");
+      const el = document.querySelector(target);
+      el && el.classList.toggle("card__i_content--show");
+    });
+  }
+
+  for (let i = 0; i < textBtn.length; i++) {
+    textBtn[i].addEventListener("click", function () {
+      this.closest(".js_card_text").classList.toggle("card__i_text--show");
     });
   }
 };
