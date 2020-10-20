@@ -18,7 +18,7 @@ export const initCardMediaSlider = () => {
     });
   }
 
-  const thumb = document.querySelector(".js_thumb_carousel");
+  const thumb = document.querySelector(".js_media_thumb_carousel");
   if (thumb && !isMobile()) {
     tns({
       container: thumb,
@@ -26,7 +26,7 @@ export const initCardMediaSlider = () => {
       slideBy: 1,
       loop: false,
       nav: false,
-      controlsContainer: ".js_thumb_ctrl",
+      controlsContainer: ".js_media_thumb_ctrl",
       axis: "vertical",
       responsive: {
         992: {

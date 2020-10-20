@@ -36,7 +36,7 @@ const initSubfilterToggle = () => {
   }
 };
 
-const initQuickView = () => {
+export const initQuickView = () => {
   const triggers = document.querySelectorAll(".js_quick_view");
   let isInited = false;
   initQuickViewSlider();

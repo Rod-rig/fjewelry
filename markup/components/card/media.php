@@ -22,7 +22,7 @@
 
     <? if (count($images) > 1) { ?>
       <div class="card_media__thumbs_wrap">
-        <div class="js_media_thumb js_thumb_carousel card_media__thumbs">
+        <div class="js_media_thumb js_media_thumb_carousel card_media__thumbs">
           <? foreach ($images as $image) { ?>
             <div class="card_media__thumb">
               <img src="<?= $image; ?>" alt=""
@@ -30,7 +30,7 @@
             </div>
           <? } ?>
         </div>
-        <div class="card_media__ctrl js_thumb_ctrl">
+        <div class="card_media__ctrl js_media_thumb_ctrl">
           <div class="card_media__nav">
             <svg class="card_media__nav_icon">
               <use xlink:href="#quick-view-arrow"></use>

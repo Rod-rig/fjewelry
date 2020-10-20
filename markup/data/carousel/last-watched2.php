@@ -1,7 +1,7 @@
 <?php
 return array(
-  'TITLE' => 'The best price',
-  'IS_EXTENDED_VIEW' => false,
+  'TITLE' => 'Last watched',
+  'IS_EXTENDED_VIEW' => true,
   'PRODUCTS' => array(
     array(
       'NAME' => 'Diamond Hoop Earrings 35mm in Sterling Silver - Ug3237',
@@ -38,6 +38,20 @@ return array(
       'NAME' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, quia!',
       'IMG' => 'https://via.placeholder.com/350x350',
       'OLD_PRICE' => '£ 180',
+      'PRICE' => '£ 120',
+      'IS_IN_COMPARE' => false,
+      'IS_FAVORITE' => true,
+    ),
+    array(
+      'NAME' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, quia!',
+      'IMG' => 'https://via.placeholder.com/450x250',
+      'PRICE' => '£ 150',
+      'IS_IN_COMPARE' => false,
+      'IS_FAVORITE' => false,
+    ),
+    array(
+      'NAME' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, quia!',
+      'IMG' => 'https://via.placeholder.com/350x250',
       'PRICE' => '£ 120',
       'IS_IN_COMPARE' => false,
       'IS_FAVORITE' => true,

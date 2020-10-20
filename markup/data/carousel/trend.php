@@ -1,6 +1,7 @@
 <?php
 return array(
   'TITLE' => 'Trending',
+  'IS_EXTENDED_VIEW' => false,
   'PRODUCTS' => array(
     array(
       'NAME' => 'Diamond Hoop Earrings 35mm in Sterling Silver - Ug3237',

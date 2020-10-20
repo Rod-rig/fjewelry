@@ -1,7 +1,7 @@
 <?php
 return array(
-  'TITLE' => 'The best price',
-  'IS_EXTENDED_VIEW' => false,
+  'TITLE' => 'You may also like',
+  'IS_EXTENDED_VIEW' => true,
   'PRODUCTS' => array(
     array(
       'NAME' => 'Diamond Hoop Earrings 35mm in Sterling Silver - Ug3237',

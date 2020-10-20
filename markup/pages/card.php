@@ -11,7 +11,10 @@
     </div>
   </div>
   <div class="row">
-    <?php includeComponent('main/carousel', 'carousel/last-watched'); ?>
+    <?php includeComponent('main/carousel', 'carousel/like'); ?>
+  </div>
+  <div class="row">
+    <?php includeComponent('main/carousel', 'carousel/last-watched2'); ?>
   </div>
 </div>
 

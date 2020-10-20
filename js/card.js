@@ -5,6 +5,7 @@ import { initWatchedCarousel } from "./sliders/watched";
 import { initCardMediaSlider } from "./sliders/card-media";
 import { initCardEvents } from "./pages/card";
 import { initReviewForm } from "./react/forms/review";
+import { initQuickView } from "./pages/catalog";
 
 document.addEventListener("DOMContentLoaded", function () {
   initCommon();
@@ -13,4 +14,5 @@ document.addEventListener("DOMContentLoaded", function () {
   initCardMediaSlider();
   initCardEvents();
   initReviewForm();
+  initQuickView();
 });
