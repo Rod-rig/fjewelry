@@ -5,9 +5,10 @@ const THUMB = ".js_media_thumb";
 
 export const initCardMediaSlider = () => {
   const mediaSlider = document.querySelector(".js_media_slider");
+  const mediaPopupSlider = document.querySelector(".js_media_popup_slider");
 
   if (mediaSlider) {
-    tns({
+    const mainSliderInstance = tns({
       container: mediaSlider,
       items: 1,
       slideBy: 1,
@@ -16,6 +17,21 @@ export const initCardMediaSlider = () => {
       loop: false,
       controls: false,
     });
+
+    if (mediaPopupSlider) {
+      const popupSliderInstance = tns({
+        container: mediaPopupSlider,
+        items: 1,
+        slideBy: 1,
+        loop: false,
+        navPosition: "bottom",
+        controlsContainer: ".js_media_popup_ctrl",
+      });
+
+      mainSliderInstance.events.on("indexChanged", info => {
+        popupSliderInstance.goTo(info.index);
+      });
+    }
   }
 
   const thumb = document.querySelector(".js_media_thumb_carousel");

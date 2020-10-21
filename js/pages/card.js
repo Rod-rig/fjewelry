@@ -6,6 +6,7 @@ export const initCardEvents = () => {
   const reviewsTogglers = document.querySelectorAll(".js_reviews_toggle");
   const infoTab = document.querySelectorAll(".js_info_tab");
   const textBtn = document.querySelectorAll(".js_card_text_btn");
+  const mediaPopupTrigger = document.querySelectorAll(".js_media_trigger");
 
   // init sizes expand/collapse
   for (let i = 0; i < sizeButtons.length; i++) {
@@ -73,6 +74,13 @@ export const initCardEvents = () => {
   for (let i = 0; i < textBtn.length; i++) {
     textBtn[i].addEventListener("click", function () {
       this.closest(".js_card_text").classList.toggle("card__i_text--show");
+    });
+  }
+
+  for (let i = 0; i < mediaPopupTrigger.length; i++) {
+    mediaPopupTrigger[i].addEventListener("click", function () {
+      const popup = document.querySelector(".js_media_popup");
+      popup.classList.toggle("hide");
     });
   }
 };
