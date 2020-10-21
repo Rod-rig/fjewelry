@@ -40,9 +40,20 @@ $metallllll = array("14 k", "14 k", "14 k");
     </div>
   </div>
   <div class="card_var__list">
-    <a href="" style="background-image: url('<?= SITE_TEMPLATE_PATH; ?>/img/gem1.png')" class="card_var__item card_var__item--gem card_var__item--active"></a>
-    <a href="" style="background-image: url('<?= SITE_TEMPLATE_PATH; ?>/img/gem2.png')" class="card_var__item card_var__item--gem"></a>
-    <a href="" style="background-image: url('<?= SITE_TEMPLATE_PATH; ?>/img/gem3.png')" class="card_var__item card_var__item--gem"></a>
-    <a href="" style="background-image: url('<?= SITE_TEMPLATE_PATH; ?>/img/gem4.png')" class="card_var__item card_var__item--gem"></a>
+    <a href="" style="background-image: url('<?= SITE_TEMPLATE_PATH; ?>/img/stones/amethyst.png')" class="card_var__item card_var__item--gem card_var__item--active"></a>
+    <a href="" style="background-image: url('<?= SITE_TEMPLATE_PATH; ?>/img/stones/aquamarine.png')" class="card_var__item card_var__item--gem"></a>
+    <a href="" style="background-image: url('<?= SITE_TEMPLATE_PATH; ?>/img/stones/blue_topaz.png')" class="card_var__item card_var__item--gem"></a>
+    <a href="" style="background-image: url('<?= SITE_TEMPLATE_PATH; ?>/img/stones/citrine.png')" class="card_var__item card_var__item--gem"></a>
+    <a href="" style="background-image: url('<?= SITE_TEMPLATE_PATH; ?>/img/stones/emerald.png')" class="card_var__item card_var__item--gem"></a>
+    <a href="" style="background-image: url('<?= SITE_TEMPLATE_PATH; ?>/img/stones/garnet.png')" class="card_var__item card_var__item--gem"></a>
+    <a href="" style="background-image: url('<?= SITE_TEMPLATE_PATH; ?>/img/stones/london_topaz.png')" class="card_var__item card_var__item--gem"></a>
+    <a href="" style="background-image: url('<?= SITE_TEMPLATE_PATH; ?>/img/stones/morganite.png')" class="card_var__item card_var__item--gem"></a>
+    <a href="" style="background-image: url('<?= SITE_TEMPLATE_PATH; ?>/img/stones/peridot.png')" class="card_var__item card_var__item--gem"></a>
+    <a href="" style="background-image: url('<?= SITE_TEMPLATE_PATH; ?>/img/stones/pink_sapphire.png')" class="card_var__item card_var__item--gem"></a>
+    <a href="" style="background-image: url('<?= SITE_TEMPLATE_PATH; ?>/img/stones/ruby.png')" class="card_var__item card_var__item--gem"></a>
+    <a href="" style="background-image: url('<?= SITE_TEMPLATE_PATH; ?>/img/stones/sapphire.png')" class="card_var__item card_var__item--gem"></a>
+    <a href="" style="background-image: url('<?= SITE_TEMPLATE_PATH; ?>/img/stones/smokey_quartz.png')" class="card_var__item card_var__item--gem"></a>
+    <a href="" style="background-image: url('<?= SITE_TEMPLATE_PATH; ?>/img/stones/tanzanite.png')" class="card_var__item card_var__item--gem"></a>
+    <a href="" style="background-image: url('<?= SITE_TEMPLATE_PATH; ?>/img/stones/yellow_sapphire.png')" class="card_var__item card_var__item--gem"></a>
   </div>
 </div>
