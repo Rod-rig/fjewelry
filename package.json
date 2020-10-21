@@ -57,6 +57,7 @@
     "react-dom": "^16.13.1",
     "simplebar": "^5.2.1",
     "tiny-slider": "^2.9.3",
+    "tippy.js": "^6.2.7",
     "wnumb": "^1.2.0"
   }
 }

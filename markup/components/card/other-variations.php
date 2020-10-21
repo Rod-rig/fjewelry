@@ -7,7 +7,7 @@ $metallllll = array("14 k", "14 k", "14 k");
   <div class="card_var__title">Other Variations</div>
   <div class="card_var__subtitle_row">
     <div class="card_var__subtitle">Width – 2 mm</div>
-    <div class="tooltip">
+    <div class="tooltip js_tooltip" data-tippy-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, quia!">
       <svg class="tooltip__icon">
         <use xlink:href="#info"></use>
       </svg>
@@ -20,7 +20,7 @@ $metallllll = array("14 k", "14 k", "14 k");
   </div>
   <div class="card_var__subtitle_row">
     <div class="card_var__subtitle">Metal – 14k Yellow Gold</div>
-    <div class="tooltip">
+    <div class="tooltip js_tooltip" data-tippy-content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer et viverra risus. Nam ex velit, luctus eget mi ut, vulputate consectetur purus. In egestas auctor est eu porta. Fusce sollicitudin placerat nisi, eget pellentesque mauris imperdiet quis.">
       <svg class="tooltip__icon">
         <use xlink:href="#info"></use>
       </svg>
@@ -33,7 +33,7 @@ $metallllll = array("14 k", "14 k", "14 k");
   </div>
   <div class="card_var__subtitle_row">
     <div class="card_var__subtitle">Gemstone – Aquamarine</div>
-    <div class="tooltip">
+    <div class="tooltip js_tooltip" data-tippy-content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer et viverra risus. Nam ex velit, luctus eget mi ut, vulputate consectetur purus. In egestas auctor est eu porta. Fusce sollicitudin placerat nisi, eget pellentesque mauris imperdiet quis.">
       <svg class="tooltip__icon">
         <use xlink:href="#info"></use>
       </svg>

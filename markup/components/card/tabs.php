@@ -13,7 +13,7 @@
             <td>Width</td>
             <td class="card__tab_val">
               <a href="">4 mm</a>
-              <div class="tooltip tooltip--inline">
+              <div class="tooltip js_tooltip tooltip--inline" data-tippy-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, quia!">
                 <svg class="tooltip__icon">
                   <use xlink:href="#info"></use>
                 </svg>
@@ -24,7 +24,7 @@
             <td>Category</td>
             <td class="card__tab_val">
               <a href="">Rings</a>
-              <div class="tooltip tooltip--inline">
+              <div class="tooltip js_tooltip tooltip--inline" data-tippy-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, quia!">
                 <svg class="tooltip__icon">
                   <use xlink:href="#info"></use>
                 </svg>
@@ -35,7 +35,7 @@
             <td>Metal type</td>
             <td class="card__tab_val">
               <a href="">Gold</a>
-              <div class="tooltip tooltip--inline">
+              <div class="tooltip js_tooltip tooltip--inline" data-tippy-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, quia!">
                 <svg class="tooltip__icon">
                   <use xlink:href="#info"></use>
                 </svg>
@@ -46,7 +46,7 @@
             <td>New</td>
             <td class="card__tab_val">
               <a href="">New</a>
-              <div class="tooltip tooltip--inline">
+              <div class="tooltip js_tooltip tooltip--inline" data-tippy-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, quia!">
                 <svg class="tooltip__icon">
                   <use xlink:href="#info"></use>
                 </svg>
