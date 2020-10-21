@@ -21,7 +21,8 @@ $hasOldPrice = true;
   </div>
   <div class="card__status_info">
     <? require "status.php"; ?>
-    <button type="button" class="btn card__guide">size guide</button>
+    <button type="button" class="btn card__guide js_size_guide" data-title="Ring size chart" data-description="Please take one of your rings and measure the diameter with a ruler or take a piece of string and wrap it around your finger, make a mark then measure the string, this will be your inside circumference." data-description2="Still not sure?" data-link="Contact our expert for advice" data-href=""
+            data-placeholder1="Inside circumference, mm" data-placeholder2="UK ring size" data-src="<?= SITE_TEMPLATE_PATH; ?>/img/sizes.png">size guide</button>
   </div>
   <? require "sizes.php"; ?>
   <div class="card__buy_wrap">

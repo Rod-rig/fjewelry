@@ -1,0 +1,50 @@
+@import "../../abstracts/variables";
+
+.size_guide {
+  max-width: 95%;
+
+  @media (min-width: 900px) {
+    max-width: 880px;
+  }
+
+  &__descr {
+    margin-bottom: 20px;
+
+    @media (min-width: $tablet) {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__link {
+    color: $text-color;
+  }
+
+  &__form {
+    max-width: 280px;
+    width: 100%;
+    margin: 0 auto 30px;
+  }
+
+  &__img_wrap {
+    overflow: auto;
+  }
+
+  &__img {
+    width: 800px;
+  }
+
+  .modal__title {
+    @media (max-width: $tablet - 1) {
+      font-size: 18px;
+      line-height: 24px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .modal__text {
+    @media (max-width: $tablet - 1) {
+      font-size: 13px;
+      line-height: 20px;
+    }
+  }
+}

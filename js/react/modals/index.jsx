@@ -5,10 +5,10 @@ import { Forgot } from "../forms/forgot";
 import { Callback } from "../forms/callback";
 
 export const initLoginTrigger = () => {
-  const logintTrigger = document.querySelectorAll(".js_login_trigger");
+  const loginTrigger = document.querySelectorAll(".js_login_trigger");
 
-  for (let i = 0; i < logintTrigger.length; i++) {
-    logintTrigger[i].addEventListener("click", function (e) {
+  for (let i = 0; i < loginTrigger.length; i++) {
+    loginTrigger[i].addEventListener("click", function (e) {
       e.preventDefault();
       openModal(<Login />);
     });

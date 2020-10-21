@@ -10,6 +10,7 @@ import { initJoinForm } from "./react/forms/join";
 import { initSeoScroll } from "./scroll/seo-text";
 import { initSeoToggle } from "./seo/seo";
 import { initTooltips } from "./tooltip/tooltip";
+import { initSizeGuideTrigger } from "./react/modals/card";
 
 document.addEventListener("DOMContentLoaded", function () {
   initCommon();
@@ -23,4 +24,5 @@ document.addEventListener("DOMContentLoaded", function () {
   initSeoScroll();
   initSeoToggle();
   initTooltips();
+  initSizeGuideTrigger();
 });
