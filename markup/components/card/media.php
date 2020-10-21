@@ -10,15 +10,19 @@
 
 <div class="card_media__container">
   <div class="card_media__row">
-    <div class="card_media__slider">
-      <div class="js_media_slider">
-        <? foreach ($images as $image) { ?>
-          <div class="card_media__slide">
-            <img src="<?= $image; ?>" alt="" class="card_media__img">
-          </div>
-        <? } ?>
+    <? if (count($images) > 0) { ?>
+      <div class="card_media__slider">
+        <div class="js_media_slider">
+          <? foreach ($images as $image) { ?>
+            <div class="card_media__slide">
+              <img src="<?= $image; ?>" alt="" class="card_media__img">
+            </div>
+          <? } ?>
+        </div>
       </div>
-    </div>
+    <? } else { ?>
+      <img src="<?= SITE_TEMPLATE_PATH; ?>/img/no-photo.png" alt="" class="img-responsive">
+    <? } ?>
 
     <? if (count($images) > 1) { ?>
       <div class="card_media__thumbs_wrap">
