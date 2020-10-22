@@ -12,7 +12,6 @@
   </div>
   <div class="row">
     <?php includeComponent('main/carousel', 'carousel/like'); ?>
-    <?php includeComponent('main/carousel', 'carousel/last-watched2'); ?>
   </div>
 
   <div class="card__bottom">
@@ -23,6 +22,10 @@
       <? require "../components/catalog/join.php"; ?>
     </div>
   </div>
+
+  <div class="row">
+      <?php includeComponent('main/carousel', 'carousel/last-watched2'); ?>
+    </div>
 </div>
 
 <?php require '../components/main/seo.php'; ?>
