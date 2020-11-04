@@ -143,7 +143,7 @@
 </footer>
 
 <?php require 'components/common/basket.php'; ?>
-<?php if (isOnPage("catalog") || isOnPage("card")) {
+<?php if (isOnPage("catalog") || isOnPage("card") || isOnPage("basket")) {
   require 'components/catalog/quick-view.php';
 } ?>
 
