@@ -1,5 +1,6 @@
 {
   "trailingComma": "es5",
   "arrowParens": "avoid",
-  "endOfLine": "crlf"
+  "endOfLine": "crlf",
+  "tabWidth": 2
 }

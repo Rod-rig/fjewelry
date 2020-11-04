@@ -38,6 +38,7 @@
   text-align: center;
   letter-spacing: 1px;
   cursor: pointer;
+  overflow-anchor: none;
 
   @media (min-width: $lg-desktop) {
     color: $text-color;

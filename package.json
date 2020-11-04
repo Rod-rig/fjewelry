@@ -1,5 +1,5 @@
 {
-  "name": "zlato",
+  "name": "fjewellery",
   "version": "1.0.0",
   "description": "super-starter",
   "main": "index.php",
@@ -51,8 +51,10 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
+    "axios": "^0.21.0",
     "nouislider": "^14.6.2",
     "prop-types": "^15.7.2",
+    "qs": "^6.9.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "simplebar": "^5.2.1",
