@@ -19,6 +19,8 @@ require 'constants.php';
     <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH . '/dist/css/catalog.css' ?>" />
   <? } elseif (isOnPage("card")) { ?>
     <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH . '/dist/css/card.css' ?>" />
+  <? } elseif (isOnPage("basket")) { ?>
+    <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH . '/dist/css/basket.css' ?>" />
   <? } else { ?>
     <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH . '/dist/css/other.css' ?>" />
   <? } ?>
