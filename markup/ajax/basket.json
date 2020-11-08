@@ -1,0 +1,51 @@
+{
+  "products": [
+    {
+      "id": "4rjoippjc3924",
+      "name": "Diamond Hoop Earrings 35mm in Sterling Silver - Ug3237",
+      "href": "/",
+      "img": "https://img.zlato.ua/upload/resize_cache/iblock/29a/700_700_1/000054216_f_3.jpg",
+      "sku": "SKU: 1112233",
+      "price": "£ 3000",
+      "sizes": ["12", "13", "14", "15", "16"],
+      "activeSizes": ["13", "14"],
+      "status": "in stock",
+      "qty": 1
+    },
+    {
+      "id": "fjli2ji3oj3oij",
+      "name": "Diamond Hoop Earrings 35mm in Sterling Silver - Ug3237",
+      "href": "/",
+      "img": "https://img.zlato.ua/upload/resize_cache/iblock/552/700_700_1/000054216_f_1.jpg",
+      "sku": "SKU: 1112233",
+      "sale": "-20%",
+      "price": "£ 3000",
+      "oldPrice": "£ 4000",
+      "sizes": [
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26"
+      ],
+      "activeSizes": ["13"],
+      "status": "in stock",
+      "qty": 5
+    }
+  ],
+  "labels": {
+    "empty": "Basket is empty",
+    "quantity": "Qty:",
+    "remove": "Remove"
+  }
+}
