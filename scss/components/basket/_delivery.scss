@@ -1,0 +1,123 @@
+/* stylelint-disable selector-max-specificity */
+@import "../../abstracts/variables";
+
+.basket__delivery {
+  background-color: #C5FFF5;
+  padding: 40px 20px 30px;
+  margin-bottom: 15px;
+
+  &_input {
+    display: none;
+  }
+
+  &_radio {
+    margin-bottom: 10px;
+  }
+
+  &_name {
+    font-size: 16px;
+    font-weight: 500;
+    color: $text-color;
+  }
+
+  &_body {
+    padding-left: 25px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  &_schedule {
+    font-size: 12px;
+    color: #15967F;
+    margin-top: 5px;
+    font-weight: 500;
+  }
+
+  &_body:before {
+    content: "";
+    border: 2px solid #15967F;
+    background-color: transparent;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 2px;
+  }
+
+  &_input:checked ~ &_body:after {
+    content: "";
+    background-color: #15967F;
+    width: 6px;
+    height: 6px;
+    position: absolute;
+    top: 6px;
+    left: 4px;
+    border-radius: 50%;
+  }
+
+  &_content {
+    display: flex;
+    align-items: center;
+  }
+
+  &_icon {
+    display: block;
+    width: 25px;
+    height: 15px;
+    margin-right: 10px;
+  }
+
+  &_row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    position: relative;
+
+    &:after {
+      content: "";
+      border-bottom: 1px dotted $text-color;
+      position: absolute;
+      bottom: 2px;
+      width: 100%;
+    }
+  }
+
+  &_price {
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #C5FFF5;
+    position: relative;
+    z-index: 1;
+
+    &--total {
+      text-transform: uppercase;
+    }
+  }
+
+  &_total {
+    margin-top: 35px;
+  }
+
+  &_submit {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 16px 10px;
+    min-width: 200px;
+    display: inline-block;
+    color: $text-color;
+    background-color: transparent;
+    border: 2px solid $text-color;
+    text-align: center;
+    letter-spacing: 1px;
+    cursor: pointer;
+  }
+
+  &_footer {
+    margin-top: 20px;
+    text-align: center;
+  }
+}

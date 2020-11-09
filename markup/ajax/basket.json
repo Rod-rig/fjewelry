@@ -46,6 +46,32 @@
   "labels": {
     "empty": "Basket is empty",
     "quantity": "Qty:",
-    "remove": "Remove"
+    "remove": "Remove",
+    "price": "Price",
+    "delivery": "Delivery",
+    "total": "Total",
+    "totalNote": "(Including VAT, Postage & Packaging)",
+    "secure": "Secure checkout"
+  },
+  "delivery": [
+    {
+      "name": "Standard Delivery",
+      "schedule": "2 - 5 working days",
+      "icon": "standard-delivery",
+      "checked": true
+    },
+    {
+      "name": "Express Delivery",
+      "schedule": "1 working day",
+      "icon": "express-delivery"
+    }
+  ],
+  "main": {
+    "price": "£300.00",
+    "delivery": "FREE",
+    "total": "£300.00"
+  },
+  "hrefs": {
+    "submit": "/next-step"
   }
 }
