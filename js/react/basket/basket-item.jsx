@@ -43,23 +43,27 @@ export const BasketItem = props => (
       </div>
     </div>
     <div className="basket_item__footer">
-      <div className="basket_item__sizes">
-        {props.data.sizes && props.data.sizes.length > 0
-          ? props.data.sizes.map(s => (
-              <div
-                onClick={() => props.setActiveSize(s)}
-                className={`basket_item__size ${
-                  props.data.activeSizes.includes(s)
-                    ? "basket_item__size--active"
-                    : ""
-                }`}
-                key={s}
-              >
-                {s}
-              </div>
-            ))
-          : ""}
-      </div>
+      {props.data.sizes && props.data.sizes.length > 0 ? (
+        <div className="basket_item__sizes">
+          {props.data.sizes && props.data.sizes.length > 0
+            ? props.data.sizes.map(s => (
+                <div
+                  onClick={() => props.setActiveSize(s)}
+                  className={`basket_item__size ${
+                    props.data.activeSizes.includes(s)
+                      ? "basket_item__size--active"
+                      : ""
+                  }`}
+                  key={s}
+                >
+                  {s}
+                </div>
+              ))
+            : ""}
+        </div>
+      ) : (
+        ""
+      )}
       <div className="basket_item__bottom">
         <div className="basket_item__quan">{props.labels.quantity}</div>
         <select
