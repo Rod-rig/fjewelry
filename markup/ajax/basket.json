@@ -62,7 +62,11 @@
     "total": "Total",
     "totalNote": "(Including VAT, Postage & Packaging)",
     "secure": "Secure checkout",
-    "promo": "I have promo code!"
+    "promo": "I have promo code!",
+    "promoTitle": "Promo code",
+    "promoPlaceholder": "Enter promotional code here",
+    "promoSubmit": "Apply",
+    "promoSuccess": "Your promo code was applied successfully!"
   },
   "delivery": [
     {
