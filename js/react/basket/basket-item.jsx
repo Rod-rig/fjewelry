@@ -1,6 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+const toggleSizes = target => {
+  const sizes = target.closest(".js_sizes");
+  sizes && sizes.classList.toggle("show");
+};
+
+const SIZE_LIMIT_MOB = 11;
+const SIZE_LIMIT = 17;
+
 export const BasketItem = props => (
   <div className="basket_item">
     <div className="basket_item__img">
@@ -37,28 +45,75 @@ export const BasketItem = props => (
       <div className="basket_item__name">{props.data.sku}</div>
       <div className="basket_item__status">
         <svg className="basket_item__status_icon">
-          <use xlinkHref="#tick"></use>
+          <use xlinkHref="#tick" />
         </svg>
         <div className="basket_item__status_text">{props.data.status}</div>
       </div>
     </div>
     <div className="basket_item__footer">
       {props.data.sizes && props.data.sizes.length > 0 ? (
-        <div className="basket_item__sizes">
+        <div className="basket_item__sizes js_sizes">
           {props.data.sizes && props.data.sizes.length > 0
-            ? props.data.sizes.map(s => (
-                <div
-                  onClick={() => props.setActiveSize(s)}
-                  className={`basket_item__size ${
-                    props.data.activeSizes.includes(s)
-                      ? "basket_item__size--active"
-                      : ""
-                  }`}
-                  key={s}
-                >
-                  {s}
-                </div>
-              ))
+            ? props.data.sizes.map((s, i) => {
+                return (i === SIZE_LIMIT_MOB &&
+                  SIZE_LIMIT_MOB < props.data.sizes.length - 1) ||
+                  (i === SIZE_LIMIT &&
+                    SIZE_LIMIT < props.data.sizes.length - 1) ? (
+                  <React.Fragment key={s}>
+                    <div
+                      onClick={e => toggleSizes(e.target)}
+                      className={`basket_item__size basket_item__size--mob-more ${
+                        i === SIZE_LIMIT_MOB &&
+                        SIZE_LIMIT_MOB < props.data.sizes.length - 1
+                          ? "basket_item__size--mob"
+                          : "basket_item__size--desktop"
+                      }`}
+                    >
+                      <svg className="basket_item__arrow">
+                        <use xlinkHref="#arrow" />
+                      </svg>
+                    </div>
+                    <div
+                      onClick={() => props.setActiveSize(s)}
+                      className={`basket_item__size ${
+                        props.data.activeSizes.includes(s)
+                          ? "basket_item__size--active"
+                          : ""
+                      }`}
+                    >
+                      {s}
+                    </div>
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment key={s}>
+                    <div
+                      onClick={() => props.setActiveSize(s)}
+                      className={`basket_item__size ${
+                        props.data.activeSizes.includes(s)
+                          ? "basket_item__size--active"
+                          : ""
+                      }`}
+                    >
+                      {s}
+                    </div>
+                    {(i > SIZE_LIMIT_MOB &&
+                      i === props.data.sizes.length - 1) ||
+                    (i > SIZE_LIMIT && i === props.data.sizes.length - 1) ? (
+                      <div
+                        key={s + 1000}
+                        onClick={e => toggleSizes(e.target)}
+                        className="basket_item__size basket_item__size--last"
+                      >
+                        <svg className="basket_item__arrow">
+                          <use xlinkHref="#arrow" />
+                        </svg>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </React.Fragment>
+                );
+              })
             : ""}
         </div>
       ) : (

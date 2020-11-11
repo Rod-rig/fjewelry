@@ -1,3 +1,4 @@
+/* stylelint-disable selector-max-class */
 @import "../../abstracts/variables";
 
 .basket_item {
@@ -205,10 +206,20 @@
     display: grid;
     grid-gap: 2px;
     grid-template-columns: repeat(6, 1fr);
+    max-height: 62px;
+    overflow: hidden;
 
     @media (min-width: $tablet) {
       grid-template-columns: repeat(9, 1fr);
     }
+
+    &.show {
+      max-height: none;
+    }
+  }
+
+  &__sizes.show &__size--mob-more {
+    display: none;
   }
 
   &__size {
@@ -224,6 +235,22 @@
     &--active {
       border: 1px solid $primary-color;
       background-color: $white;
+    }
+
+    &--mob {
+      background-color: $primary-color;
+
+      @media (min-width: $tablet) {
+        display: none;
+      }
+    }
+
+    &--desktop {
+      display: none;
+
+      @media (min-width: $tablet) {
+        display: block;
+      }
     }
   }
 
@@ -248,7 +275,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 10px;
-    
+
     @media (min-width: $tablet) {
       justify-content: flex-start;
       margin-top: 40px;
@@ -263,5 +290,24 @@
     @media (min-width: $tablet) {
       margin-right: 15px;
     }
+  }
+
+  &__arrow {
+    transform: rotate(-90deg);
+    width: 10px;
+    height: 10px;
+    fill: $text-color;
+  }
+
+  &__size--last {
+    background-color: $primary-color;
+
+    @media (min-width: $tablet) {
+      background-color: #F5F5F5;
+    }
+  }
+
+  &__size--last &__arrow {
+    transform: rotate(90deg);
   }
 }
