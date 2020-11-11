@@ -58,6 +58,11 @@ export const initQuickView = () => {
 const initLoadMore = () => {
   const currentPager = document.querySelector(".pagination__link--current");
   const pageLinks = document.querySelectorAll(".pagination__link");
+
+  if (!pageLinks) {
+    return;
+  }
+
   const currentIndex = Array.from(pageLinks).findIndex(
     i => i.className.indexOf("pagination__link--current") > -1
   );
