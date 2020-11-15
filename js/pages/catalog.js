@@ -59,7 +59,7 @@ const initLoadMore = () => {
   const currentPager = document.querySelector(".pagination__link--current");
   const pageLinks = document.querySelectorAll(".pagination__link");
 
-  if (!pageLinks) {
+  if (pageLinks.length === 0) {
     return;
   }
 

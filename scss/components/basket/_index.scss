@@ -3,6 +3,7 @@
 @import "item";
 @import "delivery";
 @import "promo";
+@import "basket3";
 
 .basket {
   &__row {
@@ -174,5 +175,27 @@
     @media (min-width: $tablet) {
       display: none;
     }
+  }
+
+  &__top_row--2 &__header {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid $light-color;
+
+    @media (min-width: $tablet) {
+      padding: 0;
+      border: 0;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  &__count_icon {
+    display: block;
+    width: 15px;
+    height: 11px;
+    stroke: $white;
   }
 }
