@@ -1,5 +1,4 @@
 import axios from "axios";
-import qs from "qs";
 
 class Ajax {
   constructor() {
@@ -19,7 +18,7 @@ class Ajax {
       method: "post",
       url,
       params,
-      data: qs.stringify(data),
+      data,
     });
   }
 }
