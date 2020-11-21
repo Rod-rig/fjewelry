@@ -3,7 +3,7 @@ import { initCommon } from "./common";
 import { initBreadcrumbsScroll } from "./scroll/breadcrumbs";
 import { initWatchedCarousel } from "./sliders/watched";
 import { initQuickView } from "./pages/catalog";
-import { initBasket } from "./react/basket";
+import { initBasket, initBasket2 } from "./react/basket";
 
 document.addEventListener("DOMContentLoaded", function () {
   initCommon();
@@ -11,4 +11,5 @@ document.addEventListener("DOMContentLoaded", function () {
   initWatchedCarousel();
   initQuickView();
   initBasket();
+  initBasket2();
 });

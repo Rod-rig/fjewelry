@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import ReactDOM from "react-dom";
+import { render } from "react-dom";
 import { Email } from "../form/email";
 
 export const initJoinForm = () => {
@@ -10,10 +10,7 @@ export const initJoinForm = () => {
     const label = root.getAttribute("data-label");
     const consent = root.getAttribute("data-consent");
     const submit = root.getAttribute("data-submit");
-    ReactDOM.render(
-      <Join label={label} consent={consent} submit={submit} />,
-      root
-    );
+    render(<Join label={label} consent={consent} submit={submit} />, root);
   }
 };
 

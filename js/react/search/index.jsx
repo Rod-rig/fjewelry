@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, unmountComponentAtNode } from "react-dom";
 import { Search } from "./search";
 import { isDesktop } from "../../helpers/is-desktop";
 
@@ -14,9 +14,9 @@ export const initSearchEvents = () => {
       const searchRoot = document.querySelector(getRoot());
       if (searchRoot) {
         if (searchRoot.children.length > 0) {
-          ReactDOM.unmountComponentAtNode(searchRoot);
+          unmountComponentAtNode(searchRoot);
         } else {
-          ReactDOM.render(<Search />, searchRoot);
+          render(<Search />, searchRoot);
         }
       }
     });
@@ -25,5 +25,5 @@ export const initSearchEvents = () => {
 
 export const closeSearch = () => {
   const searchRoot = document.querySelector(getRoot());
-  searchRoot && ReactDOM.unmountComponentAtNode(searchRoot);
+  searchRoot && unmountComponentAtNode(searchRoot);
 };

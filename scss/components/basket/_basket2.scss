@@ -1,0 +1,99 @@
+/* stylelint-disable selector-max-specificity */
+@import "../../abstracts/variables";
+
+.basket2 {
+  &_note {
+    font-size: 15px;
+    color: $light-color;
+  }
+}
+
+.order {
+  .basket__delivery_name {
+    margin-right: 5px;
+  }
+
+  &__radio {
+    width: 50%;
+    min-width: 50px;
+    margin-bottom: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  &__radio_text {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    &:before {
+      top: 0;
+    }
+
+    .basket__delivery_input:checked ~ &:after {
+      top: 4px;
+    }
+  }
+
+  &__user {
+    display: flex;
+    margin-bottom: 15px;
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+
+  &__row {
+    margin-left: -20px;
+    margin-right: -20px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+
+  &__col {
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 50%;
+    min-width: 50%;
+  }
+
+  &__submit {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 16px 10px;
+    min-width: 200px;
+    display: inline-block;
+    color: $text-color;
+    background-color: transparent;
+    border: 2px solid $text-color;
+    text-align: center;
+    letter-spacing: 1px;
+    cursor: pointer;
+    height: 50px;
+  }
+
+  &__login {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $input-border-color;
+  }
+
+  &__login_btns {
+    display: flex;
+    align-items: center;
+  }
+
+  &__login_div {
+    margin-left: 7px;
+    margin-right: 7px;
+  }
+
+  &__login_btn {
+    text-decoration: underline;
+    font-size: 16px;
+  }
+}

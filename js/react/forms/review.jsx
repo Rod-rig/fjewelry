@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import ReactDOM from "react-dom";
+import { render } from "react-dom";
 import { Email } from "../form/email";
 import { Input } from "../form/input";
 import { Textarea } from "../form/textarea";
@@ -13,7 +13,7 @@ export const initReviewForm = () => {
     const email = root.getAttribute("data-email");
     const review = root.getAttribute("data-review");
     const submit = root.getAttribute("data-submit");
-    ReactDOM.render(
+    render(
       <Review name={name} email={email} review={review} submit={submit} />,
       root
     );

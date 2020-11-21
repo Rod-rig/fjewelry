@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render } from "react-dom";
 import { closeModal } from "../modals/modal";
 
 export const Loader = () => (
@@ -18,7 +18,7 @@ export const FullScreenLoader = () => (
 
 export const showFullScreenLoader = () => {
   const root = document.querySelector(".js_modals");
-  root && ReactDOM.render(<FullScreenLoader />, root);
+  root && render(<FullScreenLoader />, root);
 };
 
 export const removeLoader = () => {

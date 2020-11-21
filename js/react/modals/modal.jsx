@@ -1,15 +1,15 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render, unmountComponentAtNode } from "react-dom";
 import PropTypes from "prop-types";
 
 const el = document.querySelector(".js_modals");
 
 export const openModal = (children, className) => {
-  el && ReactDOM.render(<Modal className={className}>{children}</Modal>, el);
+  el && render(<Modal className={className}>{children}</Modal>, el);
 };
 
 export const closeModal = () => {
-  el && ReactDOM.unmountComponentAtNode(el);
+  el && unmountComponentAtNode(el);
 };
 
 export const Modal = props => (
