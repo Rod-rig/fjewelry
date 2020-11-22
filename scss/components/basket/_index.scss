@@ -9,8 +9,8 @@
 .basket {
   &__row {
     @media (min-width: $lg-desktop) {
-      margin-left: -10px;
-      margin-right: -10px;
+      margin-left: -20px;
+      margin-right: -20px;
       display: flex;
       justify-content: space-between;
     }
@@ -147,8 +147,8 @@
 
   &__left {
     @media (min-width: $lg-desktop) {
-      padding-left: 10px;
-      padding-right: 10px;
+      padding-left: 20px;
+      padding-right: 20px;
       width: 66.667%;
       min-width: 66.667%;
     }
@@ -163,8 +163,8 @@
     }
 
     @media (min-width: $lg-desktop) {
-      padding-left: 10px;
-      padding-right: 10px;
+      padding-left: 20px;
+      padding-right: 20px;
       width: 33.333%;
       min-width: 33.333%;
     }

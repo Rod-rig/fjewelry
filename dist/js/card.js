@@ -960,7 +960,7 @@ var Select = function Select(props) {
     className: "fj_label",
     htmlFor: props.id
   }, props.label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-    className: "fj_select ".concat(props.isError ? "fj_select--error" : ""),
+    className: "fj_select ".concat(props.className ? props.className : "", " ").concat(props.isError ? "fj_select--error" : ""),
     id: props.id,
     value: props.value,
     onChange: props.onChange,
@@ -982,7 +982,8 @@ Select.propTypes = {
     label: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired,
     value: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.any.isRequired
   })).isRequired,
-  isError: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool
+  isError: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
 };
 
 /***/ }),

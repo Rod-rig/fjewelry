@@ -1026,6 +1026,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_loader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/loader */ "./js/react/components/loader.jsx");
 /* harmony import */ var _delivery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./delivery */ "./js/react/basket/delivery.jsx");
 /* harmony import */ var _form_input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../form/input */ "./js/react/form/input.jsx");
+/* harmony import */ var _form_select__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../form/select */ "./js/react/form/select.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1043,6 +1044,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var labels = {
   guest: "Checkout as a guest",
   guestNote: "(without registration)",
@@ -1053,8 +1055,13 @@ var labels = {
   reg: "Registration",
   placeholders: {
     email: "Email *",
-    pwd: "Password *"
-  }
+    pwd: "Password *",
+    fname: "First name *",
+    lname: "Last name *",
+    phone: "Phone",
+    title: "Title *"
+  },
+  titles: ["Mr.", "Ms.", "Mrs.", "Miss."]
 };
 var OrderForm = function OrderForm() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
@@ -1082,6 +1089,16 @@ var OrderForm = function OrderForm() {
       password = _useState10[0],
       setPassword = _useState10[1];
 
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState12 = _slicedToArray(_useState11, 2),
+      fname = _useState12[0],
+      setFname = _useState12[1];
+
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState14 = _slicedToArray(_useState13, 2),
+      title = _useState14[0],
+      setTitle = _useState14[1];
+
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     _helpers_ajax__WEBPACK_IMPORTED_MODULE_1__["default"].get({
       url: "../ajax/order.json"
@@ -1095,7 +1112,7 @@ var OrderForm = function OrderForm() {
     className: "order basket__row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "basket__left"
-  }, !data["isAuthed"] ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "order__user"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "guest1",
@@ -1135,7 +1152,7 @@ var OrderForm = function OrderForm() {
     className: "basket__delivery_name"
   }, labels.guest), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "basket2_note"
-  }, labels.guestNote)))), isGuest === "noguest" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  }, labels.guestNote)))), isGuest === "noguest" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, !data["isAuthed"] ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: function onSubmit(e) {
       return e.preventDefault();
     }
@@ -1178,7 +1195,83 @@ var OrderForm = function OrderForm() {
   }, " | "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "order__login_btn btn",
     type: "button"
-  }, labels.reg)))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "I am guest")) : ""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, labels.reg)))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__authed"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    className: "order__authed_tick"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("use", {
+    xlinkHref: "#tick"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__email"
+  }, "qwe@gmail.com"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: function onSubmit(e) {
+      return e.preventDefault();
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__col"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_form_input__WEBPACK_IMPORTED_MODULE_4__["Input"], {
+    label: labels.placeholders.email,
+    onChange: function onChange(e) {
+      return setEmail(e.target.value);
+    },
+    name: "email",
+    id: "email",
+    value: email
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__login"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "order__submit",
+    type: "submit"
+  }, labels.loginSubmit))), data["isAuthed"] ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: function onSubmit(e) {
+      return e.preventDefault();
+    },
+    className: "order__form"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__col"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_form_select__WEBPACK_IMPORTED_MODULE_5__["Select"], {
+    label: labels.placeholders.title,
+    onChange: function onChange(e) {
+      setTitle(e.target.value);
+    },
+    name: "title",
+    id: "title",
+    value: title,
+    options: labels.titles.map(function (l, i) {
+      return {
+        label: l,
+        value: i
+      };
+    }),
+    isError: false,
+    className: "order__select"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__col"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_form_input__WEBPACK_IMPORTED_MODULE_4__["Input"], {
+    label: labels.placeholders.fname,
+    onChange: function onChange(e) {
+      return setFname(e.target.value);
+    },
+    name: "fname",
+    id: "fname",
+    value: fname
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__col"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_form_input__WEBPACK_IMPORTED_MODULE_4__["Input"], {
+    label: labels.placeholders.email,
+    onChange: function onChange(e) {
+      return setEmail(e.target.value);
+    },
+    name: "email",
+    id: "email",
+    value: email
+  })))) : "")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "basket__right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_delivery__WEBPACK_IMPORTED_MODULE_3__["Delivery"], {
     basket: data
@@ -1459,7 +1552,7 @@ var Select = function Select(props) {
     className: "fj_label",
     htmlFor: props.id
   }, props.label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-    className: "fj_select ".concat(props.isError ? "fj_select--error" : ""),
+    className: "fj_select ".concat(props.className ? props.className : "", " ").concat(props.isError ? "fj_select--error" : ""),
     id: props.id,
     value: props.value,
     onChange: props.onChange,
@@ -1481,7 +1574,8 @@ Select.propTypes = {
     label: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired,
     value: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.any.isRequired
   })).isRequired,
-  isError: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool
+  isError: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
 };
 
 /***/ }),

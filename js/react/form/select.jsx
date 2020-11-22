@@ -7,7 +7,9 @@ export const Select = props => (
       {props.label}
     </label>
     <select
-      className={`fj_select ${props.isError ? "fj_select--error" : ""}`}
+      className={`fj_select ${props.className ? props.className : ""} ${
+        props.isError ? "fj_select--error" : ""
+      }`}
       id={props.id}
       value={props.value}
       onChange={props.onChange}
@@ -37,4 +39,5 @@ Select.propTypes = {
     })
   ).isRequired,
   isError: PropTypes.bool,
+  className: PropTypes.string,
 };

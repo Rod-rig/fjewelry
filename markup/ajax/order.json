@@ -1,5 +1,5 @@
 {
-  "isAuthed": false,
+  "isAuthed": true,
   "labels": {
     "empty": "Basket is empty",
     "quantity": "Quantity:",

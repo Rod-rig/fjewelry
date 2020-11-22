@@ -3286,7 +3286,7 @@ body {
 /* Others */
 /* Z-orders */
 .basket2_note {
-  font-size: 15px;
+  font-size: 14px;
   color: #CCC; }
 
 .order .basket__delivery_name {
@@ -3382,6 +3382,34 @@ body {
   text-decoration: underline;
   font-size: 16px; }
 
+.order__email {
+  font-size: 16px;
+  font-weight: 500; }
+
+.order__authed_tick {
+  display: block;
+  width: 15px;
+  height: 11px;
+  stroke: #1CC9AA;
+  margin-right: 10px; }
+
+.order__authed {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid #DBDBDB; }
+
+.order__form {
+  padding-top: 20px; }
+
+.order__select {
+  max-width: 170px; }
+
 /* Colors */
 /* Breakpoints */
 /* Grids */
@@ -3420,8 +3448,8 @@ body {
 
 @media (min-width: 1200px) {
   .basket__row {
-    margin-left: -10px;
-    margin-right: -10px;
+    margin-left: -20px;
+    margin-right: -20px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -3556,8 +3584,8 @@ body {
 
 @media (min-width: 1200px) {
   .basket__left {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     width: 66.667%;
     min-width: 66.667%; } }
 
@@ -3569,8 +3597,8 @@ body {
       margin: 0; } }
   @media (min-width: 1200px) {
     .basket__right {
-      padding-left: 10px;
-      padding-right: 10px;
+      padding-left: 20px;
+      padding-right: 20px;
       width: 33.333%;
       min-width: 33.333%; } }
 
