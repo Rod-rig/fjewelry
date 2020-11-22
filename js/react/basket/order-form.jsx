@@ -4,6 +4,7 @@ import { Loader } from "../components/loader";
 import { Delivery } from "./delivery";
 import { Input } from "../form/input";
 import { Select } from "../form/select";
+import { Textarea } from "../form/textarea";
 
 const labels = {
   guest: "Checkout as a guest",
@@ -20,9 +21,25 @@ const labels = {
     lname: "Last name *",
     phone: "Phone",
     title: "Title *",
+    addr: "My addresses",
+    post: "Post Code *",
+    country: "Country *",
+    addr1: "Address Line 1 *",
+    addr2: "Address Line 2 *",
+    town: "Town / City *",
+    region: "Region",
+    info: "Additional information",
   },
+  addressTitle: "Delivery address",
   titles: ["Mr.", "Ms.", "Mrs.", "Miss."],
-  addressTitle: "My addresses",
+  countries: [
+    "United Kingdom",
+    "Ireland",
+    "France",
+    "Italy",
+    "Spain",
+    "Germany",
+  ],
 };
 
 export const OrderForm = () => {
@@ -35,6 +52,14 @@ export const OrderForm = () => {
   const [lname, setLname] = useState("");
   const [title, setTitle] = useState("");
   const [phone, setPhone] = useState("");
+  const [addr, setAddr] = useState("");
+  const [post, setPost] = useState("");
+  const [country, setCountry] = useState("");
+  const [addr1, setAddr1] = useState("");
+  const [addr2, setAddr2] = useState("");
+  const [town, setTown] = useState("");
+  const [region, setRegion] = useState("");
+  const [info, setInfo] = useState("");
 
   useEffect(() => {
     ajax.get({ url: "../ajax/order.json" }).then(({ data }) => {
@@ -226,6 +251,94 @@ export const OrderForm = () => {
 
                 <div className="order__section">
                   <div className="order__title">{labels.addressTitle}</div>
+                  <div className="order__row">
+                    <div className="order__col">
+                      <Select
+                        label={labels.placeholders.addr}
+                        onChange={e => {
+                          setAddr(e.target.value);
+                        }}
+                        name="addr"
+                        id="addr"
+                        value={addr}
+                        options={data["addresses"].map((l, i) => ({
+                          label: l,
+                          value: i,
+                        }))}
+                        isError={false}
+                      />
+                    </div>
+                    <div className="order__col">
+                      <Input
+                        label={labels.placeholders.post}
+                        onChange={e => setPost(e.target.value)}
+                        name="post"
+                        id="post"
+                        value={post}
+                      />
+                    </div>
+                  </div>
+                  <div className="order__row">
+                    <div className="order__col">
+                      <Input
+                        label={labels.placeholders.country}
+                        onChange={e => setCountry(e.target.value)}
+                        name="country"
+                        id="country"
+                        value={country}
+                      />
+                    </div>
+                    <div className="order__col">
+                      <Input
+                        label={labels.placeholders.addr1}
+                        onChange={e => setAddr1(e.target.value)}
+                        name="addr_line1"
+                        id="addr_line1"
+                        value={addr1}
+                      />
+                    </div>
+                  </div>
+                  <div className="order__row">
+                    <div className="order__col">
+                      <Input
+                        label={labels.placeholders.town}
+                        onChange={e => setTown(e.target.value)}
+                        name="town"
+                        id="town"
+                        value={town}
+                      />
+                    </div>
+                    <div className="order__col">
+                      <Input
+                        label={labels.placeholders.addr2}
+                        onChange={e => setAddr2(e.target.value)}
+                        name="addr_line2"
+                        id="addr_line2"
+                        value={addr2}
+                      />
+                    </div>
+                  </div>
+                  <div className="order__row">
+                    <div className="order__col">
+                      <Input
+                        label={labels.placeholders.region}
+                        onChange={e => setRegion(e.target.value)}
+                        name="region"
+                        id="region"
+                        value={region}
+                      />
+                    </div>
+                    <div className="order__col">
+                      <Textarea
+                        className=""
+                        label={labels.placeholders.info}
+                        name="add_info"
+                        onChange={e => setInfo(e.target.value)}
+                        id="add_info"
+                        value={info}
+                      />
+                    </div>
+                  </div>
                 </div>
               </form>
             ) : (

@@ -1027,6 +1027,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _delivery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./delivery */ "./js/react/basket/delivery.jsx");
 /* harmony import */ var _form_input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../form/input */ "./js/react/form/input.jsx");
 /* harmony import */ var _form_select__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../form/select */ "./js/react/form/select.jsx");
+/* harmony import */ var _form_textarea__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../form/textarea */ "./js/react/form/textarea.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1038,6 +1039,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -1059,10 +1061,19 @@ var labels = {
     fname: "First name *",
     lname: "Last name *",
     phone: "Phone",
-    title: "Title *"
+    title: "Title *",
+    addr: "My addresses",
+    post: "Post Code *",
+    country: "Country *",
+    addr1: "Address Line 1 *",
+    addr2: "Address Line 2 *",
+    town: "Town / City *",
+    region: "Region",
+    info: "Additional information"
   },
+  addressTitle: "Delivery address",
   titles: ["Mr.", "Ms.", "Mrs.", "Miss."],
-  addressTitle: "My addresses"
+  countries: ["United Kingdom", "Ireland", "France", "Italy", "Spain", "Germany"]
 };
 var OrderForm = function OrderForm() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
@@ -1109,6 +1120,46 @@ var OrderForm = function OrderForm() {
       _useState18 = _slicedToArray(_useState17, 2),
       phone = _useState18[0],
       setPhone = _useState18[1];
+
+  var _useState19 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState20 = _slicedToArray(_useState19, 2),
+      addr = _useState20[0],
+      setAddr = _useState20[1];
+
+  var _useState21 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState22 = _slicedToArray(_useState21, 2),
+      post = _useState22[0],
+      setPost = _useState22[1];
+
+  var _useState23 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState24 = _slicedToArray(_useState23, 2),
+      country = _useState24[0],
+      setCountry = _useState24[1];
+
+  var _useState25 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState26 = _slicedToArray(_useState25, 2),
+      addr1 = _useState26[0],
+      setAddr1 = _useState26[1];
+
+  var _useState27 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState28 = _slicedToArray(_useState27, 2),
+      addr2 = _useState28[0],
+      setAddr2 = _useState28[1];
+
+  var _useState29 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState30 = _slicedToArray(_useState29, 2),
+      town = _useState30[0],
+      setTown = _useState30[1];
+
+  var _useState31 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState32 = _slicedToArray(_useState31, 2),
+      region = _useState32[0],
+      setRegion = _useState32[1];
+
+  var _useState33 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState34 = _slicedToArray(_useState33, 2),
+      info = _useState34[0],
+      setInfo = _useState34[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     _helpers_ajax__WEBPACK_IMPORTED_MODULE_1__["default"].get({
@@ -1310,7 +1361,103 @@ var OrderForm = function OrderForm() {
     className: "order__section"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "order__title"
-  }, labels.addressTitle))) : "")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, labels.addressTitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__col"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_form_select__WEBPACK_IMPORTED_MODULE_5__["Select"], {
+    label: labels.placeholders.addr,
+    onChange: function onChange(e) {
+      setAddr(e.target.value);
+    },
+    name: "addr",
+    id: "addr",
+    value: addr,
+    options: data["addresses"].map(function (l, i) {
+      return {
+        label: l,
+        value: i
+      };
+    }),
+    isError: false
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__col"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_form_input__WEBPACK_IMPORTED_MODULE_4__["Input"], {
+    label: labels.placeholders.post,
+    onChange: function onChange(e) {
+      return setPost(e.target.value);
+    },
+    name: "post",
+    id: "post",
+    value: post
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__col"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_form_input__WEBPACK_IMPORTED_MODULE_4__["Input"], {
+    label: labels.placeholders.country,
+    onChange: function onChange(e) {
+      return setCountry(e.target.value);
+    },
+    name: "country",
+    id: "country",
+    value: country
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__col"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_form_input__WEBPACK_IMPORTED_MODULE_4__["Input"], {
+    label: labels.placeholders.addr1,
+    onChange: function onChange(e) {
+      return setAddr1(e.target.value);
+    },
+    name: "addr_line1",
+    id: "addr_line1",
+    value: addr1
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__col"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_form_input__WEBPACK_IMPORTED_MODULE_4__["Input"], {
+    label: labels.placeholders.town,
+    onChange: function onChange(e) {
+      return setTown(e.target.value);
+    },
+    name: "town",
+    id: "town",
+    value: town
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__col"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_form_input__WEBPACK_IMPORTED_MODULE_4__["Input"], {
+    label: labels.placeholders.addr2,
+    onChange: function onChange(e) {
+      return setAddr2(e.target.value);
+    },
+    name: "addr_line2",
+    id: "addr_line2",
+    value: addr2
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__col"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_form_input__WEBPACK_IMPORTED_MODULE_4__["Input"], {
+    label: labels.placeholders.region,
+    onChange: function onChange(e) {
+      return setRegion(e.target.value);
+    },
+    name: "region",
+    id: "region",
+    value: region
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__col"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_form_textarea__WEBPACK_IMPORTED_MODULE_6__["Textarea"], {
+    className: "",
+    label: labels.placeholders.info,
+    name: "add_info",
+    onChange: function onChange(e) {
+      return setInfo(e.target.value);
+    },
+    id: "add_info",
+    value: info
+  }))))) : "")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "basket__right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_delivery__WEBPACK_IMPORTED_MODULE_3__["Delivery"], {
     basket: data

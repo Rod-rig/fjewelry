@@ -1352,6 +1352,7 @@ body {
 /* Others */
 /* Z-orders */
 .fj_input {
+  font-family: "Montserrat", sans-serif;
   color: #333;
   font-size: 14px;
   height: 40px;
@@ -1435,6 +1436,7 @@ body {
 .fj_select {
   color: #333;
   font-size: 14px;
+  font-family: "Montserrat", sans-serif;
   height: 40px;
   border-radius: 0;
   padding: 10px 5px;
