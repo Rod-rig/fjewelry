@@ -1061,7 +1061,8 @@ var labels = {
     phone: "Phone",
     title: "Title *"
   },
-  titles: ["Mr.", "Ms.", "Mrs.", "Miss."]
+  titles: ["Mr.", "Ms.", "Mrs.", "Miss."],
+  addressTitle: "My addresses"
 };
 var OrderForm = function OrderForm() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
@@ -1096,8 +1097,18 @@ var OrderForm = function OrderForm() {
 
   var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState14 = _slicedToArray(_useState13, 2),
-      title = _useState14[0],
-      setTitle = _useState14[1];
+      lname = _useState14[0],
+      setLname = _useState14[1];
+
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState16 = _slicedToArray(_useState15, 2),
+      title = _useState16[0],
+      setTitle = _useState16[1];
+
+  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState18 = _slicedToArray(_useState17, 2),
+      phone = _useState18[0],
+      setPhone = _useState18[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     _helpers_ajax__WEBPACK_IMPORTED_MODULE_1__["default"].get({
@@ -1227,8 +1238,9 @@ var OrderForm = function OrderForm() {
   }, labels.loginSubmit))), data["isAuthed"] ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: function onSubmit(e) {
       return e.preventDefault();
-    },
-    className: "order__form"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__section"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "order__row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1271,7 +1283,34 @@ var OrderForm = function OrderForm() {
     name: "email",
     id: "email",
     value: email
-  })))) : "")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__col"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_form_input__WEBPACK_IMPORTED_MODULE_4__["Input"], {
+    label: labels.placeholders.lname,
+    onChange: function onChange(e) {
+      return setLname(e.target.value);
+    },
+    name: "lname",
+    id: "lname",
+    value: lname
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__col"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_form_input__WEBPACK_IMPORTED_MODULE_4__["Input"], {
+    type: "tel",
+    label: labels.placeholders.phone,
+    onChange: function onChange(e) {
+      return setPhone(e.target.value);
+    },
+    name: "order_phone",
+    id: "order_phone",
+    value: phone
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__section"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "order__title"
+  }, labels.addressTitle))) : "")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "basket__right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_delivery__WEBPACK_IMPORTED_MODULE_3__["Delivery"], {
     basket: data

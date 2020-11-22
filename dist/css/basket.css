@@ -3329,7 +3329,7 @@ body {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  margin-bottom: 30px; }
+  margin-bottom: 20px; }
 
 .order__col {
   padding-left: 20px;
@@ -3404,11 +3404,18 @@ body {
   padding-bottom: 50px;
   border-bottom: 1px solid #DBDBDB; }
 
-.order__form {
-  padding-top: 20px; }
+.order__section {
+  padding-top: 20px;
+  border-bottom: 1px solid #DBDBDB; }
 
 .order__select {
   max-width: 170px; }
+
+.order__title {
+  text-transform: uppercase;
+  font-size: 16px;
+  font-family: "Roboto Condensed", sans-serif;
+  margin-bottom: 15px; }
 
 /* Colors */
 /* Breakpoints */

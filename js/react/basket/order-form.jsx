@@ -22,6 +22,7 @@ const labels = {
     title: "Title *",
   },
   titles: ["Mr.", "Ms.", "Mrs.", "Miss."],
+  addressTitle: "My addresses",
 };
 
 export const OrderForm = () => {
@@ -31,7 +32,9 @@ export const OrderForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
   const [title, setTitle] = useState("");
+  const [phone, setPhone] = useState("");
 
   useEffect(() => {
     ajax.get({ url: "../ajax/order.json" }).then(({ data }) => {
@@ -157,45 +160,72 @@ export const OrderForm = () => {
               </form>
             )}
             {data["isAuthed"] ? (
-              <form onSubmit={e => e.preventDefault()} className="order__form">
-                <div className="order__row">
-                  <div className="order__col">
-                    <Select
-                      label={labels.placeholders.title}
-                      onChange={e => {
-                        setTitle(e.target.value);
-                      }}
-                      name="title"
-                      id="title"
-                      value={title}
-                      options={labels.titles.map((l, i) => ({
-                        label: l,
-                        value: i,
-                      }))}
-                      isError={false}
-                      className="order__select"
-                    />
+              <form onSubmit={e => e.preventDefault()}>
+                <div className="order__section">
+                  <div className="order__row">
+                    <div className="order__col">
+                      <Select
+                        label={labels.placeholders.title}
+                        onChange={e => {
+                          setTitle(e.target.value);
+                        }}
+                        name="title"
+                        id="title"
+                        value={title}
+                        options={labels.titles.map((l, i) => ({
+                          label: l,
+                          value: i,
+                        }))}
+                        isError={false}
+                        className="order__select"
+                      />
+                    </div>
+                  </div>
+                  <div className="order__row">
+                    <div className="order__col">
+                      <Input
+                        label={labels.placeholders.fname}
+                        onChange={e => setFname(e.target.value)}
+                        name="fname"
+                        id="fname"
+                        value={fname}
+                      />
+                    </div>
+                    <div className="order__col">
+                      <Input
+                        label={labels.placeholders.email}
+                        onChange={e => setEmail(e.target.value)}
+                        name="email"
+                        id="email"
+                        value={email}
+                      />
+                    </div>
+                  </div>
+                  <div className="order__row">
+                    <div className="order__col">
+                      <Input
+                        label={labels.placeholders.lname}
+                        onChange={e => setLname(e.target.value)}
+                        name="lname"
+                        id="lname"
+                        value={lname}
+                      />
+                    </div>
+                    <div className="order__col">
+                      <Input
+                        type="tel"
+                        label={labels.placeholders.phone}
+                        onChange={e => setPhone(e.target.value)}
+                        name="order_phone"
+                        id="order_phone"
+                        value={phone}
+                      />
+                    </div>
                   </div>
                 </div>
-                <div className="order__row">
-                  <div className="order__col">
-                    <Input
-                      label={labels.placeholders.fname}
-                      onChange={e => setFname(e.target.value)}
-                      name="fname"
-                      id="fname"
-                      value={fname}
-                    />
-                  </div>
-                  <div className="order__col">
-                    <Input
-                      label={labels.placeholders.email}
-                      onChange={e => setEmail(e.target.value)}
-                      name="email"
-                      id="email"
-                      value={email}
-                    />
-                  </div>
+
+                <div className="order__section">
+                  <div className="order__title">{labels.addressTitle}</div>
                 </div>
               </form>
             ) : (
