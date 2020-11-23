@@ -14,11 +14,15 @@
   }
 
   &__radio {
-    width: 50%;
-    min-width: 50px;
-    margin-bottom: 0;
-    padding-left: 20px;
-    padding-right: 20px;
+    margin-bottom: 15px;
+
+    @media (min-width: $tablet) {
+      width: 50%;
+      min-width: 50px;
+      margin-bottom: 0;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
   }
 
   &__radio_text {
@@ -36,25 +40,36 @@
   }
 
   &__user {
-    display: flex;
     margin-bottom: 15px;
-    margin-left: -20px;
-    margin-right: -20px;
+
+    @media (min-width: $tablet) {
+      display: flex;
+      margin-bottom: 15px;
+      margin-left: -20px;
+      margin-right: -20px;
+    }
   }
 
   &__row {
-    margin-left: -20px;
-    margin-right: -20px;
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+    @media (min-width: $tablet) {
+      margin-bottom: 20px;
+      margin-left: -20px;
+      margin-right: -20px;
+      display: flex;
+      flex-wrap: wrap;
+    }
   }
 
   &__col {
-    padding-left: 20px;
-    padding-right: 20px;
-    width: 50%;
-    min-width: 50%;
+    margin-bottom: 20px;
+
+    @media (min-width: $tablet) {
+      padding-left: 20px;
+      padding-right: 20px;
+      width: 50%;
+      min-width: 50%;
+      margin-bottom: 0;
+    }
   }
 
   &__submit {
@@ -86,11 +101,21 @@
     justify-content: space-between;
     padding-bottom: 20px;
     border-bottom: 1px solid $input-border-color;
+    flex-direction: column-reverse;
+
+    @media (min-width: $tablet) {
+      flex-direction: row;
+    }
   }
 
   &__login_btns {
     display: flex;
     align-items: center;
+    margin-bottom: 20px;
+
+    @media (min-width: $tablet) {
+      margin-bottom: 0;
+    }
   }
 
   &__login_div {
@@ -119,9 +144,13 @@
   &__authed {
     display: flex;
     align-items: center;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-bottom: 15px;
     border-bottom: 1px solid $input-border-color;
+
+    @media (min-width: $tablet) {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
   }
 
   &__section {
@@ -134,7 +163,9 @@
   }
 
   &__select {
-    max-width: 170px;
+    @media (min-width: $tablet) {
+      max-width: 170px;
+    }
   }
 
   &__title {
@@ -151,5 +182,16 @@
   &__accept {
     font-size: 12px;
     margin-bottom: 25px;
+  }
+
+  &__submit_wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+
+    @media (min-width: $lg-desktop) {
+      justify-content: flex-start;
+      margin-bottom: 0;
+    }
   }
 }

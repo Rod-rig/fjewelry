@@ -27,7 +27,7 @@ const labels = {
     post: "Post Code *",
     country: "Country *",
     addr1: "Address Line 1 *",
-    addr2: "Address Line 2 *",
+    addr2: "Address Line 2",
     town: "Town / City *",
     region: "Region",
     info: "Additional information",
@@ -516,12 +516,14 @@ export const OrderForm = () => {
                   {" " + labels.accept2 + " "}
                   <a href="">{labels.privacy}</a>
                 </Checkbox>
-                <button
-                  className="order__submit order__submit_all"
-                  type="submit"
-                >
-                  {labels.pay}
-                </button>
+                <div className="order__submit_wrap">
+                  <button
+                    className="order__submit order__submit_all"
+                    type="submit"
+                  >
+                    {labels.pay}
+                  </button>
+                </div>
               </form>
             ) : (
               ""

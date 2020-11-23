@@ -45,6 +45,14 @@ export const Delivery = props => (
             {props.basket.main.delivery}
           </div>
         </div>
+        <div className="basket__delivery_row">
+          <div className="basket__delivery_price">
+            {props.basket.labels.promoDelivery}
+          </div>
+          <div className="basket__delivery_price basket__delivery_price--promo">
+            - £15.00
+          </div>
+        </div>
       </div>
       <div className="basket__delivery_total">
         <div className="basket__delivery_row">
