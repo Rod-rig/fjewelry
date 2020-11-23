@@ -1,33 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export const Checkbox = props => {
+export const Radio = props => {
   return (
-    <div className="checkbox">
+    <label htmlFor={props.id} className="fj_radio">
       <input
         id={props.id}
+        checked={props.checked}
+        className="fj_radio__input"
         name={props.name}
-        type="checkbox"
-        className="checkbox__input"
-        checked={props.checked ? "checked" : ""}
+        type="radio"
+        value={props.value}
         onChange={props.onChange}
       />
-      <label
-        htmlFor={props.id}
-        className={`checkbox__label ${props.className ? props.className : ""}`}
-      >
+      <div className="fj_radio__content">
         {props.label ? props.label : props.children}
-      </label>
-    </div>
+      </div>
+    </label>
   );
 };
 
-Checkbox.propTypes = {
+Radio.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   checked: PropTypes.bool.isRequired,
   label: PropTypes.any,
   onChange: PropTypes.func.isRequired,
+  value: PropTypes.any,
   children: PropTypes.any,
-  className: PropTypes.string,
 };

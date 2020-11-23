@@ -34,7 +34,7 @@
   </div>
 
   <div class="row">
-    <?php //includeComponent('main/carousel', 'carousel/like'); ?>
+    <?php includeComponent('main/carousel', 'carousel/like'); ?>
   </div>
 </div>
 

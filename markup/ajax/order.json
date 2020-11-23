@@ -36,5 +36,5 @@
   "hrefs": {
     "submit": "/next-step"
   },
-  "addresses": ["address1", "address2", "address3"]
+  "addresses": ["address1", "address2", "address3", "New address"]
 }
