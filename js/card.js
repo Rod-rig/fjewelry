@@ -11,6 +11,10 @@ import { initSeoScroll } from "./scroll/seo-text";
 import { initSeoToggle } from "./seo/seo";
 import { initTooltips } from "./tooltip/tooltip";
 import { initSizeGuideTrigger } from "./react/modals/card";
+import { initAddToBasket } from "./basket/card";
+import { initCompareEvents } from "./common/compare";
+import { initWishEvents } from "./common/wishlist";
+import { fetchViewedProducts } from "./common/viewed";
 
 document.addEventListener("DOMContentLoaded", function () {
   initCommon();
@@ -25,4 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
   initSeoToggle();
   initTooltips();
   initSizeGuideTrigger();
+  initAddToBasket();
+  initCompareEvents();
+  initWishEvents();
+  fetchViewedProducts();
 });

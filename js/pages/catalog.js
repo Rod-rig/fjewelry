@@ -1,5 +1,7 @@
 import { initQuickViewSlider } from "../sliders/quick-view";
 import ajax from "../helpers/ajax";
+import { isDesktop } from "../helpers/is-desktop";
+import { removeLoader } from "../react/components/loader";
 
 const initSortCatalog = () => {
   const select = document.querySelector(".js_catalog_sort");
@@ -102,10 +104,43 @@ const initLoadMore = () => {
   });
 };
 
+const initMobFilter = () => {
+  if (isDesktop()) {
+    return;
+  }
+  const chex = document.querySelectorAll(".js_filter_chex");
+
+  if (chex && chex.length > 0) {
+    document.addEventListener("click", function (e) {
+      const target = e.target;
+      const targetChex = target.closest(".js_filter_chex");
+
+      if (targetChex) {
+        e.preventDefault();
+        const url = targetChex.getAttribute("href");
+        ajax
+          .get({
+            url,
+          })
+          .then(({ data }) => {
+            const filter = document.querySelector(".filter");
+            filter.innerHTML = data.html.filter;
+            removeLoader();
+          })
+          .catch(e => {
+            removeLoader();
+            console.log("Couldn't fetch filter data", e);
+          });
+      }
+    });
+  }
+};
+
 export const initCatalogEvents = () => {
   initSortCatalog();
   initFilterHide();
   initSubfilterToggle();
   initQuickView();
   initLoadMore();
+  initMobFilter();
 };

@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { render } from "react-dom";
 import { Email } from "../form/email";
+import ajax from "../../helpers/ajax";
+
+const labels = {
+  success: "You have successfully subscribed to the newsletter",
+};
 
 export const initJoinForm = () => {
   const root = document.querySelector(".js_join_root");
@@ -14,15 +19,38 @@ export const initJoinForm = () => {
   }
 };
 
-const submitForm = e => {
-  e.preventDefault();
-  console.log("submit");
-};
-
 const Join = props => {
   const [email, setEmail] = useState("");
-  return (
+  const [isSuccessSubmit, setSuccessSubmit] = useState(false);
+  const [isError, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const submitForm = e => {
+    e.preventDefault();
+    ajax
+      .post({
+        url: "/query/subscriber/add/",
+        data: {
+          email,
+        },
+      })
+      .then(() => {
+        setSuccessSubmit(true);
+        setError(false);
+      })
+      .catch(({ response }) => {
+        setError(true);
+        setErrorMessage(response.data.message);
+      });
+  };
+
+  return isSuccessSubmit ? (
+    <div className="text-center">{labels.success}</div>
+  ) : (
     <form className="join__form" onSubmit={submitForm}>
+      {isError && (
+        <div className="text-error text-center mb-15">{errorMessage}</div>
+      )}
       <Email
         label={props.label}
         onChange={e => setEmail(e.target.value)}

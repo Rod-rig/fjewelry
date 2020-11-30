@@ -7,7 +7,9 @@ export const Textarea = props => (
       {props.label}
     </label>
     <textarea
-      className={`fj_textarea ${props.className}`}
+      className={`fj_textarea ${props.className ? props.className : ""} ${
+        props.isError ? "fj_textarea--error" : ""
+      }`}
       name={props.name}
       onChange={props.onChange}
       value={props.value}
@@ -23,4 +25,5 @@ Textarea.propTypes = {
   value: PropTypes.string,
   id: PropTypes.string.isRequired,
   className: PropTypes.string,
+  isError: PropTypes.bool,
 };

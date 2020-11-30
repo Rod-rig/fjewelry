@@ -10,6 +10,8 @@ import { initCatalogCommentsCarousel } from "./sliders/catalog-comments";
 import { initJoinForm } from "./react/forms/join";
 import { initWatchedCarousel } from "./sliders/watched";
 import { initTagsScroll } from "./scroll/tags";
+import { initCompareEvents } from "./common/compare";
+import { initWishEvents } from "./common/wishlist";
 
 document.addEventListener("DOMContentLoaded", function () {
   initCommon();
@@ -23,4 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
   initCatalogCommentsCarousel();
   initJoinForm();
   initWatchedCarousel();
+  initCompareEvents();
+  initWishEvents();
 });

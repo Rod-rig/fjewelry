@@ -4,6 +4,8 @@ import { Input } from "../form/input";
 import { Email } from "../form/email";
 import { Select } from "../form/select";
 import { Textarea } from "../form/textarea";
+import ajax from "../../helpers/ajax";
+import { Loader } from "../components/loader";
 
 const labels = {
   title: "Speak with our expert advisors",
@@ -28,12 +30,55 @@ const labels = {
     "Lorem",
   ],
   info: "Additional information *",
+  success: "Your request has been successfully sent",
 };
 
 export const Callback = props => {
   const [enq, setEnq] = useState(0);
-  return (
-    <React.Fragment>
+  const [fname, setFName] = useState("");
+  const [sname, setSName] = useState("");
+  const [email, setEmail] = useState("");
+  const [tel, setTel] = useState("");
+  const [info, setInfo] = useState("");
+  const [isLoading, setLoading] = useState(false);
+  const [isSuccessSubmit, setSuccessSubmit] = useState(false);
+  const [isError, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const submitForm = e => {
+    e.preventDefault();
+    setLoading(true);
+    ajax
+      .post({
+        url: "/query/contact/send/",
+        data: {
+          cbk_fname: fname,
+          cbk_sname: sname,
+          cbk_email: email,
+          cbk_tel: tel,
+          cbk_enq: enq,
+          cbk_info: info,
+        },
+      })
+      .then(() => {
+        setSuccessSubmit(true);
+        setError(false);
+      })
+      .catch(({ response }) => {
+        setLoading(false);
+        setError(true);
+        setErrorMessage(response.data.message);
+      });
+  };
+
+  return isSuccessSubmit ? (
+    <div className="text-center">{labels.success}</div>
+  ) : isLoading ? (
+    <div className="text-center">
+      <Loader />
+    </div>
+  ) : (
+    <form onSubmit={submitForm}>
       <div className="modal__title">{labels.title}</div>
       <div className="modal__text">
         {labels.text1}{" "}
@@ -45,39 +90,50 @@ export const Callback = props => {
         </a>{" "}
         {labels.text2}
       </div>
+      {isError && (
+        <div className="text-error text-center mb-15">{errorMessage}</div>
+      )}
       <div className="callback__row">
         <div className="callback__col">
           <div className="mb-15">
             <Input
               label={labels.firstName}
-              onChange={() => {}}
+              onChange={e => setFName(e.target.value)}
               name="cbk_fname"
               id="cbk_fname"
+              value={fname}
+              isError={false}
             />
           </div>
           <div className="mb-15">
             <Input
               label={labels.secondName}
-              onChange={() => {}}
+              onChange={e => setSName(e.target.value)}
               name="cbk_sname"
               id="cbk_sname"
+              value={sname}
+              isError={false}
             />
           </div>
           <div className="mb-15">
             <Email
               label={labels.email}
-              onChange={() => {}}
+              onChange={e => setEmail(e.target.value)}
               name="cbk_email"
               id="cbk_email"
+              value={email}
+              isError={false}
             />
           </div>
           <div>
             <Input
               type="tel"
               label={labels.tel}
-              onChange={() => {}}
+              onChange={e => setTel(e.target.value)}
               name="cbk_tel"
               id="cbk_tel"
+              value={tel}
+              isError={false}
             />
           </div>
         </div>
@@ -102,9 +158,11 @@ export const Callback = props => {
             <Textarea
               label={labels.info}
               name="cbk_info"
-              onChange={() => {}}
+              onChange={e => setInfo(e.target.value)}
               id="cbk_info"
               className="callback__textarea"
+              value={info}
+              isError={false}
             />
           </div>
         </div>
@@ -117,11 +175,11 @@ export const Callback = props => {
         <span className="callback__policy2">{labels.policy2}</span>
       </div>
       <div className="text-center">
-        <button className="main_link" type="button">
+        <button className="main_link" type="submit">
           {labels.submit}
         </button>
       </div>
-    </React.Fragment>
+    </form>
   );
 };
 

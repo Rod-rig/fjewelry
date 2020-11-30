@@ -15,7 +15,7 @@ export const closeModal = () => {
 export const Modal = props => (
   <div className="modal">
     <div onClick={closeModal} className="modal__backdrop" />
-    <div className={`modal__root ${props.className}`}>
+    <div className={`modal__root ${props.className ? props.className : ""}`}>
       <div className="modal__close">
         <button
           onClick={closeModal}

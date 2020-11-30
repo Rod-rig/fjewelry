@@ -3,6 +3,8 @@ import { Email } from "../form/email";
 import { Input } from "../form/input";
 // import { isEmail } from "../../helpers/is-email";
 import { Checkbox } from "../form/checkbox";
+import ajax from "../../helpers/ajax";
+import { Loader } from "../components/loader";
 
 const labels = {
   title: "Enter cabinet",
@@ -13,18 +15,55 @@ const labels = {
   reg: "Registration",
   remember: "Remember me",
   submit: "Submit",
+  success: "Successful login, the page will be reloaded",
 };
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(true);
+  const [isLoading, setLoading] = useState(false);
+  const [isSuccessSubmit, setSuccessSubmit] = useState(false);
+  const [isError, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  return (
-    <div>
+  const submitForm = e => {
+    e.preventDefault();
+    setLoading(true);
+    ajax
+      .post({
+        url: "/query/customer/login/",
+        data: {
+          username: email,
+          password,
+        },
+      })
+      .then(() => {
+        setSuccessSubmit(true);
+        setError(false);
+        window.location.reload();
+      })
+      .catch(({ response }) => {
+        setLoading(false);
+        setError(true);
+        setErrorMessage(response.data.message);
+      });
+  };
+
+  return isSuccessSubmit ? (
+    <div>{labels.success}</div>
+  ) : isLoading ? (
+    <div className="text-center">
+      <Loader />
+    </div>
+  ) : (
+    <React.Fragment>
       <div className="modal__title">{labels.title}</div>
       <div className="modal__text">{labels.text}</div>
-      <form onSubmit={() => {}}>
+      {isError && (
+        <div className="text-error text-center mb-15">{errorMessage}</div>
+      )}
+      <form onSubmit={submitForm}>
         <div className="mb-15">
           <Email
             name="login_email"
@@ -32,7 +71,7 @@ export const Login = () => {
             label={labels.emailLabel}
             onChange={e => setEmail(e.target.value)}
             value={email}
-            isError={false}
+            isError={isError}
           />
         </div>
         <div className="mb-15">
@@ -43,7 +82,7 @@ export const Login = () => {
             label={labels.passwordLabel}
             onChange={e => setPassword(e.target.value)}
             value={password}
-            isError={false}
+            isError={isError}
           />
         </div>
         <div className="login__links">
@@ -70,6 +109,6 @@ export const Login = () => {
           </button>
         </div>
       </form>
-    </div>
+    </React.Fragment>
   );
 };
