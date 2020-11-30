@@ -156,6 +156,8 @@
   <script src="<?= SITE_TEMPLATE_PATH . '/dist/js/card.js' ?>"></script>
 <? } elseif (isOnPage("basket")) { ?>
   <script src="<?= SITE_TEMPLATE_PATH . '/dist/js/basket.js' ?>"></script>
+<? } elseif (isOnPage("profile")) { ?>
+  <script src="<?= SITE_TEMPLATE_PATH . '/dist/js/profile.js' ?>"></script>
 <? } else { ?>
   <script src="<?= SITE_TEMPLATE_PATH . '/dist/js/other.js' ?>"></script>
 <? } ?>

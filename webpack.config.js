@@ -8,6 +8,7 @@ module.exports = {
     card: "./js/card.js",
     basket: "./js/basket.js",
     other: "./js/other.js",
+    profile: "./js/profile.js",
   },
   devtool: "source-map",
   output: {

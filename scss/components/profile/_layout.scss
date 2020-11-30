@@ -1,0 +1,26 @@
+@import "../../abstracts/variables";
+
+.profile__row {
+  @media (min-width: $lg-desktop) {
+    display: flex;
+  }
+}
+
+.profile__menu_col {
+  display: none;
+
+  @media (min-width: $lg-desktop) {
+    display: block;
+    width: 25%;
+    min-width: 25%;
+    padding: 0 20px;
+  }
+}
+
+.profile__content_col {
+  @media (min-width: $lg-desktop) {
+    width: 75%;
+    min-width: 75%;
+    padding: 0 20px;
+  }
+}

@@ -21,6 +21,8 @@ require 'constants.php';
     <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH . '/dist/css/card.css' ?>" />
   <? } elseif (isOnPage("basket")) { ?>
     <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH . '/dist/css/basket.css' ?>" />
+  <? }  elseif (isOnPage("profile")) { ?>
+    <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH . '/dist/css/profile.css' ?>" />
   <? } else { ?>
     <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH . '/dist/css/other.css' ?>" />
   <? } ?>
@@ -38,6 +40,8 @@ require 'constants.php';
   echo file_get_contents("../../img/svg-sprites/card.svg");
 } else if (isOnPage("basket")) {
   echo file_get_contents("../../img/svg-sprites/basket.svg");
+} else if (isOnPage("profile")) {
+  echo file_get_contents("../../img/svg-sprites/profile.svg");
 } ?>
 <header class="header">
   <div class="header__top">Lorem ipsum dolor sit amet, consectetur adipisicing.</div>
