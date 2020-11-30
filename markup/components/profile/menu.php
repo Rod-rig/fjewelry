@@ -43,4 +43,3 @@ $menu = array(
     </div>
   <? } ?>
 </div>
-<div></div>
