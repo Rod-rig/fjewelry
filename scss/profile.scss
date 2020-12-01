@@ -2,9 +2,7 @@
 @import "../node_modules/simplebar/dist/simplebar.css";
 @import "common";
 @import "components/common/breadcrumbs";
-@import "components/profile/layout";
-@import "components/profile/personal";
-@import "components/profile/menu";
+@import "components/profile";
 
 .profile {
   margin-bottom: 40px;
