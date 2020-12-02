@@ -4,24 +4,35 @@
   &__item {
     display: flex;
     flex-wrap: wrap;
-    padding-bottom: 20px;
     border-bottom: 1px solid $input-border-color;
     position: relative;
-    margin-bottom: 20px;
+
+    @media (min-width: $tablet) {
+      padding-bottom: 20px;
+    }
 
     .active & {
       border-bottom: 0;
     }
 
     &_label {
-      font-size: 16px;
+      font-size: 14px;
       color: $faded-color;
-      margin-bottom: 20px;
+      margin-bottom: 8px;
+
+      @media (min-width: $desktop) {
+        margin-bottom: 20px;
+        font-size: 16px;
+      }
     }
 
     &_value {
-      font-size: 16px;
+      font-size: 12px;
       font-weight: 500;
+
+      @media (min-width: $desktop) {
+        font-size: 16px;
+      }
     }
 
     &_value--promo {
@@ -29,26 +40,72 @@
     }
   }
 
-  &__col {
-    width: 12%;
-    min-width: 12%;
-    padding-right: 10px;
+  &__item_wrap {
+    margin-bottom: 20px;
   }
 
-  &__col_promo {
+  &__item_wrap:last-child &__item {
+    border-bottom: 0;
+  }
+
+  &__col {
     width: 25%;
     min-width: 25%;
     padding-right: 10px;
+    margin-bottom: 15px;
+
+    @media (min-width: $tablet) {
+      width: 12.5%;
+      min-width: 12.5%;
+      margin-bottom: 0;
+    }
   }
 
+  &__col_promo {
+    width: 75%;
+    min-width: 75%;
+    padding-right: 10px;
+
+    @media (min-width: $tablet) {
+      width: 25%;
+      min-width: 25%;
+    }
+  }
+
+  &__item_status {
+    display: none;
+
+    @media (min-width: $tablet) {
+      display: inline-block;
+    }
+  }
+
+  &__shipped:before,
+  &__cancel:before,
+  &__process:before,
   &__delivered:before {
     content: "";
-    background-color: $primary-color;
     border-radius: 50%;
     width: 10px;
     height: 10px;
     display: inline-block;
     margin-right: 5px;
+  }
+
+  &__delivered:before {
+    background-color: $primary-color;
+  }
+
+  &__shipped:before {
+    background-color: #92FEEB;
+  }
+
+  &__process:before {
+    background-color: #FF9205;
+  }
+
+  &__cancel:before {
+    background-color: red;
   }
 
   &__link {
@@ -57,27 +114,49 @@
     font-size: 14px;
     font-weight: bold;
     color: $text-color;
+
+    @media (min-width: $tablet) {
+      font-size: 12px;
+    }
+
+    @media (min-width: $desktop) {
+      font-size: 14px;
+    }
   }
 
   &__toggle {
     cursor: pointer;
     position: absolute;
+    top: 0;
     right: 0;
-    top: 50%;
-    transform: translateY(-50%);
     margin-right: 7px;
-    margin-top: -5px;
+    -webkit-tap-highlight-color: transparent;
+
+    @media (min-width: $tablet) {
+      top: 50%;
+      transform: translateY(-50%);
+      margin-top: -5px;
+    }
 
     .active & {
-      transform: translateY(-50%) rotate(180deg);
+      transform: rotate(180deg);
+
+      @media (min-width: $tablet) {
+        transform: translateY(-50%) rotate(180deg);
+      }
     }
 
     &_icon {
-      stroke: $input-border-color;
+      stroke: $faded-color;
       display: block;
-      width: 15px;
-      height: 30px;
+      width: 8px;
+      height: 16px;
       transform: rotate(90deg);
+
+      @media (min-width: $desktop) {
+        width: 15px;
+        height: 30px;
+      }
     }
   }
 
@@ -109,15 +188,26 @@
   }
 
   &__img {
-    width: 65px;
+    max-width: 100%;
     border: 1px solid $input-border-color;
     margin-left: 0;
+
+    @media (min-width: $tablet) {
+      width: 65px;
+    }
   }
 
   &__img_wrap {
-    width: 12%;
-    min-width: 12%;
+    width: 33%;
+    min-width: 33%;
     padding-right: 10px;
+    margin-bottom: 20px;
+
+    @media (min-width: $tablet) {
+      width: 12%;
+      min-width: 12%;
+      margin-bottom: 0;
+    }
   }
 
   &__status {
@@ -125,18 +215,37 @@
     font-weight: 500;
     display: flex;
     align-items: center;
-    margin-top: 15px;
+
+    @media (min-width: $tablet) {
+      margin-top: 15px;
+    }
 
     &_icon {
-      width: 16px;
-      height: 11px;
+      width: 12px;
+      height: 9px;
       display: block;
       stroke: $primary-color;
-      margin-right: 5px;
+      margin-right: 2px;
     }
 
     &--instock {
       color: $primary-color;
+    }
+
+    &--sm {
+      display: flex;
+
+      @media (min-width: $tablet) {
+        display: none;
+      }
+    }
+
+    &--lg {
+      display: none;
+
+      @media (min-width: $tablet) {
+        display: flex;
+      }
     }
   }
 
@@ -152,7 +261,17 @@
 
   &__prod_sku {
     font-size: 14px;
+    margin-right: 10px;
+
+    @media (min-width: $tablet) {
+      margin-right: 0;
+    }
+  }
+
+  &__prod_align {
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
   }
 
   &__prod_chars {
@@ -161,36 +280,95 @@
   }
 
   &__prod_content {
-    width: 57%;
-    min-width: 57%;
+    width: 67%;
+    min-width: 67%;
     padding-right: 10px;
+    margin-bottom: 20px;
+
+    @media (min-width: $tablet) {
+      width: 57%;
+      min-width: 57%;
+      margin-bottom: 0;
+    }
   }
 
   &__prod_col {
-    width: 10%;
-    min-width: 10%;
+    display: flex;
+    align-items: center;
+
+    @media (min-width: $tablet) {
+      display: block;
+      width: 33.3%;
+      min-width: 33.3%;
+    }
+
+    &:after {
+      content: "|";
+      display: inline-block;
+      margin: 0 5px;
+
+      @media (min-width: $tablet) {
+        display: none;
+      }
+    }
+
+    &:last-child:after {
+      display: none;
+    }
   }
 
   &__prod_label {
-    font-size: 16px;
+    font-size: 12px;
     color: $faded-color;
-    margin-bottom: 20px;
+    font-weight: bold;
+    margin-right: 5px;
+
+    @media (min-width: $tablet) {
+      margin-bottom: 20px;
+      font-size: 16px;
+      font-weight: 400;
+      margin-right: 0;
+    }
+  }
+
+  &__prod_stat {
+    width: 100%;
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+
+    @media (min-width: $tablet) {
+      width: 30%;
+      min-width: 30%;
+    }
   }
 
   &__prod_val {
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 12px;
+
+    @media (min-width: $tablet) {
+      font-size: 16px;
+      font-weight: 500;
+    }
   }
 
   &__sum {
     background: $divider-color;
-    padding: 20px 10px;
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 10px;
+    padding: 30px 20px;
+    margin: 0 -20px 15px;
+
+    @media (min-width: $tablet) {
+      padding: 20px 10px;
+      display: flex;
+      justify-content: flex-end;
+      margin: 0 0 10px;
+    }
 
     &_col {
-      width: 30.5%;
+      @media (min-width: $tablet) {
+        width: 30.5%;
+      }
     }
 
     &_text {
@@ -229,5 +407,10 @@
     &_row--total {
       margin-top: 40px;
     }
+  }
+
+  &__reorder {
+    width: 100%;
+    text-align: center;
   }
 }

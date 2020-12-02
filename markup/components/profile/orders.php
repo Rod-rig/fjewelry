@@ -43,7 +43,7 @@ $orders = array(
   ),
   array(
     'ID' => '12345',
-    'STATUS' => 'delivered',
+    'STATUS' => 'shipped',
     'DATE' => '15/12/2020',
     'DELIVERY_DATE' => '21/12/2020',
     'PROMO' => '- £ 33',
@@ -66,7 +66,7 @@ $orders = array(
   ),
   array(
     'ID' => '12345',
-    'STATUS' => 'delivered',
+    'STATUS' => 'in process',
     'DATE' => '15/12/2020',
     'DELIVERY_DATE' => '21/12/2020',
     'PROMO' => '- £ 33',
@@ -107,7 +107,7 @@ $orders = array(
   ),
   array(
     'ID' => '12345',
-    'STATUS' => 'delivered',
+    'STATUS' => 'canceled',
     'DATE' => '15/12/2020',
     'DELIVERY_DATE' => '21/12/2020',
     'PROMO' => '- £ 33',
@@ -196,8 +196,19 @@ $orders = array(
 ?>
 
 <div class="orders">
-  <? foreach ($orders as $o) { ?>
-    <div class="js_profile_order"><!-- add here "active" class to expand order row -->
+  <? foreach ($orders as $o) {
+    $status_class = "";
+    if ($o["STATUS"] === "delivered") {
+      $status_class = "orders__delivered";
+    } elseif ($o["STATUS"] === "shipped") {
+      $status_class = "orders__shipped";
+    } elseif ($o["STATUS"] === "in process") {
+      $status_class = "orders__process";
+    } elseif ($o["STATUS"] === "canceled") {
+      $status_class = "orders__cancel";
+    };
+  ?>
+    <div class="orders__item_wrap js_profile_order"><!-- add here "active" class to expand order row -->
       <div class="orders__item">
         <div class="orders__col">
           <div class="orders__item_label">Order id</div>
@@ -205,11 +216,17 @@ $orders = array(
         </div>
         <div class="orders__col">
           <div class="orders__item_label">Status</div>
-          <div class="orders__item_value orders__delivered"><?= $o["STATUS"]; ?></div>
+          <div class="orders__item_value text-nowrap <?= $status_class; ?>">
+            <div class="orders__item_status"><?= $o["STATUS"]; ?></div>
+          </div>
         </div>
         <div class="orders__col">
           <div class="orders__item_label">Date</div>
           <div class="orders__item_value"><?= $o["DATE"]; ?></div>
+        </div>
+        <div class="orders__col visible-sm">
+          <div class="orders__item_label">Total</div>
+          <div class="orders__item_value"><?= $o["TOTAL"]; ?></div>
         </div>
         <div class="orders__col_promo">
           <div class="orders__item_label">Estimated Delivery Date</div>
@@ -219,13 +236,13 @@ $orders = array(
           <div class="orders__item_label">Promo</div>
           <div class="orders__item_value orders__item_value--promo"><?= $o["PROMO"]; ?></div>
         </div>
-        <div class="orders__col">
+        <div class="orders__col hidden-sm">
           <div class="orders__item_label">Action</div>
           <div class="orders__item_value">
             <a class="orders__link" href="">Reorder</a>
           </div>
         </div>
-        <div class="orders__col">
+        <div class="orders__col hidden-sm">
           <div class="orders__item_label">Total</div>
           <div class="orders__item_value"><?= $o["TOTAL"]; ?></div>
         </div>
@@ -236,13 +253,13 @@ $orders = array(
         </div>
       </div>
       <div class="orders__body">
-        <div class="orders__body_title">Products</div>
+        <div class="orders__body_title hidden-sm">Products</div>
         <div>
           <? foreach($o["PRODUCTS"] as $p) { ?>
             <div class="orders__row">
               <div class="orders__img_wrap">
-                <img class="img-responsive orders__img" src="https://via.placeholder.com/100x100" alt="" />
-                <div class="orders__status">
+                <img class="img-responsive orders__img" src="https://via.placeholder.com/300x300" alt="" />
+                <div class="orders__status orders__status--lg">
                   <svg class="orders__status_icon">
                     <use xlink:href="#tick"></use>
                   </svg>
@@ -253,20 +270,33 @@ $orders = array(
                 <div class="orders__prod_name">
                   <a class="orders__prod_link" href=""><?= $p["NAME"]; ?></a>
                 </div>
-                <div class="orders__prod_sku"><?= $p["SKU"]; ?></div>
+                <div class="orders__prod_align">
+                  <div class="orders__prod_sku"><?= $p["SKU"]; ?></div>
+                  <div class="orders__status orders__status--sm">
+                    <svg class="orders__status_icon">
+                      <use xlink:href="#tick"></use>
+                    </svg>
+                    <div class="orders__status--instock">in stock</div>
+                  </div>
+                </div>
                 <div class="orders__prod_chars"><?= $p["CHARS"]; ?></div>
               </div>
-              <div class="orders__prod_col">
-                <div class="orders__prod_label">Price</div>
-                <div class="orders__prod_val"><?= $p["PRICE"]; ?></div>
+              <div class="orders__prod_stat">
+                <div class="orders__prod_col">
+                  <div class="orders__prod_label">Price</div>
+                  <div class="orders__prod_val"><?= $p["PRICE"]; ?></div>
+                </div>
+                <div class="orders__prod_col">
+                  <div class="orders__prod_label">Qty</div>
+                  <div class="orders__prod_val"><?= $p["QTY"]; ?></div>
+                </div>
+                <div class="orders__prod_col">
+                  <div class="orders__prod_label">Total</div>
+                  <div class="orders__prod_val"><?= $p["TOTAL"]; ?></div>
+                </div>
               </div>
-              <div class="orders__prod_col">
-                <div class="orders__prod_label">Qty</div>
-                <div class="orders__prod_val"><?= $p["QTY"]; ?></div>
-              </div>
-              <div class="orders__prod_col">
-                <div class="orders__prod_label">Total</div>
-                <div class="orders__prod_val"><?= $p["TOTAL"]; ?></div>
+              <div class="visible-sm orders__reorder">
+                <a class="orders__link" href="">Reorder</a>
               </div>
             </div>
           <? } ?>
@@ -286,7 +316,7 @@ $orders = array(
               <div class="orders__sum_text orders__sum_text--promo"><?= $o["PROMO2"]; ?></div>
             </div>
             <div class="orders__sum_row orders__sum_row--total">
-              <div class="orders__sum_text">Total</div>
+              <div class="orders__sum_text">TOTAL</div>
               <div class="orders__sum_text"><?= $o["TOTAL2"]; ?></div>
             </div>
           </div>
