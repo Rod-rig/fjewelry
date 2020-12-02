@@ -102,7 +102,7 @@ $list = array(
       <button type="button" class="profile_wish__bag">Add all to bag</button>
     </div>
     <div class="text-center">
-      <button type="button" class="btn profile_wish__share">Share wish list</button>
+      <button type="button" class="btn profile_wish__share js_share_wishlist">Share wish list</button>
     </div>
   </div>
 </div>
