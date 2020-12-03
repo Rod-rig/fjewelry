@@ -9,13 +9,7 @@
       <?php require '../components/profile/menu.php'; ?>
     </div>
     <div class="profile__content_col">
-      <?php require '../components/profile/personal-data.php'; ?>
-      <a class="profile__edit profile__edit--position" href="<?= SITE_DIR . 'profile-edit.php'; ?>"">
-        <svg class="profile__edit_icon">
-          <use xlink:href="#edit"></use>
-        </svg>
-        <span class="profile__edit_text">Edit</span>
-      </a>
+      <?php require '../components/profile/personal-data-edit.php'; ?>
     </div>
   </div>
 </div>

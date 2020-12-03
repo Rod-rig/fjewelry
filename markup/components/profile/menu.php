@@ -4,31 +4,26 @@ $menu = array(
     'NAME' => 'Personal Data',
     'ICON' => 'profile',
     'HREF' => '/profile.php',
-    'IS_ACTIVE' => true,
   ),
   array(
     'NAME' => 'My orders',
     'ICON' => 'orders',
     'HREF' => '/profile-orders.php',
-    'IS_ACTIVE' => false,
   ),
   array(
     'NAME' => 'My Wish List',
     'ICON' => 'wishlist',
     'HREF' => '/profile-wishlist.php',
-    'IS_ACTIVE' => false,
   ),
   array(
     'NAME' => 'My Addresses',
     'ICON' => 'home',
     'HREF' => '/profile-addresses.php',
-    'IS_ACTIVE' => false,
   ),
   array(
     'NAME' => 'Subscriptions',
     'ICON' => 'letter',
     'HREF' => '/profile-subscription.php',
-    'IS_ACTIVE' => false,
   )
 );
 ?>

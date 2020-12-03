@@ -1,0 +1,16 @@
+<div
+  class="js_profile_edit"
+  data-label-title="Title"
+  data-title="Mr."
+  data-label-firstname="First Name"
+  data-firstname="Kevin"
+  data-label-lastname="Last Name"
+  data-lastname="McCallister"
+  data-label-email="Email"
+  data-email="kevinmccallister@gmail.com"
+  data-label-phone="Phone"
+  data-phone="+04412345678"
+  data-label-date="Phone"
+  data-date="12/12/1982"
+  data-cancel-href="<?= SITE_DIR . 'profile.php' ?>"
+></div>

@@ -5,6 +5,7 @@ import { initProfileEvents } from "./pages/profile";
 import { initShareWishlistTrigger } from "./react/forms/share-wishlist";
 import { initAddressEvents } from "./react/forms/address";
 import { initSubscription } from "./react/forms/subscription";
+import { initProfileEditForm } from "./react/forms/profile-edit";
 
 document.addEventListener("DOMContentLoaded", function () {
   initCommon();
@@ -13,4 +14,5 @@ document.addEventListener("DOMContentLoaded", function () {
   initShareWishlistTrigger();
   initAddressEvents();
   initSubscription();
+  initProfileEditForm();
 });
