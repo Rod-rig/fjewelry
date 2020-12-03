@@ -4,6 +4,7 @@ import { initBreadcrumbsScroll } from "./scroll/breadcrumbs";
 import { initProfileEvents } from "./pages/profile";
 import { initShareWishlistTrigger } from "./react/forms/share-wishlist";
 import { initAddressEvents } from "./react/forms/address";
+import { initSubscription } from "./react/forms/subscription";
 
 document.addEventListener("DOMContentLoaded", function () {
   initCommon();
@@ -11,4 +12,5 @@ document.addEventListener("DOMContentLoaded", function () {
   initProfileEvents();
   initShareWishlistTrigger();
   initAddressEvents();
+  initSubscription();
 });
