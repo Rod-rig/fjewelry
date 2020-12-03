@@ -21,13 +21,13 @@ $menu = array(
   array(
     'NAME' => 'My Addresses',
     'ICON' => 'home',
-    'HREF' => '/profile.php',
+    'HREF' => '/profile-addresses.php',
     'IS_ACTIVE' => false,
   ),
   array(
     'NAME' => 'Subscriptions',
     'ICON' => 'letter',
-    'HREF' => '/profile.php',
+    'HREF' => '/profile-subscription.php',
     'IS_ACTIVE' => false,
   )
 );

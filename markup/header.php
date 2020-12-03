@@ -82,7 +82,7 @@ require 'constants.php';
 
       <div>
         <a href="<?= SITE_DIR . "main.php"; ?>">
-          <img class="header__logo" src="../../img/logo.png" alt="">
+          <img class="header__logo" src="../../../img/logo.png" alt="">
         </a>
       </div>
 
