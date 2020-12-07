@@ -10,7 +10,7 @@
   data-email="kevinmccallister@gmail.com"
   data-label-phone="Phone"
   data-phone="+04412345678"
-  data-label-date="Phone"
+  data-label-date="Date"
   data-date="12/12/1982"
   data-cancel-href="<?= SITE_DIR . 'profile.php' ?>"
 ></div>
