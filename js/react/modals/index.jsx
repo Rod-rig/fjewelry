@@ -3,6 +3,7 @@ import { openModal } from "./modal";
 import { Login } from "../forms/login";
 import { Forgot } from "../forms/forgot";
 import { Callback } from "../forms/callback";
+import { Registration } from "../forms/registration";
 
 export const initLoginTrigger = () => {
   const loginTrigger = document.querySelectorAll(".js_login_trigger");
@@ -22,6 +23,17 @@ export const initForgotTrigger = () => {
     if (isTrigger) {
       e.preventDefault();
       openModal(<Forgot />);
+    }
+  });
+};
+
+export const initRegisterTrigger = () => {
+  document.addEventListener("click", function (e) {
+    const isTrigger = e.target.classList.contains("js_reg_trigger");
+
+    if (isTrigger) {
+      e.preventDefault();
+      openModal(<Registration />);
     }
   });
 };

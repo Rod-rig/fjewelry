@@ -7,21 +7,31 @@ import ajax from "../../helpers/ajax";
 import { Loader } from "../components/loader";
 
 const labels = {
-  title: "Enter cabinet",
-  text: "Please log in to manage your existing orders.",
+  title: "Register",
+  text: "Please fill in the information below",
+  fnameLabel: "First Name *",
+  lnameLabel: "Last Name *",
   emailLabel: "Email *",
   passwordLabel: "Password *",
+  confirmPasswordLabel: "Confirm Password *",
   forgot: "Forgot password",
   reg: "Registration",
-  remember: "Remember me",
-  submit: "Submit",
+  subscribe: "Sign up for newsletter",
+  submit: "Create account",
   success: "Successful login, the page will be reloaded",
+  terms1: "By submitting this form you agree to our ",
+  terms2: "Terms & Conditions",
+  terms3: " and the terms of your ",
+  terms4: "Privacy Policy",
 };
 
-export const Login = () => {
+export const Registration = () => {
   const [email, setEmail] = useState("");
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
   const [password, setPassword] = useState("");
-  const [remember, setRemember] = useState(true);
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isSubscribed, setSubscribed] = useState(true);
   const [isLoading, setLoading] = useState(false);
   const [isSuccessSubmit, setSuccessSubmit] = useState(false);
   const [isError, setError] = useState(false);
@@ -32,10 +42,10 @@ export const Login = () => {
     setLoading(true);
     ajax
       .post({
-        url: "/query/customer/login/",
+        url: "/query/customer/register/",
         data: {
-          username: email,
-          password,
+          // username: email,
+          // password,
         },
       })
       .then(() => {
@@ -65,9 +75,29 @@ export const Login = () => {
       )}
       <form onSubmit={submitForm}>
         <div className="mb-15">
+          <Input
+            name="reg_fname"
+            id="reg_fname"
+            label={labels.fnameLabel}
+            onChange={e => setFname(e.target.value)}
+            value={fname}
+            isError={isError}
+          />
+        </div>
+        <div className="mb-15">
+          <Input
+            name="reg_lname"
+            id="reg_lname"
+            label={labels.lnameLabel}
+            onChange={e => setLname(e.target.value)}
+            value={lname}
+            isError={isError}
+          />
+        </div>
+        <div className="mb-15">
           <Email
-            name="login_email"
-            id="login_email"
+            name="reg_email"
+            id="reg_email"
             label={labels.emailLabel}
             onChange={e => setEmail(e.target.value)}
             value={email}
@@ -77,31 +107,37 @@ export const Login = () => {
         <div className="mb-15">
           <Input
             type="password"
-            name="login_pwd"
-            id="login_pwd"
+            name="reg_pwd"
+            id="reg_pwd"
             label={labels.passwordLabel}
             onChange={e => setPassword(e.target.value)}
             value={password}
             isError={isError}
           />
         </div>
-        <div className="login__links">
-          <a href="" className="login__link js_forgot_trigger">
-            {labels.forgot}
-          </a>
-          <span> | </span>
-          <a href="" className="login__link js_reg_trigger">
-            {labels.reg}
-          </a>
+        <div className="mb-15">
+          <Input
+            type="password"
+            name="conf_reg_pwd"
+            id="conf_reg_pwd"
+            label={labels.confirmPasswordLabel}
+            onChange={e => setConfirmPassword(e.target.value)}
+            value={confirmPassword}
+            isError={isError}
+          />
         </div>
-        <div className="login__check">
+        <div className="mb-15">
           <Checkbox
             id="login_rem"
             name="login_rem"
-            checked={remember}
-            label={labels.remember}
-            onChange={e => setRemember(e.target.checked)}
+            checked={isSubscribed}
+            label={labels.subscribe}
+            onChange={e => setSubscribed(e.target.checked)}
           />
+        </div>
+        <div className="register__footer">
+          {labels.terms1} <a href="">{labels.terms2}</a> {labels.terms3}{" "}
+          <a href="">{labels.terms4}</a>
         </div>
         <div className="text-center">
           <button className="main_link" type="submit">

@@ -15,3 +15,15 @@
     margin-bottom: 35px;
   }
 }
+
+.register__footer {
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 30px;
+  color: $faded-color;
+
+  a {
+    color: $faded-color;
+    text-decoration: underline;
+  }
+}

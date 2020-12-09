@@ -6,6 +6,7 @@ import {
   initCallbackTrigger,
   initForgotTrigger,
   initLoginTrigger,
+  initRegisterTrigger,
 } from "./react/modals";
 import { initBasketScroll } from "./scroll/basket";
 import { initBasketEvents } from "./basket/basket";
@@ -20,5 +21,6 @@ export const initCommon = () => {
   initFooterEvents();
   initLoginTrigger();
   initForgotTrigger();
+  initRegisterTrigger();
   initCallbackTrigger();
 };
