@@ -1,0 +1,50 @@
+@import "../../abstracts/variables";
+
+.certificate {
+  margin-bottom: 30px;
+
+  @media (min-width: $tablet) {
+    display: flex;
+    margin-bottom: 70px;
+  }
+
+  &__text {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+
+    @media (min-width: $tablet) {
+      font-size: 16px;
+      line-height: 24px;
+      margin-bottom: 25px;
+    }
+  }
+
+  &__icon {
+    fill: $primary-color;
+    width: 16px;
+    height: 16px;
+    display: block;
+    min-width: 16px;
+    margin-right: 6px;
+    margin-top: 3px;
+  }
+
+  &__row {
+    display: flex;
+    padding-left: 15px;
+    margin-bottom: 15px;
+  }
+
+  &__img {
+    @media (min-width: $tablet) {
+      min-width: 300px;
+      margin-left: 10px;
+    }
+
+    @media (min-width: $desktop) {
+      min-width: 480px;
+      margin-left: 40px;
+    }
+  }
+}
