@@ -1,6 +1,5 @@
 import "../scss/catalog.scss";
 import { initCommon } from "./common";
-import { initBreadcrumbsScroll } from "./scroll/breadcrumbs";
 import { initSeoScroll } from "./scroll/seo-text";
 import { initFilterScroll } from "./scroll/filter";
 import { initSeoToggle } from "./seo/seo";
@@ -15,7 +14,6 @@ import { initWishEvents } from "./common/wishlist";
 
 document.addEventListener("DOMContentLoaded", function () {
   initCommon();
-  initBreadcrumbsScroll();
   initCatalogEvents();
   initFilterScroll();
   initTagsScroll();

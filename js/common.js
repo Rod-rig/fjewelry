@@ -10,12 +10,14 @@ import {
 } from "./react/modals";
 import { initBasketScroll } from "./scroll/basket";
 import { initBasketEvents } from "./basket/basket";
+import { initBreadcrumbsScroll } from "./scroll/breadcrumbs";
 
 export const initCommon = () => {
   initClosestPolyfill();
   initSearchEvents();
   initMenuEvents();
   initSubmenuEvents();
+  initBreadcrumbsScroll();
   initBasketScroll();
   initBasketEvents();
   initFooterEvents();

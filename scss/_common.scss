@@ -1,3 +1,4 @@
+@import "../node_modules/simplebar/dist/simplebar.css";
 @import "abstracts/variables";
 @import "base/reset";
 @import "base/base";
@@ -6,6 +7,7 @@
 @import "layout/grid";
 @import "components/header";
 @import "components/common/hamburger";
+@import "components/common/breadcrumbs";
 @import "components/common/search";
 @import "components/common/basket";
 @import "components/common/modal";
