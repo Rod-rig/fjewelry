@@ -185,4 +185,11 @@
       color: $text-color;
     }
   }
+
+  &__loader {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid $divider-color;
+    border-top: 0;
+  }
 }

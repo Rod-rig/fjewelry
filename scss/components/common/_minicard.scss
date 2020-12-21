@@ -41,6 +41,7 @@
     max-height: 500px;
     margin-left: auto;
     margin-right: auto;
+    opacity: 1;
   }
 
   &__like,
@@ -243,18 +244,18 @@
   }
 
   &--extended &__img--secondary {
-    display: none;
+    opacity: 0;
   }
 
   &--extended:hover &__img--primary {
     @media (min-width: $lg-desktop) {
-      display: none;
+      opacity: 0;
     }
   }
 
   &--extended:hover &__img--secondary {
     @media (min-width: $lg-desktop) {
-      display: block;
+      opacity: 1;
     }
   }
 }

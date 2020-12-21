@@ -1,81 +1,90 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+const labels = {
+  secure: "Secure checkout",
+  promoDelivery: "Promo code",
+  price: "Price",
+  delivery: "Delivery",
+  total: "Total",
+  totalNote: "(Including VAT, Postage & Packaging)",
+};
+
 export const Delivery = props => (
   <div className="basket__delivery">
     <div className="basket__delivery_inner">
       <div className="basket__delivery_radios">
-        {props.basket.delivery.map(d => (
-          <div key={d.name} className="basket__delivery_radio">
-            <input
-              checked={d.checked}
-              className="basket__delivery_input"
-              name="delivery"
-              type="radio"
-              onChange={e => {
-                console.log(e.target.checked);
-              }}
-            />
-            <div className="basket__delivery_body">
-              <div className="basket__delivery_content">
-                <svg className="basket__delivery_icon">
+        {props.deliveries.length > 0 &&
+          props.deliveries.map(d => (
+            <div key={d.method_code} className="basket__delivery_radio">
+              <input
+                checked={d.checked}
+                className="basket__delivery_input"
+                name="delivery"
+                type="radio"
+                onChange={e => {
+                  console.log(e.target.checked);
+                }}
+              />
+              <div className="basket__delivery_body">
+                <div className="basket__delivery_content">
+                  {/*<svg className="basket__delivery_icon">
                   <use xlinkHref={`#${d.icon}`} />
-                </svg>
-                <div className="basket__delivery_name">{d.name}</div>
+                </svg>*/}
+                  <div className="basket__delivery_name">{d.method_title}</div>
+                </div>
+                {/*<div className="basket__delivery_schedule">{d.schedule}</div>*/}
               </div>
-              <div className="basket__delivery_schedule">{d.schedule}</div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
       <div className="mt-20">
         <div className="basket__delivery_row">
+          <div className="basket__delivery_price">{labels.price}</div>
           <div className="basket__delivery_price">
-            {props.basket.labels.price}
-          </div>
-          <div className="basket__delivery_price">
-            {props.basket.main.price}
+            {props.total.total_price_without_discount_formatted}
           </div>
         </div>
-        <div className="basket__delivery_row">
-          <div className="basket__delivery_price">
-            {props.basket.labels.delivery}
-          </div>
+        {/*<div className="basket__delivery_row">
+          <div className="basket__delivery_price">{labels.delivery}</div>
           <div className="basket__delivery_price">
             {props.basket.main.delivery}
           </div>
-        </div>
-        <div className="basket__delivery_row">
-          <div className="basket__delivery_price">
-            {props.basket.labels.promoDelivery}
+        </div>*/}
+        {props.discount && (
+          <div className="basket__delivery_row">
+            <div className="basket__delivery_price">{labels.promoDelivery}</div>
+            <div className="basket__delivery_price basket__delivery_price--promo">
+              {props.discount}
+            </div>
           </div>
-          <div className="basket__delivery_price basket__delivery_price--promo">
-            - £15.00
-          </div>
-        </div>
+        )}
       </div>
       <div className="basket__delivery_total">
         <div className="basket__delivery_row">
           <div className="basket__delivery_price basket__delivery_price--total">
-            {props.basket.labels.total}
+            {labels.total}
           </div>
           <div className="basket__delivery_price">
-            {props.basket.main.total}
+            {props.total.total_price_formatted}
           </div>
         </div>
-        <div className="basket__delivery_schedule">
-          {props.basket.labels.totalNote}
+        <div className="basket__delivery_schedule">{labels.totalNote}</div>
+      </div>
+      {props.shouldShowSecureButton && (
+        <div className="basket__delivery_footer">
+          <a href={"/checkout/"} className="basket__delivery_submit">
+            {labels.secure}
+          </a>
         </div>
-      </div>
-      <div className="basket__delivery_footer">
-        <a href={props.basket.hrefs.submit} className="basket__delivery_submit">
-          {props.basket.labels.secure}
-        </a>
-      </div>
+      )}
     </div>
   </div>
 );
 
 Delivery.propTypes = {
-  basket: PropTypes.any,
+  deliveries: PropTypes.any,
+  discount: PropTypes.string,
+  total: PropTypes.any,
+  shouldShowSecureButton: PropTypes.bool,
 };

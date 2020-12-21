@@ -1,19 +1,44 @@
 import React, { useState } from "react";
 import { closeSearch } from "./";
+import ajax from "../../helpers/ajax";
+import { Loader } from "../components/loader";
 
 const labels = {
   button: "Search",
   placeholder: "Are you looking for?",
-  all: "Show all",
   rrp: "RRP",
+  notfound: "Nothing found",
 };
 
 export const Search = () => {
   const [search, setSearch] = useState("");
+  const [result, setResult] = useState(null);
+  const [isLoaded, setLoaded] = useState(null);
+
+  const onSearch = () => {
+    if (search.length > 0) {
+      setLoaded(false);
+      ajax
+        .get({
+          url: `/query/search/suggest/`,
+          params: {
+            q: search,
+          },
+        })
+        .then(({ data }) => {
+          setResult(data);
+          setLoaded(true);
+        })
+        .catch(e => {
+          setLoaded(false);
+          console.log("Couldn't get search result", e);
+        });
+    }
+  };
 
   return (
     <div className="search">
-      <form action="/search/">
+      <form onSubmit={e => e.preventDefault()}>
         <div className="search__row">
           <button
             onClick={closeSearch}
@@ -32,78 +57,75 @@ export const Search = () => {
             autoComplete="off"
             placeholder={labels.placeholder}
           />
-          <button className="btn search__submit" type="submit">
+          <button
+            className="btn search__submit"
+            type="button"
+            onClick={onSearch}
+          >
             {labels.button}
           </button>
         </div>
       </form>
-      {search.length > 0 ? (
-        <div className="search__result">
+      {isLoaded === false ? (
+        <div className="search__loader">
+          <Loader />
+        </div>
+      ) : (
+        ""
+      )}
+      {isLoaded === true &&
+      result &&
+      result.categories.length === 0 &&
+      result.products.length === 0 ? (
+        <div className="search__loader">{labels.notfound}</div>
+      ) : (
+        ""
+      )}
+      {isLoaded === true &&
+      result &&
+      (result.categories.length > 0 || result.products.length > 0) ? (
+        <div>
           <div>
-            <a className="search__link" href="">
-              Lorem ipsum dolor sit amet.
-            </a>
-            <a className="search__link" href="">
-              Lorem ipsum dolor sit amet.
-            </a>
-            <a className="search__link" href="">
-              Lorem ipsum dolor sit amet.
-            </a>
+            {result.categories.map((category, index) => (
+              <a key={index} className="search__link" href={category.url}>
+                {category.name}
+              </a>
+            ))}
           </div>
 
           <div>
-            <div className="search__card">
-              <div className="search__img">
-                <a href="">
-                  <img
-                    src="https://via.placeholder.com/200x200"
-                    alt=""
-                    className="img-responsive"
-                  />
-                </a>
-              </div>
-              <div className="search__card_body">
-                <div className="mb-10">
-                  <a className="search__card_link" href="">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit
+            {result.products.map((product, index) => (
+              <div key={index} className="search__card">
+                <div className="search__img">
+                  <a href="">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="img-responsive"
+                    />
                   </a>
                 </div>
-                <div className="search__card_footer">
-                  <div className="search__price">£ 60</div>
+                <div className="search__card_body">
+                  <div className="mb-10">
+                    <a className="search__card_link" href={product.url}>
+                      {product.name}
+                    </a>
+                  </div>
+                  <div className="search__card_footer">
+                    <span className="search__oldprice">
+                      {labels.rrp}{" "}
+                      <span className="search__oldprice--line">
+                        {product.prices.regularPriceFormatted}
+                      </span>
+                    </span>
+                    <span className="search__divider"> | </span>
+                    <span className="search__newprice">
+                      {product.prices.specialPriceFormatted}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="search__card">
-              <div className="search__img">
-                <a href="">
-                  <img
-                    src="https://via.placeholder.com/200x200"
-                    alt=""
-                    className="img-responsive"
-                  />
-                </a>
-              </div>
-              <div className="search__card_body">
-                <div className="mb-10">
-                  <a className="search__card_link" href="">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing.
-                  </a>
-                </div>
-                <div className="search__card_footer">
-                  <span className="search__oldprice">
-                    {labels.rrp}{" "}
-                    <span className="search__oldprice--line">£ 75</span>
-                  </span>
-                  <span className="search__divider"> | </span>
-                  <span className="search__newprice">£ 40</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="search__all">
-            <a href={`/search/?q=${search}`} className="search__all_link">
-              {labels.all}
-            </a>
+            ))}
           </div>
         </div>
       ) : (

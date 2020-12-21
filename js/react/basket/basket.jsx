@@ -1,67 +1,172 @@
 import React, { useState, useEffect } from "react";
 import ajax from "../../helpers/ajax";
-import { Loader } from "../components/loader";
+import {
+  Loader,
+  removeLoader,
+  showFullScreenLoader,
+} from "../components/loader";
 import { BasketItem } from "./basket-item";
 import { Promocode } from "./promocode";
 import { Delivery } from "./delivery";
 
-const PRODUCTS = "products";
+const labels = {
+  empty: "Basket is empty",
+  quantity: "Quantity:",
+  remove: "Remove",
+};
+
+const PRODUCTS = "items";
 
 export const Basket = () => {
   const [isLoaded, setLoaded] = useState(false);
   const [basket, setData] = useState({});
+  const [promo, setPromo] = useState("");
+  const [discount, setDiscount] = useState("");
+  const [isPromoSuccess, setPromoSuccess] = useState(false);
+  const [promoError, setPromoError] = useState("");
 
   useEffect(() => {
-    ajax.get({ url: "../ajax/basket.json" }).then(({ data }) => {
-      setData(data);
-      setLoaded(true);
-    });
+    ajax
+      .post({ url: "/query/cart/get/" })
+      .then(({ data }) => {
+        setData(data);
+        setLoaded(true);
+        if (Math.abs(data.total.coupon_discount) > 0) {
+          setDiscount(data.total.coupon_discount_formatted);
+          setPromoSuccess(true);
+        }
+      })
+      .catch(() => {
+        setLoaded(true);
+        setData(null);
+      });
   }, []);
 
-  const setActiveSize = (productId, size) => {
-    console.log(productId, size);
-    // const products = [...basket[PRODUCTS]];
-    // const productIndex = products.findIndex(p => p.id === productId);
-    // const sizes = [...products[productIndex]["activeSizes"]];
-    //
-    // if (sizes.includes(size)) {
-    //   const index = sizes.findIndex(s => s === size);
-    //   sizes.splice(index, 1);
-    // } else {
-    //   sizes.push(size);
-    // }
-    //
-    // products[productIndex]["activeSizes"] = sizes;
-    // setData({ ...basket, products });
+  const setActiveSize = (productId, option) => {
+    showFullScreenLoader();
+    ajax
+      .post({
+        url: "/query/cart/updateItemOptions/",
+        data: {
+          id: productId,
+          options: {
+            [option.property_id]: option.id,
+          },
+        },
+      })
+      .then(({ data }) => {
+        setData(data);
+        removeLoader();
+      })
+      .catch(e => {
+        removeLoader();
+        console.log(`Couldn't change item size`, e);
+      });
   };
 
-  const setQuantity = (productId, value) => {
-    console.log(productId, value);
+  const removeItem = id => {
+    showFullScreenLoader();
+    ajax
+      .post({
+        url: "/query/cart/delete/",
+        data: {
+          id,
+        },
+      })
+      .then(({ data }) => {
+        setData(data);
+        removeLoader();
+      })
+      .catch(e => {
+        removeLoader();
+        console.log(`Couldn't remove item ${id}`, e);
+      });
+  };
+
+  const setQuantity = (id, value) => {
+    showFullScreenLoader();
+    ajax
+      .post({
+        url: "/query/cart/updateItemQty/",
+        data: {
+          id,
+          qty: value,
+        },
+      })
+      .then(({ data }) => {
+        setData(data);
+        removeLoader();
+      })
+      .catch(e => {
+        removeLoader();
+        console.log(`Couldn't change item quantity ${id}`, e);
+      });
+  };
+
+  const sendPromo = e => {
+    e.preventDefault();
+    showFullScreenLoader();
+    ajax
+      .post({
+        url: "/query/cart/coupon/",
+        data: {
+          remove: 0,
+          coupon_code: promo,
+        },
+      })
+      .then(({ data }) => {
+        setData(data);
+        setPromoSuccess(true);
+        setDiscount(data.total.coupon_discount_formatted);
+        removeLoader();
+      })
+      .catch(({ response }) => {
+        removeLoader();
+        setPromoError(response.data.message);
+        console.log(`Couldn't apply promo ${promo}`, e);
+      });
   };
 
   return isLoaded ? (
-    basket[PRODUCTS] && basket[PRODUCTS].length > 0 ? (
+    basket &&
+    basket.cart &&
+    basket.cart[PRODUCTS] &&
+    basket.cart[PRODUCTS].length > 0 ? (
       <div className="basket__row">
         <div className="basket__left">
-          {basket[PRODUCTS].map(p => (
+          {basket.cart[PRODUCTS].map(p => (
             <BasketItem
-              setActiveSize={size => setActiveSize(p.id, size)}
-              setQuantity={value => setQuantity(p.id, value)}
-              key={p.id}
+              setActiveSize={option => setActiveSize(p.item_id, option)}
+              setQuantity={value => setQuantity(p.item_id, value)}
+              removeItem={() => removeItem(p.item_id)}
+              key={p.item_id}
               data={p}
-              labels={basket["labels"]}
+              labels={labels}
             />
           ))}
         </div>
         <div className="basket__right">
-          <Delivery basket={basket} />
+          {basket.deliveries && (
+            <Delivery
+              deliveries={basket.deliveries}
+              total={basket.total}
+              shouldShowSecureButton={true}
+              discount={discount}
+            />
+          )}
           <div className="basket__promo">
-            <Promocode labels={basket["labels"]} />
+            <Promocode
+              value={promo}
+              isSuccess={isPromoSuccess}
+              onChange={e => setPromo(e.target.value)}
+              onSubmit={sendPromo}
+              promoError={promoError}
+            />
           </div>
         </div>
       </div>
     ) : (
-      <div>{basket["labels"]["empty"]}</div>
+      <div>{labels.empty}</div>
     )
   ) : (
     <Loader />

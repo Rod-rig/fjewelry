@@ -18,7 +18,7 @@ const labels = {
   reg: "Registration",
   subscribe: "Sign up for newsletter",
   submit: "Create account",
-  success: "Successful login, the page will be reloaded",
+  success: "Successful registration, the page will be reloaded",
   terms1: "By submitting this form you agree to our ",
   terms2: "Terms & Conditions",
   terms3: " and the terms of your ",
@@ -44,8 +44,12 @@ export const Registration = () => {
       .post({
         url: "/query/customer/register/",
         data: {
-          // username: email,
-          // password,
+          email,
+          firstname: fname,
+          lastname: lname,
+          password: password,
+          password_confirmation: confirmPassword,
+          is_subscribed: isSubscribed,
         },
       })
       .then(() => {

@@ -14,7 +14,7 @@
   }
 
   &__content {
-    height: 340px;
+    max-height: 340px;
     position: relative;
     padding-right: 15px;
     padding-bottom: 15px;
@@ -30,11 +30,12 @@
     }
 
     &--opened {
-      height: auto;
+      max-height: none;
     }
 
     .no-js & {
       height: auto;
+      max-height: none;
     }
   }
 
