@@ -1,0 +1,58 @@
+@import "../../abstracts/variables";
+
+.contact {
+  margin-bottom: 30px;
+
+  @media (min-width: $tablet) {
+    display: flex;
+    margin-bottom: 70px;
+    flex-direction: row-reverse;
+  }
+
+  &__key {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+
+    @media (min-width: $tablet) {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+
+  &__val {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 30px;
+
+    @media (min-width: $tablet) {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+
+  &__info {
+    @media (min-width: $tablet) {
+      width: 33%;
+      min-width: 33%;
+    }
+  }
+
+  &__form {
+    @media (min-width: $tablet) {
+      width: 67%;
+      min-width: 67%;
+      padding-right: 40px;
+    }
+  }
+
+  &__submit {
+    text-align: center;
+
+    @media (min-width: $tablet) {
+      text-align: left;
+    }
+  }
+}
