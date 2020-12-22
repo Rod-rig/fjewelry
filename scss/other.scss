@@ -2,13 +2,17 @@
 @import "components/other";
 @import "components/catalog/pagination";
 
-.content {
+.fj_content {
   font-size: 14px;
   line-height: 20px;
 
   @media (min-width: $tablet) {
     font-size: 16px;
     line-height: 24px;
+  }
+
+  a {
+    color: $primary-color;
   }
 
   .h1 {
@@ -48,5 +52,30 @@
       line-height: 24px;
       margin-bottom: 25px;
     }
+  }
+
+  .text-underline {
+    text-decoration: underline;
+    color: $text-color;
+  }
+
+  ul {
+    margin-bottom: 30px;
+  }
+
+  li {
+    position: relative;
+    padding-left: 40px;
+  }
+
+  li:before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    border-radius: 50%;
+    background-color: $primary-color;
+    width: 4px;
+    height: 4px;
   }
 }

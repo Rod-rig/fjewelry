@@ -1,7 +1,7 @@
 <?php require '../header.php'; ?>
 <?php require '../components/common/breadcrumbs.php'; ?>
 
-<div class="container content">
+<div class="container fj_content">
   <h1 class="h1">About FJewellery</h1>
   <p>We are a London based jewellers specializing in both new and pre-owned jewellery. Our collection includes all types of jewellery including beautiful pendants, a large variety of chains and bracelets as well as specially selected earrings and rings.</p>
   <p>At F Jewellery we know that jewellery is the most preferred gift for our loved ones, and we know that sometimes it is not easy to afford.</p>

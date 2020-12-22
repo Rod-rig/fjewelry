@@ -1,7 +1,7 @@
 <?php require '../header.php'; ?>
 <?php require '../components/common/breadcrumbs.php'; ?>
 
-<div class="container content">
+<div class="container fj_content">
   <h1 class="h1">Contact us</h1>
   <div class="contact">
     <div class="contact__info">
