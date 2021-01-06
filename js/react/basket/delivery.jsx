@@ -16,15 +16,20 @@ export const Delivery = props => (
       <div className="basket__delivery_radios">
         {props.deliveries.length > 0 &&
           props.deliveries.map(d => (
-            <div key={d.method_code} className="basket__delivery_radio">
+            <label
+              htmlFor={d.method_code}
+              key={d.method_code}
+              className="basket__delivery_radio"
+            >
               <input
-                checked={d.checked}
+                id={d.method_code}
+                checked={d.method_code === props.deliveryCode}
                 className="basket__delivery_input"
                 name="delivery"
                 type="radio"
-                onChange={e => {
-                  console.log(e.target.checked);
-                }}
+                value={d.method_code}
+                data-name={d.method_title}
+                onChange={props.onDeliveryChange}
               />
               <div className="basket__delivery_body">
                 <div className="basket__delivery_content">
@@ -35,7 +40,7 @@ export const Delivery = props => (
                 </div>
                 {/*<div className="basket__delivery_schedule">{d.schedule}</div>*/}
               </div>
-            </div>
+            </label>
           ))}
       </div>
       <div className="mt-20">
@@ -45,12 +50,10 @@ export const Delivery = props => (
             {props.total.total_price_without_discount_formatted}
           </div>
         </div>
-        {/*<div className="basket__delivery_row">
+        <div className="basket__delivery_row">
           <div className="basket__delivery_price">{labels.delivery}</div>
-          <div className="basket__delivery_price">
-            {props.basket.main.delivery}
-          </div>
-        </div>*/}
+          <div className="basket__delivery_price">{props.deliveryName}</div>
+        </div>
         {props.discount && (
           <div className="basket__delivery_row">
             <div className="basket__delivery_price">{labels.promoDelivery}</div>
@@ -87,4 +90,7 @@ Delivery.propTypes = {
   discount: PropTypes.string,
   total: PropTypes.any,
   shouldShowSecureButton: PropTypes.bool,
+  onDeliveryChange: PropTypes.func.isRequired,
+  deliveryCode: PropTypes.string,
+  deliveryName: PropTypes.string,
 };

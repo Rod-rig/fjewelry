@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { Elements, CardElement, useStripe } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import ajax from "../../helpers/ajax";
-import { Loader } from "../components/loader";
+import {
+  Loader,
+  removeLoader,
+  showFullScreenLoader,
+} from "../components/loader";
 import { Delivery } from "./delivery";
 import { Input } from "../form/input";
 import { Select } from "../form/select";
 import { Textarea } from "../form/textarea";
 import { Radio } from "../form/radio";
 import { Checkbox } from "../form/checkbox";
+import { countries } from "../../helpers/countries";
 
 const labels = {
   empty: "Basket is empty",
@@ -38,7 +45,12 @@ const labels = {
   addressTitle: "Delivery address",
   billingTitle: "Billing address",
   payTitle: "Payment information",
-  titles: ["Mr.", "Ms.", "Mrs.", "Miss."],
+  titles: [
+    { name: "Mr.", value: "690" },
+    { name: "Ms.", value: "691" },
+    { name: "Mrs.", value: "692" },
+    { name: "Miss.", value: "693" },
+  ],
   countries: [
     "United Kingdom",
     "Ireland",
@@ -56,7 +68,9 @@ const labels = {
   pay: "Pay",
 };
 
-export const OrderForm = () => {
+const stripePromise = loadStripe(window.stripe.apiKey);
+
+export const OrderFormWithPayment = () => {
   const [isLoaded, setLoaded] = useState(false);
   const [data, setData] = useState({});
   const [discount, setDiscount] = useState("");
@@ -65,7 +79,7 @@ export const OrderForm = () => {
   const [password, setPassword] = useState("");
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("690");
   const [phone, setPhone] = useState("");
   const [addr, setAddr] = useState("");
   const [post, setPost] = useState("");
@@ -84,8 +98,15 @@ export const OrderForm = () => {
   const [billAddr2, setBillAddr2] = useState("");
   const [billRegion, setBillRegion] = useState("");
   const [billInfo, setBillInfo] = useState("");
-  const [payment, setPayment] = useState("paypal");
+  const [payment, setPayment] = useState("paypal_express");
   const [isAccepted, setAccept] = useState(true);
+  const [deliveryCode, setDeliveryCode] = useState("");
+  const [deliveryName, setDeliveryName] = useState("");
+  const [isErrorForm, setErrorForm] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [cardComplete, setCardComplete] = useState(false);
+  const stripe = useStripe();
+  const [card, setCardRef] = useState(null);
 
   useEffect(() => {
     ajax
@@ -95,6 +116,19 @@ export const OrderForm = () => {
         setLoaded(true);
         if (Math.abs(data.total.coupon_discount) > 0) {
           setDiscount(data.total.coupon_discount_formatted);
+        }
+        if (data.deliveries && data.deliveries.length > 0) {
+          const selectedDelivery = data.deliveries.find(d => d.selected);
+          setDeliveryCode(
+            selectedDelivery
+              ? selectedDelivery.method_code
+              : data.deliveries[0].method_code
+          );
+          setDeliveryName(
+            selectedDelivery
+              ? selectedDelivery.method_title
+              : data.deliveries[0].method_title
+          );
         }
       })
       .catch(() => console.log("Couldn't get order info"));
@@ -125,8 +159,154 @@ export const OrderForm = () => {
       });
   };
 
+  const postFormData = (shippingAddress, billingAddress, token) => {
+    ajax
+      .post({
+        url: "/query/checkout/save/",
+        data: {
+          addressInformation: {
+            shipping_address: shippingAddress,
+            billing_address: billingAddress,
+            shipping_method_code: deliveryCode,
+            shipping_carrier_code: deliveryCode,
+            extension_attributes: {},
+          },
+          email: email,
+          paymentMethod: {
+            method: payment,
+            additional_data:
+              payment === "stripe_payments"
+                ? {
+                    cc_stripejs_token: token,
+                    cc_saved: "new_card",
+                    cc_save: false,
+                  }
+                : {},
+          },
+          orderCustomAttributes: {
+            additional_fields: {
+              title: title,
+              additional_information: info,
+            },
+          },
+          agreement: isAccepted,
+        },
+      })
+      .then(({ data }) => {
+        window.location = data.redirectUrl;
+        setErrorForm(false);
+      })
+      .catch(({ response }) => {
+        setErrorForm(true);
+        setErrorMessage(response.data.message);
+        removeLoader();
+        console.log("Couldn't submit order form");
+      });
+  };
+
   const submitOrderForm = e => {
     e.preventDefault();
+    if (!cardComplete && payment === "stripe_payments") {
+      return;
+    }
+
+    showFullScreenLoader();
+    const shippingAddress = {
+      countryId: country,
+      region: region,
+      street: [addr1, addr2],
+      telephone: phone,
+      postcode: post,
+      city: town,
+      firstname: fname,
+      lastname: lname,
+    };
+    const billingAddress = isSameBilling
+      ? shippingAddress
+      : {
+          countryId: country,
+          region: billRegion,
+          street: [billAddr1, billAddr2],
+          telephone: phone,
+          postcode: post,
+          city: town,
+          firstname: fname,
+          lastname: lname,
+          saveInAddressBook: 1,
+        };
+
+    if (payment === "stripe_payments") {
+      stripe
+        .createPaymentMethod({
+          type: "card",
+          card: card,
+          billing_details: {
+            email: email,
+            phone: phone,
+            name: fname,
+            address: isSameBilling
+              ? {
+                  city: town,
+                  country: country,
+                  line1: addr1,
+                  line2: addr2,
+                  postal_code: post,
+                  state: null,
+                }
+              : {
+                  city: billTown,
+                  country: billCountry,
+                  line1: billAddr1,
+                  line2: billAddr2,
+                  postal_code: billPost,
+                  state: null,
+                },
+          },
+        })
+        .then(data => {
+          postFormData(shippingAddress, billingAddress, data.paymentMethod.id);
+        })
+        .catch(err => {
+          removeLoader();
+          console.log("Couldn't create stripe payment method", err);
+        });
+      return;
+    }
+
+    postFormData(shippingAddress, billingAddress);
+  };
+
+  const onDeliveryChange = e => {
+    const target = e.target;
+    showFullScreenLoader();
+    ajax
+      .post({
+        url: "/query/cart/calculate/",
+        data: {
+          addressInformation: {
+            shipping_address: {
+              countryId: "",
+              region: "",
+              postcode: null,
+            },
+            shipping_method_code: target.value,
+            shipping_carrier_code: target.value,
+          },
+        },
+      })
+      .then(({ data: response }) => {
+        setData({
+          ...data,
+          total: response,
+        });
+        setDeliveryCode(target.value);
+        setDeliveryName(target.getAttribute("data-name"));
+        removeLoader();
+      })
+      .catch(e => {
+        removeLoader();
+        console.log(`Couldn't fetch delivery info`, e);
+      });
   };
 
   return isLoaded ? (
@@ -265,6 +445,9 @@ export const OrderForm = () => {
             </React.Fragment>
           ) : (
             <form onSubmit={submitOrderForm}>
+              {isErrorForm && (
+                <div className="text-error mt-20">{errorMessage}</div>
+              )}
               <div className="order__section">
                 <div className="order__row">
                   <div className="order__col">
@@ -276,11 +459,10 @@ export const OrderForm = () => {
                       name="title"
                       id="title"
                       value={title}
-                      options={labels.titles.map((l, i) => ({
-                        label: l,
-                        value: i,
+                      options={labels.titles.map(title => ({
+                        label: title.name,
+                        value: title.value,
                       }))}
-                      isError={false}
                       className="order__select"
                     />
                   </div>
@@ -293,6 +475,7 @@ export const OrderForm = () => {
                       name="fname"
                       id="fname"
                       value={fname}
+                      isError={isErrorForm}
                     />
                   </div>
                   <div className="order__col">
@@ -302,6 +485,7 @@ export const OrderForm = () => {
                       name="email"
                       id="email"
                       value={email}
+                      isError={isErrorForm}
                     />
                   </div>
                 </div>
@@ -313,6 +497,7 @@ export const OrderForm = () => {
                       name="lname"
                       id="lname"
                       value={lname}
+                      isError={isErrorForm}
                     />
                   </div>
                   <div className="order__col">
@@ -340,13 +525,19 @@ export const OrderForm = () => {
                       name="addr"
                       id="addr"
                       value={addr}
-                      options={data["customer_data"]["addresses"].map(
-                        (l, i) => ({
-                          label: l,
-                          value: i,
-                        })
-                      )}
-                      isError={false}
+                      options={
+                        Object.keys(data["customer_data"]["addresses"]).length >
+                        0
+                          ? Object.keys(data["customer_data"]["addresses"]).map(
+                              l => ({
+                                label:
+                                  data["customer_data"]["addresses"][l].city,
+                                value:
+                                  data["customer_data"]["addresses"][l].city,
+                              })
+                            )
+                          : []
+                      }
                     />
                   </div>
                   <div className="order__col">
@@ -356,17 +547,22 @@ export const OrderForm = () => {
                       name="post"
                       id="post"
                       value={post}
+                      isError={isErrorForm}
                     />
                   </div>
                 </div>
                 <div className="order__row">
                   <div className="order__col">
-                    <Input
+                    <Select
                       label={labels.placeholders.country}
                       onChange={e => setCountry(e.target.value)}
                       name="country"
                       id="country"
                       value={country}
+                      options={countries.map(country => ({
+                        label: country.name,
+                        value: country.id,
+                      }))}
                     />
                   </div>
                   <div className="order__col">
@@ -376,6 +572,7 @@ export const OrderForm = () => {
                       name="addr_line1"
                       id="addr_line1"
                       value={addr1}
+                      isError={isErrorForm}
                     />
                   </div>
                 </div>
@@ -387,6 +584,7 @@ export const OrderForm = () => {
                       name="town"
                       id="town"
                       value={town}
+                      isError={isErrorForm}
                     />
                   </div>
                   <div className="order__col">
@@ -457,13 +655,19 @@ export const OrderForm = () => {
                           name="bill_addr"
                           id="bill_addr"
                           value={billAddr}
-                          options={data["customer_data"]["addresses"].map(
-                            (l, i) => ({
-                              label: l,
-                              value: i,
-                            })
-                          )}
-                          isError={false}
+                          options={
+                            Object.keys(data["customer_data"]["addresses"])
+                              .length > 0
+                              ? Object.keys(
+                                  data["customer_data"]["addresses"]
+                                ).map(l => ({
+                                  label:
+                                    data["customer_data"]["addresses"][l].city,
+                                  value:
+                                    data["customer_data"]["addresses"][l].city,
+                                }))
+                              : []
+                          }
                         />
                       </div>
                       <div className="order__col">
@@ -473,17 +677,22 @@ export const OrderForm = () => {
                           name="bill_post"
                           id="bill_post"
                           value={billPost}
+                          isError={isErrorForm}
                         />
                       </div>
                     </div>
                     <div className="order__row">
                       <div className="order__col">
-                        <Input
+                        <Select
                           label={labels.placeholders.country}
                           onChange={e => setBillCountry(e.target.value)}
                           name="bill_country"
                           id="bill_country"
                           value={billCountry}
+                          options={countries.map(country => ({
+                            label: country.name,
+                            value: country.id,
+                          }))}
                         />
                       </div>
                       <div className="order__col">
@@ -493,6 +702,7 @@ export const OrderForm = () => {
                           name="bill_addr_line1"
                           id="bill_addr_line1"
                           value={billAddr1}
+                          isError={isErrorForm}
                         />
                       </div>
                     </div>
@@ -504,6 +714,7 @@ export const OrderForm = () => {
                           name="bill_town"
                           id="bill_town"
                           value={billTown}
+                          isError={isErrorForm}
                         />
                       </div>
                       <div className="order__col">
@@ -545,26 +756,55 @@ export const OrderForm = () => {
                 <div className="order__user">
                   <div className="order__radio">
                     <Radio
-                      id="paypal"
+                      id="paypal_express"
                       name="payment"
-                      checked={payment === "paypal"}
+                      checked={payment === "paypal_express"}
                       onChange={e => setPayment(e.target.value)}
-                      value="paypal"
+                      value="paypal_express"
                       label={labels.payment[0]}
                     />
                   </div>
                   <div className="order__radio">
                     <Radio
-                      id="debit"
+                      id="stripe_payments"
                       name="payment"
-                      checked={payment === "debit"}
+                      checked={payment === "stripe_payments"}
                       onChange={e => setPayment(e.target.value)}
-                      value="debit"
+                      value="stripe_payments"
                       label={labels.payment[1]}
                     />
                   </div>
                 </div>
               </div>
+              {payment === "stripe_payments" && (
+                <div className="order__card">
+                  <CardElement
+                    options={{
+                      style: {
+                        base: {
+                          fontSize: "16px",
+                          fontFamily: '"Montserrat", sans-serif',
+                          color: "#333",
+                          "::placeholder": {
+                            color: "#333",
+                          },
+                        },
+                        invalid: {
+                          color: "red",
+                        },
+                      },
+                    }}
+                    onChange={e => {
+                      if (e.error) {
+                        setErrorForm(Boolean(e.error));
+                        setErrorMessage(e.error.message);
+                      }
+                      setCardComplete(e.complete);
+                    }}
+                    onReady={el => setCardRef(el)}
+                  />
+                </div>
+              )}
               <Checkbox
                 id="terms"
                 name="terms"
@@ -594,6 +834,9 @@ export const OrderForm = () => {
             total={data.total}
             shouldShowSecureButton={false}
             discount={discount}
+            onDeliveryChange={onDeliveryChange}
+            deliveryCode={deliveryCode}
+            deliveryName={deliveryName}
           />
         </div>
       </div>
@@ -604,3 +847,9 @@ export const OrderForm = () => {
     <Loader />
   );
 };
+
+export const OrderForm = () => (
+  <Elements stripe={stripePromise}>
+    <OrderFormWithPayment />
+  </Elements>
+);

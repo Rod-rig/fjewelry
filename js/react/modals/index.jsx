@@ -6,14 +6,14 @@ import { Callback } from "../forms/callback";
 import { Registration } from "../forms/registration";
 
 export const initLoginTrigger = () => {
-  const loginTrigger = document.querySelectorAll(".js_login_trigger");
+  document.addEventListener("click", function (e) {
+    const trigger = e.target.closest(".js_login_trigger");
 
-  for (let i = 0; i < loginTrigger.length; i++) {
-    loginTrigger[i].addEventListener("click", function (e) {
+    if (trigger) {
       e.preventDefault();
       openModal(<Login />);
-    });
-  }
+    }
+  });
 };
 
 export const initForgotTrigger = () => {
@@ -39,12 +39,13 @@ export const initRegisterTrigger = () => {
 };
 
 export const initCallbackTrigger = () => {
-  const callTrigger = document.querySelectorAll(".js_callback");
+  document.addEventListener("click", function (e) {
+    const trigger = e.target.closest(".js_callback");
 
-  for (let i = 0; i < callTrigger.length; i++) {
-    callTrigger[i].addEventListener("click", function () {
-      const phone = this.getAttribute("data-phone");
+    if (trigger) {
+      e.preventDefault();
+      const phone = trigger.getAttribute("data-phone");
       openModal(<Callback phone={phone} />, "callback");
-    });
-  }
+    }
+  });
 };

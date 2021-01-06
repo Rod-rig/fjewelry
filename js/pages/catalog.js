@@ -1,7 +1,8 @@
 import { initQuickViewSlider } from "../sliders/quick-view";
 import ajax from "../helpers/ajax";
 import { isDesktop } from "../helpers/is-desktop";
-import { removeLoader } from "../react/components/loader";
+import { removeLoader, showFullScreenLoader } from "../react/components/loader";
+import { openQuickView } from "../react/modals/quick-view";
 
 const initSortCatalog = () => {
   const select = document.querySelector(".js_catalog_sort");
@@ -39,22 +40,40 @@ const initSubfilterToggle = () => {
   }
 };
 
+const fetchQuickViewInfo = id => {
+  showFullScreenLoader();
+  ajax
+    .get({
+      url: `/query/product/get/?product=${id}`,
+    })
+    .then(({ data }) => {
+      removeLoader();
+      openQuickView(data);
+    })
+    .catch(err => {
+      removeLoader();
+      console.log("Couldn't get quick view info", err);
+    });
+};
+
 export const initQuickView = () => {
-  const triggers = document.querySelectorAll(".js_quick_view");
   let isInited = false;
   initQuickViewSlider();
 
-  for (let i = 0; i < triggers.length; i++) {
-    triggers[i].addEventListener("click", function () {
-      const modal = document.querySelector(".js_quick_view_modal");
-      modal && modal.classList.toggle("hide");
+  document.addEventListener("click", function (e) {
+    const target = e.target.closest(".js_quick_view");
+
+    if (target) {
+      const id = target.getAttribute("data-id");
+      if (!id) return;
+      fetchQuickViewInfo(id);
 
       if (!isInited) {
         initQuickViewSlider();
         isInited = true;
       }
-    });
-  }
+    }
+  });
 };
 
 const initLoadMore = () => {

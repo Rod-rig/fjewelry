@@ -194,4 +194,15 @@
       margin-bottom: 0;
     }
   }
+
+  &__card {
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+
+    @media (min-width: $tablet) {
+      padding: 20px;
+    }
+  }
 }

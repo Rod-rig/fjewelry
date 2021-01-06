@@ -4,6 +4,8 @@ import { render, unmountComponentAtNode } from "react-dom";
 import { Input } from "../form/input";
 import { Select } from "../form/select";
 import { countries } from "../../helpers/countries";
+import ajax from "../../helpers/ajax";
+import { removeLoader, showFullScreenLoader } from "../components/loader";
 
 const labels = {
   city: "Town / City",
@@ -25,14 +27,14 @@ const initAddressAdd = () => {
       const root = document.querySelector(".js_new_address_form");
 
       if (root) {
-        // render(
-        //   <Address
-        //     onCancel={() => {
-        //       unmountComponentAtNode(root);
-        //     }}
-        //   />,
-        //   root
-        // );
+        render(
+          <Address
+            onCancel={() => {
+              unmountComponentAtNode(root);
+            }}
+          />,
+          root
+        );
       }
     });
   }
@@ -44,6 +46,7 @@ const initAddressEdit = () => {
   if (editButton.length > 0) {
     editButton.forEach(e => {
       e.addEventListener("click", function () {
+        const id = this.getAttribute("data-id");
         const root = this.closest(".js_address");
         const content = this.closest(".js_hide_on_edit");
 
@@ -62,6 +65,7 @@ const initAddressEdit = () => {
 
           render(
             <Address
+              id={id}
               country={country}
               city={city}
               region={region}
@@ -129,16 +133,43 @@ const initAddressToggle = () => {
 };
 
 const Address = props => {
+  const countryId = countries.find(c => c.name === props.country);
   const [city, setCity] = useState(props.city);
-  const [country, setCountry] = useState(props.country);
+  const [country, setCountry] = useState(props.country ? countryId.id : "");
   const [region, setRegion] = useState(props.region);
   const [postcode, setPostcode] = useState(props.postcode);
   const [address1, setAddress1] = useState(props.address1);
   const [address2, setAddress2] = useState(props.address2);
 
+  const onSubmit = e => {
+    e.preventDefault();
+    showFullScreenLoader();
+    const isEditMode = Boolean(props.id);
+    ajax
+      .post({
+        url: isEditMode
+          ? `/query/customer/StoreAddress/id/${props.id}/`
+          : "/query/customer/StoreAddress/",
+        data: {
+          country_id: country,
+          region: region,
+          street: [address1, address2],
+          postcode: postcode,
+          city: city,
+        },
+      })
+      .then(() => {
+        window.location.reload();
+      })
+      .catch(err => {
+        removeLoader();
+        console.log("Couldn't add/change address", err);
+      });
+  };
+
   return (
     <div>
-      <form onSubmit={e => e.preventDefault()} className="addresses__form">
+      <form onSubmit={onSubmit} className="addresses__form">
         <div className="addresses__form_control">
           <Select
             label={labels.country}
@@ -148,9 +179,9 @@ const Address = props => {
             name="add_country"
             id="add_country"
             value={country}
-            options={countries.map((l, i) => ({
-              label: l,
-              value: i,
+            options={countries.map(country => ({
+              label: country.name,
+              value: country.id,
             }))}
             isError={false}
           />
@@ -216,12 +247,18 @@ const Address = props => {
           >
             {labels.cancel}
           </button>
-          <button className="btn addresses__remove" type="button">
-            <svg className="addresses__icon">
-              <use xlinkHref="#close" />
-            </svg>
-            <span className="addresses__remove_text">{labels.delete}</span>
-          </button>
+          {Boolean(props.id) && (
+            <button
+              className="btn addresses__remove"
+              type="button"
+              onClick={onAddressRemove.bind(this, props.id)}
+            >
+              <svg className="addresses__icon">
+                <use xlinkHref="#close" />
+              </svg>
+              <span className="addresses__remove_text">{labels.delete}</span>
+            </button>
+          )}
         </div>
       </form>
     </div>
@@ -236,10 +273,41 @@ Address.propTypes = {
   address1: PropTypes.string,
   address2: PropTypes.string,
   onCancel: PropTypes.func,
+  id: PropTypes.string,
+};
+
+const onAddressRemove = id => {
+  showFullScreenLoader();
+  ajax
+    .post({
+      url: `/query/customer/DeleteAddress/id/${id}/`,
+    })
+    .then(() => {
+      window.location.reload();
+    })
+    .catch(err => {
+      removeLoader();
+      console.log(`Couldn't remove address id ${id}`, err);
+    });
+};
+
+const initAddressRemove = () => {
+  document.addEventListener("click", function (e) {
+    const target = e.target.closest(".js_remove_address");
+
+    if (target) {
+      const id = target.getAttribute("data-id");
+
+      if (!id) return;
+
+      onAddressRemove(id);
+    }
+  });
 };
 
 export const initAddressEvents = () => {
   initAddressToggle();
   initAddressAdd();
   initAddressEdit();
+  initAddressRemove();
 };

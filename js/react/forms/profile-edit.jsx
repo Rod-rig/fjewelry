@@ -53,8 +53,12 @@ const ProfileEdit = props => {
   const [phone, setPhone] = useState(props.phone);
   const [date, setDate] = useState(props.date);
 
+  const onSubmit = e => {
+    e.preventDefault();
+  };
+
   return (
-    <form onSubmit={e => e.preventDefault()}>
+    <form onSubmit={onSubmit}>
       <div className="profile__personal">
         <div className="profile__personal_col">
           <Select

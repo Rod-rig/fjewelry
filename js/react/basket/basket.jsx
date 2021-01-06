@@ -24,6 +24,8 @@ export const Basket = () => {
   const [discount, setDiscount] = useState("");
   const [isPromoSuccess, setPromoSuccess] = useState(false);
   const [promoError, setPromoError] = useState("");
+  const [deliveryCode, setDeliveryCode] = useState("");
+  const [deliveryName, setDeliveryName] = useState("");
 
   useEffect(() => {
     ajax
@@ -31,6 +33,19 @@ export const Basket = () => {
       .then(({ data }) => {
         setData(data);
         setLoaded(true);
+        if (data.deliveries && data.deliveries.length > 0) {
+          const selectedDelivery = data.deliveries.find(d => d.selected);
+          setDeliveryCode(
+            selectedDelivery
+              ? selectedDelivery.method_code
+              : data.deliveries[0].method_code
+          );
+          setDeliveryName(
+            selectedDelivery
+              ? selectedDelivery.method_title
+              : data.deliveries[0].method_title
+          );
+        }
         if (Math.abs(data.total.coupon_discount) > 0) {
           setDiscount(data.total.coupon_discount_formatted);
           setPromoSuccess(true);
@@ -123,7 +138,40 @@ export const Basket = () => {
       .catch(({ response }) => {
         removeLoader();
         setPromoError(response.data.message);
-        console.log(`Couldn't apply promo ${promo}`, e);
+        console.log(`Couldn't apply promo ${promo}`, response);
+      });
+  };
+
+  const onDeliveryChange = e => {
+    const target = e.target;
+    showFullScreenLoader();
+    ajax
+      .post({
+        url: "/query/cart/calculate/",
+        data: {
+          addressInformation: {
+            shipping_address: {
+              countryId: "",
+              region: "",
+              postcode: null,
+            },
+            shipping_method_code: target.value,
+            shipping_carrier_code: target.value,
+          },
+        },
+      })
+      .then(({ data }) => {
+        setData({
+          ...basket,
+          total: data,
+        });
+        setDeliveryCode(target.value);
+        setDeliveryName(target.getAttribute("data-name"));
+        removeLoader();
+      })
+      .catch(e => {
+        removeLoader();
+        console.log(`Couldn't fetch delivery info`, e);
       });
   };
 
@@ -152,6 +200,9 @@ export const Basket = () => {
               total={basket.total}
               shouldShowSecureButton={true}
               discount={discount}
+              onDeliveryChange={onDeliveryChange}
+              deliveryCode={deliveryCode}
+              deliveryName={deliveryName}
             />
           )}
           <div className="basket__promo">

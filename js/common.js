@@ -11,6 +11,7 @@ import {
 import { initBasketScroll } from "./scroll/basket";
 import { initBasketEvents } from "./basket/basket";
 import { initBreadcrumbsScroll } from "./scroll/breadcrumbs";
+import { updateUserInfo } from "./common/update-user-info";
 
 export const initCommon = () => {
   initClosestPolyfill();
@@ -25,4 +26,5 @@ export const initCommon = () => {
   initForgotTrigger();
   initRegisterTrigger();
   initCallbackTrigger();
+  updateUserInfo();
 };

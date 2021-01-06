@@ -1,7 +1,7 @@
 import ajax from "../helpers/ajax";
 import { removeLoader, showFullScreenLoader } from "../react/components/loader";
 
-const updateHeaderCompareCounter = count => {
+export const updateHeaderCompareCounter = count => {
   const counter = document.querySelectorAll(".js_compare_count");
   for (let i = 0; i < counter.length; i++) {
     counter[i].classList[count > 0 ? "remove" : "add"]("hide");

@@ -1,8 +1,8 @@
 export const countries = [
-  "United Kingdom",
-  "Ireland",
-  "France",
-  "Italy",
-  "Spain",
-  "Germany",
+  { name: "United Kingdom", id: "GB" },
+  { name: "Ireland", id: "IE" },
+  { name: "France", id: "FR" },
+  { name: "Italy", id: "IT" },
+  { name: "Spain", id: "ES" },
+  { name: "Germany", id: "DE" },
 ];

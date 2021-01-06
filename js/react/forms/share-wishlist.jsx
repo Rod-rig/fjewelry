@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { closeModal, openModal } from "../modals/modal";
 import { Textarea } from "../form/textarea";
+import ajax from "../../helpers/ajax";
+import { Loader } from "../components/loader";
 
 const labels = {
   title: "Wish List Sharing",
@@ -26,11 +28,41 @@ const ShareWishlist = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [isSuccessSubmit, setSuccessSubmit] = useState(false);
-  // const [isError, setError] = useState(false);
-  // const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setLoading] = useState(false);
+  const [isError, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  return (
-    <form className="join__form" onSubmit={e => e.preventDefault()}>
+  const onSubmit = e => {
+    e.preventDefault();
+    if (!email) return;
+    setLoading(true);
+
+    ajax
+      .post({
+        url: "/query/wishlist/share/",
+        data: {
+          emails: email,
+          message: message,
+        },
+      })
+      .then(() => {
+        setSuccessSubmit(true);
+        setLoading(false);
+      })
+      .catch(({ response }) => {
+        setLoading(false);
+        setError(true);
+        setErrorMessage(response.data.message);
+        console.log("Couldn't share wishlist", response);
+      });
+  };
+
+  return isLoading ? (
+    <div className="text-center">
+      <Loader />
+    </div>
+  ) : (
+    <form className="join__form" onSubmit={onSubmit}>
       <div className="modal__title">{labels.title}</div>
       {isSuccessSubmit ? (
         <div className="text-center">
@@ -45,6 +77,7 @@ const ShareWishlist = () => {
         </div>
       ) : (
         <React.Fragment>
+          {isError && <div className="text-error mb-10">{errorMessage}</div>}
           <div className="mb-15">
             <Textarea
               label={labels.emails}
@@ -53,6 +86,7 @@ const ShareWishlist = () => {
               onChange={e => setEmail(e.target.value)}
               id="wishlist_emails"
               className="profile_wish__textarea"
+              isError={isError}
             />
           </div>
           <div className="mb-15">
@@ -66,11 +100,7 @@ const ShareWishlist = () => {
             />
           </div>
           <div className="text-center">
-            <button
-              className="main_link"
-              type="submit"
-              onClick={() => setSuccessSubmit(true)}
-            >
+            <button className="main_link" type="submit">
               {labels.submit}
             </button>
           </div>
