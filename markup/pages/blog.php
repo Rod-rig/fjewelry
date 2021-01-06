@@ -6,7 +6,7 @@
   <div class="news_list__row">
     <? for ($i = 0; $i < 8; $i++) { ?>
       <div class="news_list__item">
-        <a href="" class="news_list__link">
+        <a href="<?= SITE_DIR . "article.php"; ?>" class="news_list__link">
           <img class="news_list__img img-responsive" src="https://via.placeholder.com/270x160" />
           <span class="news_list__title">Top five timeless gifts for every women</span>
           <span class="news_list__more">
