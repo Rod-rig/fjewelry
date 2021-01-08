@@ -83,7 +83,7 @@ export const OrderFormWithPayment = () => {
   const [phone, setPhone] = useState("");
   const [addr, setAddr] = useState("");
   const [post, setPost] = useState("");
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState(countries[0].id);
   const [addr1, setAddr1] = useState("");
   const [addr2, setAddr2] = useState("");
   const [town, setTown] = useState("");
@@ -92,7 +92,7 @@ export const OrderFormWithPayment = () => {
   const [isSameBilling, setBillingRadio] = useState("same");
   const [billAddr, setBillAddr] = useState("");
   const [billPost, setBillPost] = useState("");
-  const [billCountry, setBillCountry] = useState("");
+  const [billCountry, setBillCountry] = useState(countries[0].id);
   const [billAddr1, setBillAddr1] = useState("");
   const [billTown, setBillTown] = useState("");
   const [billAddr2, setBillAddr2] = useState("");
