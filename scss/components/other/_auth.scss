@@ -1,0 +1,125 @@
+@import "../../abstracts/variables";
+
+.auth {
+  margin-bottom: 60px;
+
+  &__h1 {
+    font-size: 40px;
+    line-height: 48px;
+    font-family: $font-family-sans-serif2;
+    font-weight: 300;
+    color: $text-color;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    display: none;
+
+    @media (min-width: $tablet) {
+      display: block;
+    }
+  }
+
+  &__row {
+    display: block;
+
+    @media (min-width: $tablet) {
+      display: flex;
+    }
+  }
+
+  &__col {
+    width: 100%;
+    min-width: 100%;
+    position: relative;
+    padding: 0 10px;
+    text-align: center;
+
+    @media (min-width: $tablet) {
+      width: 50%;
+      min-width: 50%;
+    }
+
+    &:first-child:after {
+      content: "";
+      display: none;
+      border-right: 1px solid #D5D5D5;
+      height: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      @media (min-width: $tablet) {
+        display: block;
+      }
+    }
+  }
+
+  &__subtitle {
+    font-family: $font-family-sans-serif2;
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 20px;
+  }
+
+  &__note {
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 25px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (min-width: $tablet) {
+      width: 85%;
+    }
+  }
+
+  &__link {
+    text-decoration: underline;
+    font-size: 16px;
+    line-height: 24px;
+    color: $text-color;
+  }
+
+  &__form {
+    width: 240px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+
+    @media (min-width: $tablet) {
+      width: 320px;
+    }
+  }
+
+  &__reg {
+    display: inline;
+
+    @media (min-width: $tablet) {
+      display: none;
+    }
+  }
+
+  .login__links {
+    @media (min-width: $tablet) {
+      margin-bottom: 35px;
+      margin-right: 20px;
+    }
+  }
+
+  .login__link {
+    font-size: 14px;
+
+    @media (min-width: $tablet) {
+      font-size: 16px;
+    }
+  }
+
+  &__form_row {
+    display: block;
+
+    @media (min-width: $tablet) {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
