@@ -1,30 +1,35 @@
 import Nouislider from "nouislider";
 import wNumb from "wnumb";
 import { isDesktop } from "../helpers/is-desktop";
-// import { fetchMobFilter, updateMobFilter } from "../filter/filter";
-// import { renderLoader } from "../components/Loader";
+import { fetchMobFilter } from "../pages/catalog";
 
-// const SHOW_MORE_LINK = ".js_filter_more_link";
+const SHOW_MORE_LINK = ".js_filter_more_link";
+
+const showMoreLink = document.querySelectorAll(SHOW_MORE_LINK);
+for (let i = 0; i < showMoreLink.length; i++) {
+  showMoreLink[i].addEventListener("click", function () {
+    window.location = this.getAttribute("data-href");
+  });
+}
 
 const showMoreButton = (button, href) => {
   if (isDesktop()) {
-    button.querySelector(".js_filter_more_link").setAttribute("href", href);
+    button.querySelector(SHOW_MORE_LINK).setAttribute("data-href", href);
     button.classList.remove("hide");
   }
 };
 
-// const hideMoreButton = button => {
-//   if (isDesktop()) {
-//     button.classList.add("hide");
-//   }
-// };
+const hideMoreButton = button => {
+  if (isDesktop()) {
+    button.classList.add("hide");
+  }
+};
 
 const buildFilterUrl = (values, url) => {
   const from = Math.round(values[0]);
   const to = Math.round(values[1]);
 
-  // return url.replace("#VALUE#", `${from}-${to}`);
-  return `${url}-${from}-${to}`;
+  return url.replace("#min#_#max#", `${from}_${to}`);
 };
 
 export const initRange = () => {
@@ -33,7 +38,7 @@ export const initRange = () => {
   const inputFrom = document.querySelectorAll(".js_range_input_from");
   const inputTo = document.querySelectorAll(".js_range_input_to");
   const showMore = document.querySelectorAll(".js_filter_show_more");
-  // const cancelBtns = document.querySelectorAll(".js_filter_cancel");
+  const cancelBtns = document.querySelectorAll(".js_filter_cancel");
 
   range.forEach((item, index) => {
     const min = parseInt(item.getAttribute("data-min"));
@@ -67,41 +72,35 @@ export const initRange = () => {
       });
 
       item.noUiSlider.on("set", function (values, handle, unencoded) {
-        const url = item.getAttribute("data-link");
+        const url = showMoreLink[index].getAttribute("data-href");
         const href = buildFilterUrl(unencoded, url);
         showMoreButton(showMore[index], href);
 
-        // if (isMobile()) {
-        //   const filterLoader = document.querySelector(".js_filter_loader");
-        //   renderLoader(filterLoader, "filter__loader");
-        //
-        //   const blockId = item
-        //     .closest(".js_collapse_target")
-        //     .getAttribute("data-id");
-        //   fetchMobFilter(href, blockId, updateMobFilter);
-        // }
+        if (!isDesktop()) {
+          fetchMobFilter(href);
+        }
       });
 
       inputFrom[index].addEventListener("change", function () {
         item.noUiSlider.set([this.value, null]);
       });
 
-      // inputFrom[index].addEventListener("keyup", function () {
-      //   const end = item.noUiSlider.get()[1];
-      //   const url = item.getAttribute("data-link");
-      //   const href = buildFilterUrl([this.value, end], url);
-      //   showMoreButton(showMore[index], href);
-      // });
+      inputFrom[index].addEventListener("keyup", function () {
+        const end = item.noUiSlider.get()[1];
+        const url = showMoreLink[index].getAttribute("data-href");
+        const href = buildFilterUrl([this.value, end], url);
+        showMoreButton(showMore[index], href);
+      });
 
-      // if (isDesktop()) {
-      //   inputFrom[index].addEventListener("keydown", function (e) {
-      //     if (e.which === 13) {
-      //       setTimeout(() => {
-      //         document.querySelectorAll(SHOW_MORE_LINK)[index].click();
-      //       }, 0);
-      //     }
-      //   });
-      // }
+      if (isDesktop()) {
+        inputFrom[index].addEventListener("keydown", function (e) {
+          if (e.which === 13) {
+            setTimeout(() => {
+              document.querySelectorAll(SHOW_MORE_LINK)[index].click();
+            }, 0);
+          }
+        });
+      }
 
       inputTo[index].addEventListener("change", function () {
         const value =
@@ -109,22 +108,22 @@ export const initRange = () => {
         item.noUiSlider.set([null, value]);
       });
 
-      // inputTo[index].addEventListener("keyup", function () {
-      //   const start = item.noUiSlider.get()[0];
-      //   const url = item.getAttribute("data-link");
-      //   const href = buildFilterUrl([start, this.value], url);
-      //   showMoreButton(showMore[index], href);
-      // });
+      inputTo[index].addEventListener("keyup", function () {
+        const start = item.noUiSlider.get()[0];
+        const url = item.getAttribute("data-link");
+        const href = buildFilterUrl([start, this.value], url);
+        showMoreButton(showMore[index], href);
+      });
 
-      // if (isDesktop()) {
-      //   inputTo[index].addEventListener("keydown", function (e) {
-      //     if (e.which === 13) {
-      //       setTimeout(() => {
-      //         document.querySelectorAll(SHOW_MORE_LINK)[index].click();
-      //       }, 0);
-      //     }
-      //   });
-      // }
+      if (isDesktop()) {
+        inputTo[index].addEventListener("keydown", function (e) {
+          if (e.which === 13) {
+            setTimeout(() => {
+              document.querySelectorAll(SHOW_MORE_LINK)[index].click();
+            }, 0);
+          }
+        });
+      }
     } else {
       // just to avoid js errors
       item.setAttribute("disabled", "disabled");
@@ -146,11 +145,11 @@ export const initRange = () => {
       });
     }
 
-    // cancelBtns[index].addEventListener("click", function () {
-    //   item.noUiSlider.updateOptions({
-    //     start: [start, end],
-    //   });
-    //   hideMoreButton(showMore[index]);
-    // });
+    cancelBtns[index].addEventListener("click", function () {
+      item.noUiSlider.updateOptions({
+        start: [start, end],
+      });
+      hideMoreButton(showMore[index]);
+    });
   });
 };

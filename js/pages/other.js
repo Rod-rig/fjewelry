@@ -1,3 +1,5 @@
+import { initPagination } from "../common/pagination";
+
 export const initFAQEvents = () => {
   const triggers = document.querySelectorAll(".js_faq_trigger");
   for (let i = 0; i < triggers.length; i++) {
@@ -7,3 +9,5 @@ export const initFAQEvents = () => {
     });
   }
 };
+
+export const initLoadMore = () => initPagination(".js_blog_list");

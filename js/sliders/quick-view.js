@@ -6,17 +6,17 @@ const THUMB = ".js_thumb";
 export const initQuickViewSlider = () => {
   const quickView = document.querySelector(".js_quick_view_slider");
 
-  if (quickView) {
-    tns({
-      container: quickView,
-      items: 1,
-      slideBy: 1,
-      navContainer: THUMB,
-      navAsThumbnails: true,
-      loop: false,
-      controls: false,
-    });
-  }
+  if (!quickView) return;
+
+  tns({
+    container: quickView,
+    items: 1,
+    slideBy: 1,
+    navContainer: THUMB,
+    navAsThumbnails: true,
+    loop: false,
+    controls: false,
+  });
 
   const thumb = document.querySelector(".js_thumb_carousel");
   if (thumb && !isMobile()) {

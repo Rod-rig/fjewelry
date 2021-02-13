@@ -1,0 +1,86 @@
+@import "../../abstracts/variables";
+
+.cookie {
+  width: 100%;
+  position: fixed;
+  z-index: $cookie-zorder;
+  bottom: 0;
+  background-color: rgba($black, 0.8);
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  @media (min-width: $tablet) {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  @media (min-width: $desktop) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  &__text {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 15px;
+    color: $white;
+    text-align: center;
+
+    @media (min-width: $tablet) {
+      margin-bottom: 0;
+      padding-right: 20px;
+    }
+
+    @media (min-width: $desktop) {
+      max-width: 730px;
+      padding-right: 50px;
+      text-align: left;
+    }
+
+    @media (min-width: $lg-desktop) {
+      max-width: 996px;
+    }
+
+    a {
+      text-decoration: none;
+      border-bottom: 1px solid $primary-color;
+    }
+  }
+
+  &__btn {
+    background-color: $primary-color;
+    height: 50px;
+    padding: 15px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    white-space: nowrap;
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: $white;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+
+    @media (min-width: $desktop) {
+      display: inline-block;
+    }
+  }
+
+  &__flex {
+    @media (min-width: $desktop) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__link {
+    display: block;
+    text-align: center;
+
+    @media (min-width: $desktop) {
+      display: inline;
+    }
+  }
+}

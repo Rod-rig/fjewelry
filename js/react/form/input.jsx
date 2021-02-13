@@ -14,7 +14,7 @@ export const Input = props => {
         id={props.id}
         className={`fj_input ${props.isError ? "fj_input--error" : ""}`}
         onChange={props.onChange}
-        required
+        required={props.required}
       />
     </React.Fragment>
   );
@@ -28,8 +28,10 @@ Input.propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string,
   isError: PropTypes.bool,
+  required: PropTypes.bool,
 };
 
 Input.defaultProps = {
   type: "text",
+  required: true,
 };

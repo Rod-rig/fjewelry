@@ -36,20 +36,12 @@ export const initCardEvents = () => {
         .then(({ data }) => {
           const oldPrice = document.querySelector(".js_card_old_price");
           const price = document.querySelector(".js_card_price");
-          const sku = document.querySelector(".js_card_sku");
-          const buy = document.querySelectorAll(".js_card_basket");
 
           if (oldPrice) {
             oldPrice.innerHTML = data.prices.regularPriceFormatted;
           }
           if (price) {
             price.innerHTML = data.prices.specialPriceFormatted;
-          }
-          if (sku) {
-            sku.innerHTML = data.sku;
-          }
-          for (let k = 0; k < buy.length; k++) {
-            buy[k].setAttribute("data-id", data.id);
           }
           removeLoader();
         })

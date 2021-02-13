@@ -1,6 +1,7 @@
 import ajax from "../helpers/ajax";
 import { updateHeaderWishCounter } from "./wishlist";
 import { updateHeaderCompareCounter } from "./compare";
+import { highlightButtons } from "./highlight-buttons";
 
 export const updateUserInfo = () => {
   ajax
@@ -21,6 +22,8 @@ export const updateUserInfo = () => {
 
       updateHeaderWishCounter(data["wishlist-count"]);
       updateHeaderCompareCounter(data["compare-count"]);
+      highlightButtons(data["compare-ids"], data["wishlist-ids"]);
+      window.isLoggedIn = data["is-logged-in"];
     })
     .catch(e => {
       console.log("Couldn't get user status /query/status/", e);

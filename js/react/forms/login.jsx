@@ -5,6 +5,7 @@ import { Input } from "../form/input";
 import { Checkbox } from "../form/checkbox";
 import ajax from "../../helpers/ajax";
 import { Loader } from "../components/loader";
+import { openModal } from "../modals/modal";
 
 const labels = {
   title: "Enter cabinet",
@@ -112,3 +113,5 @@ export const Login = () => {
     </React.Fragment>
   );
 };
+
+export const openLoginModal = () => openModal(<Login />);

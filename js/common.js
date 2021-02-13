@@ -12,6 +12,7 @@ import { initBasketScroll } from "./scroll/basket";
 import { initBasketEvents } from "./basket/basket";
 import { initBreadcrumbsScroll } from "./scroll/breadcrumbs";
 import { updateUserInfo } from "./common/update-user-info";
+import { initCookieBanner } from "./common/cookie";
 
 export const initCommon = () => {
   initClosestPolyfill();
@@ -27,4 +28,5 @@ export const initCommon = () => {
   initRegisterTrigger();
   initCallbackTrigger();
   updateUserInfo();
+  initCookieBanner();
 };

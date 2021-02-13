@@ -68,7 +68,11 @@ const labels = {
   pay: "Pay",
 };
 
-const stripePromise = loadStripe(window.stripe.apiKey);
+const newOption = {
+  label: "New address",
+  value: "new",
+};
+const defaultCountry = countries[0].id;
 
 export const OrderFormWithPayment = () => {
   const [isLoaded, setLoaded] = useState(false);
@@ -81,27 +85,27 @@ export const OrderFormWithPayment = () => {
   const [lname, setLname] = useState("");
   const [title, setTitle] = useState("690");
   const [phone, setPhone] = useState("");
-  const [addr, setAddr] = useState("");
+  const [addr, setAddr] = useState("new");
   const [post, setPost] = useState("");
-  const [country, setCountry] = useState(countries[0].id);
+  const [country, setCountry] = useState(defaultCountry);
   const [addr1, setAddr1] = useState("");
   const [addr2, setAddr2] = useState("");
   const [town, setTown] = useState("");
   const [region, setRegion] = useState("");
   const [info, setInfo] = useState("");
   const [isSameBilling, setBillingRadio] = useState("same");
-  const [billAddr, setBillAddr] = useState("");
+  const [billAddr, setBillAddr] = useState("new");
   const [billPost, setBillPost] = useState("");
-  const [billCountry, setBillCountry] = useState(countries[0].id);
+  const [billCountry, setBillCountry] = useState(defaultCountry);
   const [billAddr1, setBillAddr1] = useState("");
   const [billTown, setBillTown] = useState("");
   const [billAddr2, setBillAddr2] = useState("");
   const [billRegion, setBillRegion] = useState("");
   const [billInfo, setBillInfo] = useState("");
-  const [payment, setPayment] = useState("paypal_express");
-  const [isAccepted, setAccept] = useState(true);
+  const [payment, setPayment] = useState("stripe_payments");
+  const [isAccepted, setAccept] = useState(false);
   const [deliveryCode, setDeliveryCode] = useState("");
-  const [deliveryName, setDeliveryName] = useState("");
+  const [deliveryPrice, setDeliveryPrice] = useState("");
   const [isErrorForm, setErrorForm] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [cardComplete, setCardComplete] = useState(false);
@@ -119,20 +123,112 @@ export const OrderFormWithPayment = () => {
         }
         if (data.deliveries && data.deliveries.length > 0) {
           const selectedDelivery = data.deliveries.find(d => d.selected);
+
+          if (!selectedDelivery) {
+            ajax
+              .post({
+                url: "/query/cart/calculate/",
+                data: {
+                  addressInformation: {
+                    shipping_address: {
+                      countryId: "",
+                      region: "",
+                      postcode: null,
+                    },
+                    shipping_method_code: data.deliveries[0].method_code,
+                    shipping_carrier_code: data.deliveries[0].method_code,
+                  },
+                },
+              })
+              .then(({ data: response }) => {
+                setData({
+                  ...data,
+                  total: response,
+                });
+              })
+              .catch(e => {
+                console.log(`Couldn't fetch delivery info`, e);
+              });
+          }
+
           setDeliveryCode(
             selectedDelivery
               ? selectedDelivery.method_code
               : data.deliveries[0].method_code
           );
-          setDeliveryName(
+          setDeliveryPrice(
             selectedDelivery
-              ? selectedDelivery.method_title
-              : data.deliveries[0].method_title
+              ? selectedDelivery.price_incl_tax
+              : data.deliveries[0].price_incl_tax
           );
+        }
+
+        if (data["customer_data"]["firstname"]) {
+          setFname(data["customer_data"]["firstname"]);
+        }
+
+        if (data["customer_data"]["email"]) {
+          setEmail(data["customer_data"]["email"]);
+        }
+
+        if (data["customer_data"]["lastname"]) {
+          setLname(data["customer_data"]["lastname"]);
         }
       })
       .catch(() => console.log("Couldn't get order info"));
   }, []);
+
+  useEffect(() => {
+    if (addr === "new") {
+      setPost("");
+      setCountry(defaultCountry);
+      setAddr1("");
+      setAddr2("");
+      setTown("");
+      setRegion("");
+    } else if (data["customer_data"] && data["customer_data"]["addresses"]) {
+      const key = Object.keys(data["customer_data"]["addresses"]).find(
+        a =>
+          `${data["customer_data"]["addresses"][a].city}-${data["customer_data"]["addresses"][a].id}` ===
+          addr
+      );
+      const address = data["customer_data"]["addresses"][key];
+      if (address) {
+        setPost(address["postcode"]);
+        setCountry(address["country_id"]);
+        setAddr1(address["street"][0]);
+        setAddr2(address["street"][1]);
+        setTown(address["city"]);
+        setRegion(address["region"]["region"]);
+      }
+    }
+  }, [addr, data]);
+
+  useEffect(() => {
+    if (billAddr === "new") {
+      setBillPost("");
+      setBillCountry(defaultCountry);
+      setBillAddr1("");
+      setBillAddr2("");
+      setBillTown("");
+      setBillRegion("");
+    } else if (data["customer_data"] && data["customer_data"]["addresses"]) {
+      const key = Object.keys(data["customer_data"]["addresses"]).find(
+        a =>
+          `${data["customer_data"]["addresses"][a].city}-${data["customer_data"]["addresses"][a].id}` ===
+          billAddr
+      );
+      const address = data["customer_data"]["addresses"][key];
+      if (address) {
+        setBillPost(address["postcode"]);
+        setBillCountry(address["country_id"]);
+        setBillAddr1(address["street"][0]);
+        setBillAddr2(address["street"][1]);
+        setBillTown(address["city"]);
+        setBillRegion(address["region"]["region"]);
+      }
+    }
+  }, [billAddr, data]);
 
   const [isLoginError, setLoginError] = useState(false);
   const [errorLoginMsg, setErrorLoginMsg] = useState("");
@@ -300,7 +396,9 @@ export const OrderFormWithPayment = () => {
           total: response,
         });
         setDeliveryCode(target.value);
-        setDeliveryName(target.getAttribute("data-name"));
+        // need delivery price in total data
+        // setDeliveryName(target.getAttribute("data-name"));
+        setDeliveryPrice(target.getAttribute("data-price"));
         removeLoader();
       })
       .catch(e => {
@@ -373,56 +471,58 @@ export const OrderFormWithPayment = () => {
           )}
           {Object.keys(data["customer_data"]).length === 0 ? (
             <React.Fragment>
-              {isGuest === "noguest" ? (
-                <form onSubmit={submitLoginForm}>
-                  {isLoginError && (
-                    <div className="text-error mb-10">{errorLoginMsg}</div>
-                  )}
-                  <div className="order__row">
-                    <div className="order__col">
-                      <Input
-                        label={labels.placeholders.email}
-                        onChange={e => setEmail(e.target.value)}
-                        name="email"
-                        id="email"
-                        value={email}
-                        isError={isLoginError}
-                      />
+              {
+                isGuest === "noguest" ? (
+                  <form onSubmit={submitLoginForm}>
+                    {isLoginError && (
+                      <div className="text-error mb-10">{errorLoginMsg}</div>
+                    )}
+                    <div className="order__row">
+                      <div className="order__col">
+                        <Input
+                          label={labels.placeholders.email}
+                          onChange={e => setEmail(e.target.value)}
+                          name="email"
+                          id="email"
+                          value={email}
+                          isError={isLoginError}
+                        />
+                      </div>
+                      <div className="order__col">
+                        <Input
+                          type="password"
+                          name="password"
+                          id="password"
+                          label={labels.placeholders.pwd}
+                          onChange={e => setPassword(e.target.value)}
+                          value={password}
+                          isError={isLoginError}
+                        />
+                      </div>
                     </div>
-                    <div className="order__col">
-                      <Input
-                        type="password"
-                        name="password"
-                        id="password"
-                        label={labels.placeholders.pwd}
-                        onChange={e => setPassword(e.target.value)}
-                        value={password}
-                        isError={isLoginError}
-                      />
-                    </div>
-                  </div>
-                  <div className="order__login">
-                    <button className="order__submit" type="submit">
-                      {labels.loginSubmit}
-                    </button>
-                    <div className="order__login_btns">
-                      <button
-                        className="order__login_btn btn js_forgot_trigger"
-                        type="button"
-                      >
-                        {labels.forgot}
+                    <div className="order__login">
+                      <button className="order__submit" type="submit">
+                        {labels.loginSubmit}
                       </button>
-                      <div className="order__login_div"> | </div>
-                      <button
-                        className="order__login_btn btn js_reg_trigger"
-                        type="button"
-                      >
-                        {labels.reg}
-                      </button>
+                      <div className="order__login_btns">
+                        <button
+                          className="order__login_btn btn js_forgot_trigger"
+                          type="button"
+                        >
+                          {labels.forgot}
+                        </button>
+                        <div className="order__login_div"> | </div>
+                        <button
+                          className="order__login_btn btn js_reg_trigger"
+                          type="button"
+                        >
+                          {labels.reg}
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </form>
-              ) : (
+                  </form>
+                ) : null
+                /*(
                 <form onSubmit={e => e.preventDefault()}>
                   <div className="order__row">
                     <div className="order__col">
@@ -441,10 +541,15 @@ export const OrderFormWithPayment = () => {
                     </button>
                   </div>
                 </form>
-              )}
+              )*/
+              }
             </React.Fragment>
           ) : (
-            <form onSubmit={submitOrderForm}>
+            ""
+          )}
+          {Object.keys(data["customer_data"]).length !== 0 ||
+          isGuest === "guest" ? (
+            <form onSubmit={submitOrderForm} autoComplete="off">
               {isErrorForm && (
                 <div className="text-error mt-20">{errorMessage}</div>
               )}
@@ -508,6 +613,7 @@ export const OrderFormWithPayment = () => {
                       name="order_phone"
                       id="order_phone"
                       value={phone}
+                      required={false}
                     />
                   </div>
                 </div>
@@ -526,17 +632,19 @@ export const OrderFormWithPayment = () => {
                       id="addr"
                       value={addr}
                       options={
+                        data["customer_data"]["addresses"] &&
                         Object.keys(data["customer_data"]["addresses"]).length >
-                        0
-                          ? Object.keys(data["customer_data"]["addresses"]).map(
-                              l => ({
-                                label:
-                                  data["customer_data"]["addresses"][l].city,
-                                value:
-                                  data["customer_data"]["addresses"][l].city,
-                              })
-                            )
-                          : []
+                          0
+                          ? [
+                              ...Object.keys(
+                                data["customer_data"]["addresses"]
+                              ).map(l => ({
+                                label: `${data["customer_data"]["addresses"][l].city}, ${data["customer_data"]["addresses"][l].street[0]}, ${data["customer_data"]["addresses"][l].postcode}`,
+                                value: `${data["customer_data"]["addresses"][l].city}-${data["customer_data"]["addresses"][l].id}`,
+                              })),
+                              newOption,
+                            ]
+                          : [newOption]
                       }
                     />
                   </div>
@@ -594,6 +702,7 @@ export const OrderFormWithPayment = () => {
                       name="addr_line2"
                       id="addr_line2"
                       value={addr2}
+                      required={false}
                     />
                   </div>
                 </div>
@@ -605,6 +714,7 @@ export const OrderFormWithPayment = () => {
                       name="region"
                       id="region"
                       value={region}
+                      required={false}
                     />
                   </div>
                   <div className="order__col">
@@ -656,17 +766,19 @@ export const OrderFormWithPayment = () => {
                           id="bill_addr"
                           value={billAddr}
                           options={
+                            data["customer_data"]["addresses"] &&
                             Object.keys(data["customer_data"]["addresses"])
                               .length > 0
-                              ? Object.keys(
-                                  data["customer_data"]["addresses"]
-                                ).map(l => ({
-                                  label:
-                                    data["customer_data"]["addresses"][l].city,
-                                  value:
-                                    data["customer_data"]["addresses"][l].city,
-                                }))
-                              : []
+                              ? [
+                                  ...Object.keys(
+                                    data["customer_data"]["addresses"]
+                                  ).map(l => ({
+                                    label: `${data["customer_data"]["addresses"][l].city}, ${data["customer_data"]["addresses"][l].street[0]}, ${data["customer_data"]["addresses"][l].postcode}`,
+                                    value: `${data["customer_data"]["addresses"][l].city}-${data["customer_data"]["addresses"][l].id}`,
+                                  })),
+                                  newOption,
+                                ]
+                              : [newOption]
                           }
                         />
                       </div>
@@ -724,6 +836,7 @@ export const OrderFormWithPayment = () => {
                           name="bill_addr_line2"
                           id="bill_addr_line2"
                           value={billAddr2}
+                          required={false}
                         />
                       </div>
                     </div>
@@ -735,6 +848,7 @@ export const OrderFormWithPayment = () => {
                           name="bill_region"
                           id="bill_region"
                           value={billRegion}
+                          required={false}
                         />
                       </div>
                       <div className="order__col">
@@ -826,6 +940,8 @@ export const OrderFormWithPayment = () => {
                 </button>
               </div>
             </form>
+          ) : (
+            ""
           )}
         </div>
         <div className="basket__right">
@@ -836,7 +952,7 @@ export const OrderFormWithPayment = () => {
             discount={discount}
             onDeliveryChange={onDeliveryChange}
             deliveryCode={deliveryCode}
-            deliveryName={deliveryName}
+            deliveryPrice={deliveryPrice}
           />
         </div>
       </div>
@@ -848,8 +964,11 @@ export const OrderFormWithPayment = () => {
   );
 };
 
-export const OrderForm = () => (
-  <Elements stripe={stripePromise}>
-    <OrderFormWithPayment />
-  </Elements>
-);
+export const OrderForm = () => {
+  const stripePromise = loadStripe(window.stripe.apiKey);
+  return (
+    <Elements stripe={stripePromise}>
+      <OrderFormWithPayment />
+    </Elements>
+  );
+};

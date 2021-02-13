@@ -2,6 +2,8 @@
 
 .finance {
   &__row {
+    margin-bottom: 60px;
+
     @media (min-width: $tablet) {
       display: flex;
       margin-left: -20px;

@@ -1,5 +1,6 @@
 import ajax from "../helpers/ajax";
 import { removeLoader, showFullScreenLoader } from "../react/components/loader";
+import { openLoginModal } from "../react/forms/login";
 
 export const updateHeaderWishCounter = count => {
   const counter = document.querySelectorAll(".js_wish_count");
@@ -18,6 +19,10 @@ export const initWishEvents = () => {
       const wishButton = target.closest(".js_wish");
 
       if (wishButton) {
+        if (!window.isLoggedIn) {
+          openLoginModal();
+          return;
+        }
         showFullScreenLoader();
         const id = wishButton.getAttribute("data-id");
 

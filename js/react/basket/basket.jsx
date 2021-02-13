@@ -25,7 +25,7 @@ export const Basket = () => {
   const [isPromoSuccess, setPromoSuccess] = useState(false);
   const [promoError, setPromoError] = useState("");
   const [deliveryCode, setDeliveryCode] = useState("");
-  const [deliveryName, setDeliveryName] = useState("");
+  const [deliveryPrice, setDeliveryPrice] = useState("");
 
   useEffect(() => {
     ajax
@@ -35,15 +35,43 @@ export const Basket = () => {
         setLoaded(true);
         if (data.deliveries && data.deliveries.length > 0) {
           const selectedDelivery = data.deliveries.find(d => d.selected);
+
+          if (!selectedDelivery) {
+            ajax
+              .post({
+                url: "/query/cart/calculate/",
+                data: {
+                  addressInformation: {
+                    shipping_address: {
+                      countryId: "",
+                      region: "",
+                      postcode: null,
+                    },
+                    shipping_method_code: data.deliveries[0].method_code,
+                    shipping_carrier_code: data.deliveries[0].method_code,
+                  },
+                },
+              })
+              .then(({ data: response }) => {
+                setData({
+                  ...data,
+                  total: response,
+                });
+              })
+              .catch(e => {
+                console.log(`Couldn't fetch delivery info`, e);
+              });
+          }
+
           setDeliveryCode(
             selectedDelivery
               ? selectedDelivery.method_code
               : data.deliveries[0].method_code
           );
-          setDeliveryName(
+          setDeliveryPrice(
             selectedDelivery
-              ? selectedDelivery.method_title
-              : data.deliveries[0].method_title
+              ? selectedDelivery.price_incl_tax
+              : data.deliveries[0].price_incl_tax
           );
         }
         if (Math.abs(data.total.coupon_discount) > 0) {
@@ -166,7 +194,9 @@ export const Basket = () => {
           total: data,
         });
         setDeliveryCode(target.value);
-        setDeliveryName(target.getAttribute("data-name"));
+        // need delivery price in total data
+        // setDeliveryName(target.getAttribute("data-name"));
+        setDeliveryPrice(target.getAttribute("data-price"));
         removeLoader();
       })
       .catch(e => {
@@ -202,7 +232,7 @@ export const Basket = () => {
               discount={discount}
               onDeliveryChange={onDeliveryChange}
               deliveryCode={deliveryCode}
-              deliveryName={deliveryName}
+              deliveryPrice={deliveryPrice}
             />
           )}
           <div className="basket__promo">

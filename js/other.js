@@ -3,7 +3,7 @@ import { initCommon } from "./common";
 import { initContactForm } from "./react/forms/contact";
 import { initSeoScroll } from "./scroll/seo-text";
 import { initSeoToggle } from "./seo/seo";
-import { initFAQEvents } from "./pages/other";
+import { initFAQEvents, initLoadMore } from "./pages/other";
 
 document.addEventListener("DOMContentLoaded", function () {
   initCommon();
@@ -11,4 +11,5 @@ document.addEventListener("DOMContentLoaded", function () {
   initSeoToggle();
   initContactForm();
   initFAQEvents();
+  initLoadMore();
 });

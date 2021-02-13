@@ -3,10 +3,14 @@ import PropTypes from "prop-types";
 import { render } from "react-dom";
 import { Input } from "../form/input";
 import { Select } from "../form/select";
+import { Checkbox } from "../form/checkbox";
+import ajax from "../../helpers/ajax";
+import { removeLoader, showFullScreenLoader } from "../components/loader";
 
 const labels = {
   save: "Save",
   cancel: "Cancel",
+  change: "Change email",
 };
 
 export const initProfileEditForm = () => {
@@ -20,6 +24,7 @@ export const initProfileEditForm = () => {
       email: root.getAttribute("data-label-email"),
       phone: root.getAttribute("data-label-phone"),
       date: root.getAttribute("data-label-date"),
+      password: root.getAttribute("data-label-password"),
     };
     const title = root.getAttribute("data-title");
     const firstname = root.getAttribute("data-firstname");
@@ -43,7 +48,12 @@ export const initProfileEditForm = () => {
     );
   }
 };
-const titles = ["Mr.", "Ms.", "Mrs.", "Miss."];
+const titles = [
+  { name: "Mr.", value: "690" },
+  { name: "Ms.", value: "691" },
+  { name: "Mrs.", value: "692" },
+  { name: "Miss.", value: "693" },
+];
 
 const ProfileEdit = props => {
   const [title, setTitle] = useState(props.title);
@@ -52,13 +62,52 @@ const ProfileEdit = props => {
   const [email, setEmail] = useState(props.email);
   const [phone, setPhone] = useState(props.phone);
   const [date, setDate] = useState(props.date);
+  const [password, setPassword] = useState("");
+  const [changeEmail, setChangeEmail] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isError, setError] = useState(false);
 
   const onSubmit = e => {
     e.preventDefault();
+    showFullScreenLoader();
+    const data = changeEmail
+      ? {
+          firstname: firstName,
+          lastname: lastName,
+          change_email: 1,
+          email: email,
+          current_password: password,
+          dob: date,
+          phone: phone,
+          title: title,
+        }
+      : {
+          firstname: firstName,
+          lastname: lastName,
+          dob: date,
+          phone: phone,
+          title: title,
+        };
+    ajax
+      .post({
+        url: "/query/customer/update/",
+        data,
+      })
+      .then(() => {
+        setErrorMessage("");
+        setError(false);
+        window.location.reload();
+      })
+      .catch(({ response }) => {
+        setErrorMessage(response.data.message);
+        setError(true);
+        removeLoader();
+      });
   };
 
   return (
     <form onSubmit={onSubmit}>
+      {isError && <div className="text-error mb-15">{errorMessage}</div>}
       <div className="profile__personal">
         <div className="profile__personal_col">
           <Select
@@ -69,9 +118,9 @@ const ProfileEdit = props => {
             name="prof_title"
             id="prof_title"
             value={title}
-            options={titles.map((l, i) => ({
-              label: l,
-              value: i,
+            options={titles.map(title => ({
+              label: title.name,
+              value: title.value,
             }))}
             isError={false}
           />
@@ -83,6 +132,7 @@ const ProfileEdit = props => {
             name="prof_firstname"
             id="prof_firstname"
             value={firstName}
+            required={true}
           />
         </div>
         <div className="profile__personal_col">
@@ -92,15 +142,7 @@ const ProfileEdit = props => {
             name="prof_lastname"
             id="prof_lastname"
             value={lastName}
-          />
-        </div>
-        <div className="profile__personal_col">
-          <Input
-            label={props.labels.email}
-            onChange={e => setEmail(e.target.value)}
-            name="prof_email"
-            id="prof_email"
-            value={email}
+            required={true}
           />
         </div>
         <div className="profile__personal_col">
@@ -110,6 +152,7 @@ const ProfileEdit = props => {
             name="prof_phone"
             id="prof_phone"
             value={phone}
+            required={false}
           />
         </div>
         <div className="profile__personal_col">
@@ -119,11 +162,50 @@ const ProfileEdit = props => {
             name="prof_date"
             id="prof_date"
             value={date}
+            required={false}
           />
         </div>
       </div>
+      <div className="profile__personal">
+        <div className="profile__personal_col">
+          <Checkbox
+            id="change_email"
+            name="change_email"
+            checked={changeEmail}
+            label={labels.change}
+            onChange={e => setChangeEmail(e.target.checked)}
+          />
+        </div>
+      </div>
+      {changeEmail ? (
+        <div className="profile__personal">
+          <div className="profile__personal_col">
+            <Input
+              label={props.labels.email}
+              onChange={e => setEmail(e.target.value)}
+              name="prof_email"
+              id="prof_email"
+              value={email}
+              isError={isError}
+            />
+          </div>
+          <div className="profile__personal_col">
+            <Input
+              type="password"
+              label={props.labels.password}
+              onChange={e => setPassword(e.target.value)}
+              name="prof_password"
+              id="prof_password"
+              value={password}
+              isError={isError}
+            />
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
       <div className="profile__personal_footer">
-        <button type="button" className="main_link">
+        <button type="submit" className="main_link">
           {labels.save}
         </button>
         <a href={props.href} className="profile__personal_cancel">

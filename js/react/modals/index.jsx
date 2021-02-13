@@ -1,6 +1,6 @@
 import React from "react";
 import { openModal } from "./modal";
-import { Login } from "../forms/login";
+import { openLoginModal } from "../forms/login";
 import { Forgot } from "../forms/forgot";
 import { Callback } from "../forms/callback";
 import { Registration } from "../forms/registration";
@@ -11,7 +11,7 @@ export const initLoginTrigger = () => {
 
     if (trigger) {
       e.preventDefault();
-      openModal(<Login />);
+      openLoginModal();
     }
   });
 };

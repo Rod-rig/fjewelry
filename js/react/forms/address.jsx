@@ -135,7 +135,9 @@ const initAddressToggle = () => {
 const Address = props => {
   const countryId = countries.find(c => c.name === props.country);
   const [city, setCity] = useState(props.city);
-  const [country, setCountry] = useState(props.country ? countryId.id : "");
+  const [country, setCountry] = useState(
+    props.country ? countryId.id : countries[0].id
+  );
   const [region, setRegion] = useState(props.region);
   const [postcode, setPostcode] = useState(props.postcode);
   const [address1, setAddress1] = useState(props.address1);
@@ -234,6 +236,7 @@ const Address = props => {
             id="add_address2"
             value={address2}
             isError={false}
+            required={false}
           />
         </div>
         <div className="addresses__form_buttons">
